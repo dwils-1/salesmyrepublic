@@ -755,7 +755,7 @@
 
     <div class="mini-popup-overlay" id="noteOverlay"></div>
     <div class="mini-popup-note" id="notePopup">
-        <h4>ℹ️ Panduan Bukti Kendala</h4>
+        <h4 id="article-title"></h4>
         <ul>
             <li>Pastikan lampu indikator LOS/PON router terlihat jelas jika memfoto fisik alat.</li>
             <li>Gunakan cuplikan layar (screenshot) hasil Speedtest jika keluhan Anda internet lambat.</li>
@@ -777,34 +777,7 @@
     <section class="hero">
         <div class="glass-shower-screen scroll-animate">
             <h2 id="hero-title"></h2>
-            <p>Nikmati kecepatan internet ultra stabil 1:1 simetris langsung dari jaringan infrastruktur resmi di Yogyakarta.</p>
-        </div>
-    </section>
-
-    <main class="container">
-        <h3 class="section-title scroll-animate">Pilihan Paket & Harga Internet</h3>
-        
-        <div id="promo-paket-utama" class="scroll-animate" style="margin-bottom:28px;">
-            <div class="skeleton-card"><div class="skeleton-line" style="width:50%; height:30px;"></div><div class="skeleton-line" style="width:80%; height:50px;"></div><div class="skeleton-line" style="width:100%; height:80px;"></div></div>
-        </div>
-        
-        <div class="grid-layout" id="harga-container">
-            <div class="skeleton-card"><div class="skeleton-line" style="width:40%; height:25px;"></div><div class="skeleton-line" style="width:70%; height:40px;"></div><div class="skeleton-line" style="width:100%; height:60px;"></div></div>
-            <div class="skeleton-card"><div class="skeleton-line" style="width:40%; height:25px;"></div><div class="skeleton-line" style="width:70%; height:40px;"></div><div class="skeleton-line" style="width:100%; height:60px;"></div></div>
-            <div class="skeleton-card"><div class="skeleton-line" style="width:40%; height:25px;"></div><div class="skeleton-line" style="width:70%; height:40px;"></div><div class="skeleton-line" style="width:100%; height:60px;"></div></div>
-        </div>
-
-        <div class="article-divider-container scroll-animate">
-            <div class="article-divider-line"></div>
-            <button class="btn-toggle-article" id="toggleArticleBtn" onclick="toggleArticleContent()">
-                <span>Sembunyikan Artikel</span> 📐
-            </button>
-            <div class="article-divider-line"></div>
-        </div>
-
-        <div class="article-holder-out scroll-animate" id="articleContentArea">
-            <h4 id="article-title"></h4>
-            <p><strong>MyRepublic</strong> adalah pelopor layanan internet fiber optik berskala internasional yang hadir secara resmi untuk masyarakat Yogyakarta. Berbeda dengan provider konvensional, MyRepublic memiliki pengalaman berinternet premium bebas hambatan dengan keunggulan teknologi mutakhir.</p>
+<p id="hero-subtitle"></p>
 
             <div class="article-features">
                 <div class="feature-item">
@@ -1088,7 +1061,7 @@
                             <div>
                                 <div class="review-header">
                                     <div class="review-avatar">${nama.charAt(0)}</div>
-                                    <div class="review-info"><h4>${nama}</h4><span>${item[keys[1]] || ''}</span></div>
+                                    <div class="review-info"><h4 id="article-title"></h4><span>${item[keys[1]] || ''}</span></div>
                                 </div>
                                 <div class="rating">${"⭐".repeat(ratingCount)}</div>
                                 ${kontenHTML}
