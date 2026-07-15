@@ -881,17 +881,18 @@
         <p>© <span id="current-year"></span> MyRepublic Makassar. All Rights Reserved.</p>
     </footer>
 
+    <script src="../config.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
         const URL_SHEET1_PROMO = "https://docs.google.com/spreadsheets/d/e/2PACX-1vStVKNVl4FfeX193YQRDEFGE32rSDirwTdTY-unjHs5OseIiBROW0KKaMRtVTmMhQg0bnqmo3gaAejO/pub?gid=0&single=true&output=csv";
         const URL_SHEET2_HARGA = "https://docs.google.com/spreadsheets/d/e/2PACX-1vStVKNVl4FfeX193YQRDEFGE32rSDirwTdTY-unjHs5OseIiBROW0KKaMRtVTmMhQg0bnqmo3gaAejO/pub?gid=390952880&single=true&output=csv";
 
-        const BOT_TOKEN = '8330506170:AAH8JHSDZ-r99YxkGu4Y-bwCea4Ap2TGhOc';
-        const CHAT_ID = '-1003594385102'; 
-        const TOPIC_SALES = '2'; 
-        const TOKEN_COMPLAINT = "8531770277:AAHKW3KhdwXop-hpu_sE21djyqdu2Wl8vmU";
-        const TOPIC_COMPLAINT = '13';
+        const BOT_TOKEN = CONFIG.BOT_TOKEN;
+        const CHAT_ID = CONFIG.CHAT_ID; 
+        const TOPIC_SALES = CONFIG.TOPIC_SALES; 
+        const TOKEN_COMPLAINT = CONFIG.TOKEN_COMPLAINT;
+        const TOPIC_COMPLAINT = CONFIG.TOPIC_COMPLAINT;
 
         let currentType = 'sales';
         let mapInitialized = false;
