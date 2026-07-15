@@ -1,24 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Ambil nama kota dari folder
-    const pathArray = window.location.pathname.split('/');
-    let namaKota = pathArray[pathArray.length - 2]; 
-    
-    // Format nama kota (Kapitalisasi huruf pertama)
-    if(namaKota) {
-        namaKota = namaKota.charAt(0).toUpperCase() + namaKota.slice(1);
-    }
+document.addEventListener("DOMContentLoaded", function() {
+    if (typeof SITE_CONTENT !== "undefined") {
+        const pathArray = window.location.pathname.split("/");
+        const folder = pathArray[pathArray.length - 2] || "Indonesia";
+        const kota = folder.charAt(0).toUpperCase() + folder.slice(1);
+        const replaceKota = (text) => text.replace(/{kota}/g, kota);
 
-    // Fungsi injeksi teks
-    const inject = (id, text, kota) => {
-        const el = document.getElementById(id);
-        if(el) el.innerText = text.replace("[kota]", kota);
-    };
-
-    // Pastikan variabel webContent sudah tersedia dari konten.js
-    if (typeof webContent !== 'undefined') {
-        inject('hero-title', webContent.hero.title, namaKota);
-        inject('hero-subtitle', webContent.hero.subtitle, namaKota);
-        inject('article-title', webContent.article.title, namaKota);
-        inject('article-desc', webContent.article.desc, namaKota);
+        if (document.getElementById("hero-title")) document.getElementById("hero-title").textContent = replaceKota(SITE_CONTENT.heroTitle);
+        if (document.getElementById("hero-subtitle")) document.getElementById("hero-subtitle").textContent = replaceKota(SITE_CONTENT.heroSubtitle);
+        if (document.getElementById("article-title")) document.getElementById("article-title").textContent = replaceKota(SITE_CONTENT.articleTitle);
+        if (document.getElementById("article-desc")) document.getElementById("article-desc").textContent = replaceKota(SITE_CONTENT.articleDesc);
     }
 });
