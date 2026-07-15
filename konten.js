@@ -5,6 +5,6 @@ const webContent = {
     },
     article: {
         title: "Mengapa Memilih MyRepublic Internet Fiber?",
-        desc: "Hai Warga [kota]! MyRepublic akan hadir dengan layanan internet full fiber optic untuk memberikan pengalaman berinternet premium bebas hambatan dengan keunggulan teknologi mutakhir."
+        desc: "Hai Warga [kota]! MyRepublic hadir dengan layanan internet full fiber optic, unlimited tanpa ada b  atas kuota untuk memberikan pengalaman berinternet premium bebas hambatan dengan keunggulan teknologi mutakhir."
     }
 };
