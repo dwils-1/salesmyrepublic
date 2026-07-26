@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<title>MyRepublic branch INDONESIA - Pasang WiFi Internet Fiber Optik Cepat</title>
+<meta name="description" content="Layanan pemasangan WiFi MyRepublic area INDONESIA, . Internet fiber optik 100% tanpa batas kuota (FUP) yang stabil. Hubungi MyRepublic branch INDONESIA untuk pemasangan cepat.">
+
+    <meta name="theme-color" content="#6c2d91">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Sales MyRepublic INDONESIA",
+      "image": "assets/img/favicon.png",
+      "description": "Layanan resmi pendaftaran WiFi MyRepublic INDONESIA. Internet fiber optik 100% tanpa batas kuota (FUP), cepat dan stabil.",
+      "url": "https://salesmyrepublic.my.id/",
+      "telephone": "+6281908999242",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ID"
+      },
+      "areaServed": "INDONESIA"
+    }
+    </script>
+    
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+    <div id="global-loading-overlay">Memproses data jangan keluar halaman...</div>
+    <div class="chat-backdrop-blur" id="chatBackdrop" onclick="toggleChatBox()"></div>
+
+    <div class="mini-popup-overlay" id="noteOverlay"></div>
+    <div class="mini-popup-note" id="notePopup">
+        <h4>ℹ️ Panduan Bukti Kendala</h4>
+        <ul>
+            <li>Pastikan lampu indikator LOS/PON router terlihat jelas jika memfoto fisik alat.</li>
+            <li>Gunakan cuplikan layar (screenshot) hasil Speedtest jika keluhan Anda internet lambat.</li>
+            <li>Ukuran file maksimal adalah 10 MB.</li>
+        </ul>
+        <button class="btn-close-note" onclick="closeNoteAndTriggerUpload()">Saya Mengerti, Pilih File</button>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <div class="brand">
+                <h1>Sales Resmi MyRepublic Indonesia</h1>
+                <span>INDONESIA</span>
+            </div>
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">🌙</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="glass-shower-screen scroll-animate">
+            <h2>Koneksi Fiber Optik Tanpa Batas Kuota</h2>
+            <p>Nikmati kecepatan internet ultra stabil 1:1 simetris langsung dari jaringan infrastruktur resmi di INDONESIA.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <h3 class="section-title scroll-animate">Pilihan Paket & Harga Internet</h3>
+        
+        <div id="promo-paket-utama" class="scroll-animate" style="margin-bottom:28px;">
+            <div class="skeleton-card"><div class="skeleton-line" style="width:50%; height:30px;"></div><div class="skeleton-line" style="width:80%; height:50px;"></div><div class="skeleton-line" style="width:100%; height:80px;"></div></div>
+        </div>
+        
+        <div class="grid-layout" id="harga-container">
+            <div class="skeleton-card"><div class="skeleton-line" style="width:40%; height:25px;"></div><div class="skeleton-line" style="width:70%; height:40px;"></div><div class="skeleton-line" style="width:100%; height:60px;"></div></div>
+            <div class="skeleton-card"><div class="skeleton-line" style="width:40%; height:25px;"></div><div class="skeleton-line" style="width:70%; height:40px;"></div><div class="skeleton-line" style="width:100%; height:60px;"></div></div>
+            <div class="skeleton-card"><div class="skeleton-line" style="width:40%; height:25px;"></div><div class="skeleton-line" style="width:70%; height:40px;"></div><div class="skeleton-line" style="width:100%; height:60px;"></div></div>
+        </div>
+
+        <div class="article-divider-container scroll-animate">
+            <div class="article-divider-line"></div>
+            <button class="btn-toggle-article" id="toggleArticleBtn" onclick="toggleArticleContent()">
+                <span>Sembunyikan Artikel</span> 📐
+            </button>
+            <div class="article-divider-line"></div>
+        </div>
+
+        <div class="article-holder-out scroll-animate" id="articleContentArea">
+            <h4>Mengapa Memilih MyRepublic Internet Fiber?</h4>
+            <p><strong>MyRepublic</strong> adalah pelopor layanan internet fiber optik berskala internasional yang hadir secara resmi untuk masyarakat INDONESIA. Berbeda dengan provider konvensional, MyRepublic memiliki pengalaman berinternet premium bebas hambatan dengan keunggulan teknologi mutakhir.</p>
+
+            <div class="article-features">
+                <div class="feature-item">
+                    <h5>🚀 Kecepatan 1:1 Simetris</h5>
+                    <p>Kecepatan <em>Upload</em> and <em>Download</em> yang sama persis sehingga kirim dokumen besar jadi super instan.</p>
+                </div>
+                <div class="feature-item">
+                    <h5>♾️ Murni Tanpa FUP (Tanpa Batas)</h5>
+                    <p>Internet sepuasnya tanpa takut penurunan kecepatan di tengah bulan. Bebas kuota selamanya.</p>
+                </div>
+                <div class="feature-item">
+                    <h5>🎮 Ping Sangat Rendah</h5>
+                    <p>Dilengkapi dengan fitur <em>custom routing</em> khusus untuk jalur server game dan <em>streaming</em> hiburan global terpopuler.</p>
+                </div>
+            </div>
+            
+            <div class="article-cta-box">
+                <h5>Ingin Memastikan Apakah Rumah Anda Sudah Tercover Jaringan?</h5>
+                <p style="font-size: 0.9rem; margin-bottom: 8px;">Gunakan peta koordinat otomatis kami di widget bawah untuk mengunci promo instalasi gratis bulan ini.</p>
+                <button class="btn-article-cta" onclick="toggleChatBox()">Mulai Cek Coverage Sekarang</button>
+            </div>
+        </div>
+
+        <hr class="section-divider scroll-animate">
+
+        <h3 class="section-title scroll-animate">Promo</h3>
+        
+        <div class="grid-layout" id="promo-container">
+            <div class="skeleton-card"><div class="skeleton-line" style="width:30%; height:30px;"></div><div class="skeleton-line" style="width:100%; height:100px;"></div></div>
+            <div class="skeleton-card"><div class="skeleton-line" style="width:30%; height:30px;"></div><div class="skeleton-line" style="width:100%; height:100px;"></div></div>
+        </div>
+
+        <div class="full-promo-container scroll-animate" id="full-promo-bottom"></div>
+    </main>
+
+    <div class="chat-widget">
+        <button class="chat-btn-toggle" onclick="toggleChatBox()">
+            <svg class="chat-icon-svg" viewBox="0 0 24 24">
+                <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+            </svg>
+        </button>
+        
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <h3 id="chat-title">Cek Cover Area</h3>
+                <button style="background:none; border:none; color:#fff; cursor:pointer; font-size:1.5rem; font-weight:700;" onclick="toggleChatBox()">×</button>
+            </div>
+            
+            <div class="chat-type-tabs">
+                <button class="tab-btn active" id="tab-sales" onclick="switchChatType('sales')">Cek Jaringan</button>
+                <button class="tab-btn" id="tab-complain" onclick="switchChatType('complain')">Komplain Masalah</button>
+            </div>
+
+            <form class="chat-form" id="clientForm" onsubmit="handleSubmit(event)">
+                <input type="hidden" id="form-paket-terpilih" value="Umum (Tanpa Klik Tombol Paket)">
+                
+                <div class="field-group">
+                    <input type="text" id="form-nama" placeholder="Nama Lengkap Anda" required>
+                </div>
+                
+                <div class="field-group">
+                    <input type="tel" id="form-hp" placeholder="Nomor WhatsApp (Contoh: 08123...)" required oninput="validateAndFormatWA(this)">
+                    <span id="wa-status-hint" class="input-hint-msg"></span>
+                </div>
+                
+                <div id="dynamic-fields" style="display: flex; flex-direction: column; gap: 16px;">
+                    <div class="field-group">
+                        <input type="text" id="form-alamat" placeholder="Alamat Lengkap" required>
+                    </div>
+                    <div class="field-group">
+                        <div id="map"></div>
+                        <input type="text" id="form-coords" placeholder="Mencari lokasi otomatis..." readonly style="background:var(--bg-main); font-size:0.8rem;">
+                    </div>
+                </div>
+
+                <div id="submit-btn-placeholder">
+                    <button type="submit" class="btn-submit">Kirim Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>© <span id="current-year"></span> MyRepublic INDONESIA. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    
+    <script src="/floating-wa.js"></script>
+<div style="display: none;">
+    <img src="https://salesmyrepublic.my.id/assets/img/myrepublic-50Mbps.png" alt="Promo MyRepublic 50 Mbps murah di INDONESIA - Pasang WiFi Cepat & Stabil">
+    <p>Area Layanan internet MyRepublic mencakup seluruh wilayah INDONESIA. Dapatkan penawaran harga spesial untuk pelanggan baru.</p>
+</div>
+
+<link rel="stylesheet" href="assets/css/faq.css">
+<script src="assets/js/faq-data.js"></script>
+<script src="assets/js/faq.js"></script>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
