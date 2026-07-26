@@ -1,0 +1,15 @@
+<h1>Artikel</h1>
+<button onclick="location='article-edit.html'">Tambah Artikel</button>
+<div id="list"></div>
+<script>
+fetch("../../data/articles.json")
+.then(r=>r.json())
+.then(d=>{
+list.innerHTML=d.map(x=>`
+<p>
+<b>${x.title}</b><br>
+${x.slug}
+</p>
+`).join("");
+});
+</script>
