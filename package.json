@@ -5,7 +5,7 @@
   "main": "config.js",
   "scripts": {
     "dev": "php -S 127.0.0.1:8000",
-    "build": "node build/build.js",
+    "build": "node build/build.js && node build/search.js",
     "deploy": "node build/build.js && node build/deploy.js",
     "article": "node build/articles.js",
     "faq": "node build/faq.js",
