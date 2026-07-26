@@ -25,7 +25,7 @@
             
             waButton.href = "#";
             waButton.target = "_blank";
-            waButton.innerHTML = `<img src="/images/whatsapp-logo.svg" alt="Hubungi via WhatsApp" style="width: 160px; height: auto; margin: 0 auto;">`;
+            waButton.innerHTML = `<img src="/assets/img/favicon.png" alt="Hubungi via WhatsApp" style="width: 160px; height: auto; margin: 0 auto;">`;
             
             // Efek interaksi tombol
             waButton.style.cssText = "display: block; text-decoration: none; transition: transform 0.2s; cursor: pointer;";
