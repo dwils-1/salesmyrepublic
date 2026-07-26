@@ -4,7 +4,7 @@
   "description": "",
   "main": "config.js",
   "scripts": {
-    "build": "node build/generate.js"
+    "build": "node build/generate.js && node build/articles.js && node build/sitemap.js"
   },
   "repository": {
     "type": "git",
