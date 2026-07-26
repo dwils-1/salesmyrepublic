@@ -1,0 +1,44 @@
+<?php
+$db=new SQLite3(__DIR__.'/sales.db');
+
+$db->exec("
+CREATE TABLE IF NOT EXISTS articles(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+title TEXT,
+slug TEXT UNIQUE,
+content TEXT,
+thumbnail TEXT,
+seo_title TEXT,
+meta_description TEXT,
+status TEXT DEFAULT 'draft',
+created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS faq(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+question TEXT,
+answer TEXT
+);
+
+CREATE TABLE IF NOT EXISTS promo(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+title TEXT,
+description TEXT,
+image TEXT
+);
+
+CREATE TABLE IF NOT EXISTS leads(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT,
+phone TEXT,
+city TEXT,
+created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS settings(
+name TEXT PRIMARY KEY,
+value TEXT
+);
+");
+
+echo "Database OK\n";
