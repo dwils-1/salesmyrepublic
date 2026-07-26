@@ -14,7 +14,7 @@
         
         if (footer) {
             const waContainer = document.createElement('div');
-            waContainer.style.cssText = "text-align: center; margin: 30px 0; width: 100%; padding: 10px;";
+            waContainer.style.cssText = "text-align:center; width:100%; margin:12px 0 0; padding:0;";
 
             const waButton = document.createElement('a');
             

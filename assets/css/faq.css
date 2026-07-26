@@ -1,21 +1,23 @@
 #faqButton{
-width:220px;
-margin:40px auto;
+width:min(220px,calc(100% - 48px));
+margin:8px auto 0;
 padding:15px 20px;
 border-radius:999px;
-background:#6c2d91;
+background:linear-gradient(135deg,#6c2d91,#4d1f67);
 color:#fff;
 font-weight:700;
 font-size:17px;
 text-align:center;
 cursor:pointer;
-box-shadow:0 10px 30px rgba(108,45,145,.25);
-transition:.25s;
+box-shadow:0 10px 25px rgba(108,45,145,.22);
+transition:all .25s ease;
 user-select:none;
 }
 
+
 #faqButton:hover{
-transform:translateY(-2px);
+transform:translateY(-3px);
+box-shadow:0 16px 34px rgba(108,45,145,.28);
 }
 
 #faqPage{
@@ -131,3 +133,8 @@ color:#555;
     color:#ffffff;
 }
 
+
+.site-footer + #faqButton{
+margin-top:12px!important;
+margin-bottom:0!important;
+}
