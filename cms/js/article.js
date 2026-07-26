@@ -6,6 +6,7 @@ async function load(){
 articles=await fetch("../data/articles.json?"+Date.now()).then(r=>r.json());
 
 render();
+saveGithub(articles);
 
 }
 
@@ -49,6 +50,7 @@ if(!confirm("Hapus artikel?")) return;
 articles.splice(i,1);
 
 render();
+saveGithub(articles);
 
 }
 
@@ -79,8 +81,9 @@ title.value="";
 content.value="";
 
 render();
+saveGithub(articles);
 
-download();
+saveGithub(articles);
 
 }
 
