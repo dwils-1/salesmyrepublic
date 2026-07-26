@@ -4,7 +4,8 @@
   "description": "",
   "main": "config.js",
   "scripts": {
-    "build": "node build/generate.js && node build/articles.js && node build/faq.js && node build/promo.js && node build/sitemap.js"
+    "build": "node build/build.js",
+    "deploy": "node build/build.js && git add . && git commit -m \"Auto Build\" && git push origin main"
   },
   "repository": {
     "type": "git",
