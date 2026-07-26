@@ -1,23 +1,24 @@
 const fs=require("fs");
-const ejs=require("ejs");
 
-const articles=JSON.parse(
-fs.readFileSync("data/articles.json","utf8")
-);
+const articles=JSON.parse(fs.readFileSync("data/articles.json","utf8"));
 
-const out="pages/artikel";
+if(!fs.existsSync("pages/artikel"))
+fs.mkdirSync("pages/artikel",{recursive:true});
 
-fs.mkdirSync(out,{recursive:true});
-
-const indexTemplate=fs.readFileSync(
-"templates/articles.ejs",
-"utf8"
-);
-
-fs.writeFileSync(
-`${out}/index.html`,
-ejs.render(indexTemplate,{articles})
-);
+let index=`<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Artikel SalesMyRepublic</title>
+<style>
+body{font-family:Arial;max-width:900px;margin:auto;padding:20px}
+.card{border:1px solid #ddd;border-radius:10px;padding:15px;margin:15px 0}
+a{text-decoration:none;font-size:24px;font-weight:bold}
+</style>
+</head>
+<body>
+<h1>Artikel SalesMyRepublic</h1>
+`;
 
 articles.forEach(a=>{
 
@@ -25,34 +26,30 @@ const html=`<!doctype html>
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${a.title}</title>
 <meta name="description" content="${a.title}">
 </head>
-
-<body style="font-family:Arial;max-width:900px;margin:auto;padding:20px">
-
-<a href="index.html">← Semua Artikel</a>
-
+<body>
 <h1>${a.title}</h1>
-
 ${a.content}
-
-<hr>
-
-<small>${a.created}</small>
-
 </body>
 </html>`;
 
-fs.writeFileSync(
-`${out}/${a.slug}.html`,
-html
-);
+fs.writeFileSync(`pages/artikel/${a.slug}.html`,html);
+
+index+=`
+<div class="card">
+<a href="${a.slug}.html">${a.title}</a>
+<p>${a.created}</p>
+</div>
+`;
 
 console.log("✓",a.slug);
 
 });
 
+index+="</body></html>";
+
+fs.writeFileSync("pages/artikel/index.html",index);
+
 console.log("✓ index artikel");
-console.log("SELESAI");
