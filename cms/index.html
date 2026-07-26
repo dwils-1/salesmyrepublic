@@ -2,30 +2,43 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SalesMyRepublic CMS</title>
+<title>SalesMyRepublic CMS V3</title>
+
 <style>
+
 body{
 margin:0;
-font-family:Arial;
 display:flex;
-background:#f5f5f5;
+font-family:Arial;
+background:#f4f4f4;
 }
 
 aside{
 width:240px;
-background:#20232a;
+background:#1e293b;
 height:100vh;
-padding:20px;
+overflow:auto;
 }
 
-aside a{
-display:block;
-padding:12px;
-margin:6px 0;
-text-decoration:none;
-color:white;
-background:#2f3542;
-border-radius:6px;
+aside h2{
+color:#fff;
+padding:20px;
+margin:0;
+}
+
+aside button{
+width:100%;
+padding:14px;
+border:none;
+background:none;
+color:#fff;
+text-align:left;
+cursor:pointer;
+font-size:15px;
+}
+
+aside button:hover{
+background:#334155;
 }
 
 main{
@@ -38,38 +51,43 @@ width:100%;
 height:100%;
 border:none;
 }
+
 </style>
+
 </head>
+
 <body>
 
 <aside>
 
-<h2 style="color:white;">CMS V3</h2>
+<h2>CMS V3</h2>
 
-<a target="view" href="dashboard.html">Dashboard</a>
+<button onclick="openPage('dashboard')">Dashboard</button>
 
-<a target="view" href="pages/article.html">Artikel</a>
+<button onclick="openPage('articles')">Artikel</button>
 
-<a target="view" href="faq.html">FAQ</a>
+<button onclick="openPage('faq')">FAQ</button>
 
-<a target="view" href="promo.html">Promo</a>
+<button onclick="openPage('promo')">Promo</button>
 
-<a target="view" href="media.html">Media</a>
+<button onclick="openPage('media')">Media</button>
 
-<a target="view" href="search.html">Search</a>
+<button onclick="openPage('seo')">SEO</button>
 
-<a target="view" href="setting.html">Setting</a>
+<button onclick="openPage('analytics')">Analytics</button>
+
+<button onclick="openPage('settings')">Setting</button>
 
 </aside>
 
 <main>
 
-<iframe
-name="view"
-src="dashboard.html">
-</iframe>
+<iframe id="frame"></iframe>
 
 </main>
 
+<script src="js/router.js"></script>
+
 </body>
+
 </html>
