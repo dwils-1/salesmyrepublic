@@ -1,13 +1,11 @@
-async function load(){
+(async()=>{
 
-let a=await fetch("../data/articles.json").then(r=>r.json());
-let f=await fetch("../data/faq.json").then(r=>r.json());
-let p=await fetch("../data/promo.json").then(r=>r.json());
+const artikel=new Crud("data/articles.json");
+const faq=new Crud("data/faq.json");
+const promo=new Crud("data/promo.json");
 
-artikel.textContent=a.length;
-faq.textContent=f.length;
-promo.textContent=p.length;
+document.getElementById("artikel").innerText=(await artikel.load()).length;
+document.getElementById("faq").innerText=(await faq.load()).length;
+document.getElementById("promo").innerText=(await promo.load()).length;
 
-}
-
-load();
+})();
