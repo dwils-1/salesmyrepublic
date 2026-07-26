@@ -18,7 +18,12 @@ if(!kota) kota="Indonesia";
 const tombol=document.createElement("div");
 tombol.id="faqButton";
 tombol.innerHTML="💬 FAQ";
-document.body.appendChild(tombol);
+const footer=document.querySelector(".site-footer");
+if(footer){
+    footer.after(tombol);
+}else{
+    document.body.appendChild(tombol);
+}
 
 const halaman=document.createElement("div");
 halaman.id="faqPage";
