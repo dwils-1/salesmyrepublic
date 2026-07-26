@@ -27,19 +27,19 @@ color:#666;
 
 <h1>Artikel SalesMyRepublic</h1>
 
-
+<% articles.forEach(a=>{ %>
 
 <div class="card">
 
-<a href="login.html">Login</a>
+<a href="<%= a.slug %>.html"><%= a.title %></a>
 
 <br>
 
-<small>2026-07-26T12:25:42.052Z</small>
+<small><%= a.created %></small>
 
 </div>
 
-
+<% }) %>
 
 </body>
 </html>

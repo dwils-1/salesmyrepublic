@@ -1,35 +1,38 @@
 const fs=require("fs");
+const ejs=require("ejs");
 
-const articles=JSON.parse(fs.readFileSync("data/articles.json","utf8"));
+const articles=JSON.parse(
+fs.readFileSync("data/articles.json","utf8")
+);
 
 const out="pages/artikel";
 
 fs.mkdirSync(out,{recursive:true});
 
-let index=`<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Daftar Artikel</title>
-</head>
-<body>
+const indexTemplate=fs.readFileSync(
+"templates/articles.ejs",
+"utf8"
+);
 
-<h1>Daftar Artikel</h1>
-
-<ul>
-`;
+fs.writeFileSync(
+`${out}/index.html`,
+ejs.render(indexTemplate,{articles})
+);
 
 articles.forEach(a=>{
 
 const html=`<!doctype html>
-<html>
+<html lang="id">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${a.title}</title>
+<meta name="description" content="${a.title}">
 </head>
-<body>
 
-<a href="../index.html">← Semua Artikel</a>
+<body style="font-family:Arial;max-width:900px;margin:auto;padding:20px">
+
+<a href="index.html">← Semua Artikel</a>
 
 <h1>${a.title}</h1>
 
@@ -42,21 +45,14 @@ ${a.content}
 </body>
 </html>`;
 
-fs.writeFileSync(`${out}/${a.slug}.html`,html);
-
-index+=`<li><a href="${a.slug}.html">${a.title}</a></li>\n`;
+fs.writeFileSync(
+`${out}/${a.slug}.html`,
+html
+);
 
 console.log("✓",a.slug);
 
 });
 
-index+=`
-</ul>
-
-</body>
-</html>
-`;
-
-fs.writeFileSync(`${out}/index.html`,index);
-
 console.log("✓ index artikel");
+console.log("SELESAI");
