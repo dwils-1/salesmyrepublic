@@ -1188,7 +1188,7 @@
 
         function initLazyMap() {
             if(mapInitialized || !document.getElementById('map')) return;
-            let defaultLat = -7.4266; let defaultLng = 111.0224;
+            let defaultLat = -7.3558733; let defaultLng = 109.6600728;
             map = L.map('map').setView([defaultLat, defaultLng], 13);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
             marker = L.marker([defaultLat, defaultLng], {draggable: true}).addTo(map);
