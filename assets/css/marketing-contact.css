@@ -10,3 +10,76 @@
     font-weight: 600;
     text-decoration: none;
 }
+
+/* ==========================================================
+   PROMO GAMBAR DARI GOOGLE SHEETS
+   ========================================================== */
+
+.promo-image-card {
+    width: 100%;
+}
+
+.promo-only-card {
+    padding: 16px;
+    overflow: hidden;
+}
+
+.promo-only-card .promo-banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    border-radius: 18px;
+    margin: 0;
+    border: 1px solid var(--border-color);
+}
+
+.promo-empty {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--text-muted);
+    padding: 30px 0;
+}
+
+/* Jangan tampilkan container promo bawah lama */
+#full-promo-bottom {
+    display: none !important;
+}
+
+/* ==========================================================
+   FINAL PROMO IMAGE LAYOUT
+   ========================================================== */
+
+#promo-container {
+    align-items: start;
+}
+
+#promo-container .promo-image-card {
+    width: 100%;
+    min-width: 0;
+}
+
+#promo-container .promo-only-card {
+    padding: 0;
+    min-height: 0;
+    height: auto;
+    overflow: hidden;
+    transform: none !important;
+}
+
+#promo-container .promo-only-card .promo-banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    margin: 0;
+    border: 0;
+    border-radius: 18px;
+}
+
+#promo-container .promo-image-card:hover .promo-only-card {
+    transform: none !important;
+}

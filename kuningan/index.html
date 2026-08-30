@@ -1070,42 +1070,62 @@
         function renderPromo(data) {
             const container = document.getElementById('promo-container');
             const bottomContainer = document.getElementById('full-promo-bottom');
-            if(!data || data.length === 0) return;
-            const keys = Object.keys(data[0]);
 
-            let filteredData = [...data];
-            let firstPromoText = (data[0][keys[2]] || '').trim();
+            if (!container) return;
 
-            if (firstPromoText.startsWith('http://') || firstPromoText.startsWith('https://')) {
-                bottomContainer.innerHTML = `<img src="${firstPromoText}" class="full-promo-img" alt="Promo" loading="lazy">`;
-                filteredData = data.slice(1);
+            if (!data || data.length === 0) {
+                container.innerHTML = '<p class="promo-empty">Promo belum tersedia.</p>';
+                if (bottomContainer) bottomContainer.innerHTML = '';
+                return;
             }
 
-            container.innerHTML = filteredData.map(item => {
-                const nama = item[keys[0]] || 'Pelanggan';
-                const ratingCount = parseInt(item[keys[3]]) || 5;
-                const isiTeks = (item[keys[2]] || '').trim();
-                let kontenHTML = (isiTeks.startsWith('http://') || isiTeks.startsWith('https://')) 
-                    ? `<img src="${isiTeks}" class="promo-banner-img" loading="lazy">`
-                    : `<p class="review-text">"${isiTeks}"</p>`;
+            const keys = Object.keys(data[0]);
+
+            /*
+             * Kolom Google Sheets:
+             * Nama | Tentang | Link Gambar
+             *
+             * Semua gambar dari kolom "Link Gambar"
+             * ditampilkan langsung sebagai kartu promo.
+             */
+            container.innerHTML = data.map((item, index) => {
+                const nama = item[keys[0]] || `Promo MyRepublic ${index + 1}`;
+                const gambar = (item[keys[2]] || '').trim();
+
+                if (!gambar || !/^https?:\/\//i.test(gambar)) {
+                    return '';
+                }
+
                 return `
-                    <div class="custom-card-wrapper scroll-animate">
-                        <div class="custom-card">
-                            <div>
-                                <div class="review-header">
-                                    <div class="review-avatar">${nama.charAt(0)}</div>
-                                    <div class="review-info"><h4>${nama}</h4><span>${item[keys[1]] || ''}</span></div>
-                                </div>
-                                <div class="rating">${"⭐".repeat(ratingCount)}</div>
-                                ${kontenHTML}
-                            </div>
+                    <div class="custom-card-wrapper scroll-animate promo-image-card">
+                        <div class="custom-card promo-only-card">
+                            <img
+                                src="${gambar}"
+                                class="promo-banner-img"
+                                alt="${nama.replace(/"/g, '&quot;')}"
+                                loading="lazy"
+                                decoding="async"
+                                onerror="this.closest('.promo-image-card').style.display='none';"
+                            >
                         </div>
                     </div>
                 `;
             }).join('');
 
-            container.querySelectorAll('.scroll-animate').forEach(card => scrollObserver.observe(card));
-            apply3DTiltEffect();
+            if (bottomContainer) {
+                bottomContainer.innerHTML = '';
+                bottomContainer.style.display = 'none';
+            }
+
+            container.querySelectorAll('.scroll-animate').forEach(card => {
+                if (typeof scrollObserver !== 'undefined') {
+                    scrollObserver.observe(card);
+                }
+            });
+
+            if (typeof apply3DTiltEffect === 'function') {
+                apply3DTiltEffect();
+            }
         }
 
         function toggleChatBoxWithPackage(packageName) {
