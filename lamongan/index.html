@@ -370,6 +370,76 @@
             border: 1px solid var(--border-color);
         }
 
+
+/* =========================================================
+   PROMO IMAGE CARD — ISOLASI DARI EFEK CARD GLOBAL
+   ========================================================= */
+
+.promo-image-card {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    perspective: none;
+    transform: none !important;
+    transform-style: flat !important;
+}
+
+.promo-image-card .promo-only-card {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    transform: none !important;
+    transform-style: flat !important;
+    perspective: none !important;
+
+    display: block;
+    position: relative;
+
+    border-radius: 24px;
+}
+
+.promo-image-card .promo-only-card > * {
+    transform: none !important;
+}
+
+.promo-image-card .promo-banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    margin: 0;
+
+    object-fit: contain;
+
+    transform: none !important;
+}
+
+@media (max-width: 768px) {
+    .promo-image-card {
+        width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .promo-image-card .promo-only-card {
+        width: 100%;
+        margin: 0;
+        border-radius: 18px;
+    }
+
+    .promo-image-card .promo-banner-img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* =========================================================
+   END PROMO IMAGE CARD
+   ========================================================= */
+
         .full-promo-container {
             width: 100%;
             margin-top: 32px;
@@ -830,7 +900,7 @@
 
         <h3 class="section-title scroll-animate">Promo</h3>
         
-        <div class="grid-layout" id="promo-container">
+        <div id="promo-container">
             <div class="skeleton-card"><div class="skeleton-line" style="width:30%; height:30px;"></div><div class="skeleton-line" style="width:100%; height:100px;"></div></div>
             <div class="skeleton-card"><div class="skeleton-line" style="width:30%; height:30px;"></div><div class="skeleton-line" style="width:100%; height:100px;"></div></div>
         </div>
@@ -1097,7 +1167,7 @@
                 }
 
                 return `
-                    <div class="custom-card-wrapper scroll-animate promo-image-card">
+                    <div class="promo-image-card">
                         <div class="custom-card promo-only-card">
                             <img
                                 src="${gambar}"
@@ -1117,7 +1187,7 @@
                 bottomContainer.style.display = 'none';
             }
 
-            container.querySelectorAll('.scroll-animate').forEach(card => {
+            container.querySelectorAll('.scroll-animate:not(.promo-image-card)').forEach(card => {
                 if (typeof scrollObserver !== 'undefined') {
                     scrollObserver.observe(card);
                 }
@@ -1319,5 +1389,128 @@
 <script src="../assets/js/faq-data.js"></script>
 <script src="../assets/js/faq.js"></script>
 <script src="../harga.js"></script>
+
+
+
+
+<script>
+(function () {
+    function detectPromoOrientation() {
+        document.querySelectorAll(
+            "#promo-container > .promo-image-card"
+        ).forEach(function (card) {
+            const img = card.querySelector(".promo-banner-img");
+
+            if (!img) return;
+
+            function detect() {
+                if (!img.naturalWidth || !img.naturalHeight) return;
+
+                card.classList.toggle(
+                    "landscape-promo",
+                    img.naturalWidth > img.naturalHeight
+                );
+            }
+
+            if (img.complete) detect();
+            img.addEventListener("load", detect);
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            detectPromoOrientation
+        );
+    } else {
+        detectPromoOrientation();
+    }
+})();
+</script>
+
+
+<!-- LANDSCAPE-PROMO-AUTO-DETECT-V2 -->
+<script>
+(function () {
+    function detectLandscapePromo() {
+        document.querySelectorAll(
+            "#promo-container > .promo-image-card"
+        ).forEach(function (card) {
+
+            var img = card.querySelector(".promo-banner-img");
+
+            if (!img) return;
+
+            function apply() {
+                if (!img.naturalWidth || !img.naturalHeight) return;
+
+                card.classList.toggle(
+                    "landscape-promo",
+                    img.naturalWidth > img.naturalHeight
+                );
+            }
+
+            if (img.complete) {
+                apply();
+            }
+
+            img.addEventListener("load", apply);
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            detectLandscapePromo
+        );
+    } else {
+        detectLandscapePromo();
+    }
+})();
+</script>
+<!-- END LANDSCAPE-PROMO-AUTO-DETECT-V2 -->
+
+
+<!-- LANDSCAPE-PROMO-AUTO-DETECT-V3 -->
+<script>
+(function () {
+    function detectLandscapePromo() {
+        document.querySelectorAll(
+            "#promo-container > .promo-image-card"
+        ).forEach(function (card) {
+
+            var img = card.querySelector(".promo-banner-img");
+
+            if (!img) return;
+
+            function apply() {
+                if (!img.naturalWidth || !img.naturalHeight) return;
+
+                card.classList.toggle(
+                    "landscape-promo",
+                    img.naturalWidth > img.naturalHeight
+                );
+            }
+
+            if (img.complete) {
+                apply();
+            }
+
+            img.addEventListener("load", apply);
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            detectLandscapePromo
+        );
+    } else {
+        detectLandscapePromo();
+    }
+})();
+</script>
+<!-- END LANDSCAPE-PROMO-AUTO-DETECT-V3 -->
+
 </body>
 </html>

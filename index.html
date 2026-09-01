@@ -1555,30 +1555,130 @@ main.container {
 <script src="assets/js/faq-data.js"></script>
 <script src="assets/js/faq.js"></script>
 
+
+
+
+
+
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll("#promo-container > .promo-image-card").forEach(function (card) {
-        const img = card.querySelector(".promo-banner-img");
+(function () {
+    function detectPromoOrientation() {
+        document.querySelectorAll(
+            "#promo-container > .promo-image-card"
+        ).forEach(function (card) {
+            const img = card.querySelector(".promo-banner-img");
 
-        if (!img) return;
+            if (!img) return;
 
-        function checkOrientation() {
-            if (!img.naturalWidth || !img.naturalHeight) return;
+            function detect() {
+                if (!img.naturalWidth || !img.naturalHeight) return;
 
-            card.classList.toggle(
-                "landscape-promo",
-                img.naturalWidth > img.naturalHeight
-            );
-        }
+                card.classList.toggle(
+                    "landscape-promo",
+                    img.naturalWidth > img.naturalHeight
+                );
+            }
 
-        if (img.complete) {
-            checkOrientation();
-        } else {
-            img.addEventListener("load", checkOrientation, { once: true });
-        }
-    });
-});
+            if (img.complete) detect();
+            img.addEventListener("load", detect);
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            detectPromoOrientation
+        );
+    } else {
+        detectPromoOrientation();
+    }
+})();
 </script>
+
+
+<!-- LANDSCAPE-PROMO-AUTO-DETECT-V2 -->
+<script>
+(function () {
+    function detectLandscapePromo() {
+        document.querySelectorAll(
+            "#promo-container > .promo-image-card"
+        ).forEach(function (card) {
+
+            var img = card.querySelector(".promo-banner-img");
+
+            if (!img) return;
+
+            function apply() {
+                if (!img.naturalWidth || !img.naturalHeight) return;
+
+                card.classList.toggle(
+                    "landscape-promo",
+                    img.naturalWidth > img.naturalHeight
+                );
+            }
+
+            if (img.complete) {
+                apply();
+            }
+
+            img.addEventListener("load", apply);
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            detectLandscapePromo
+        );
+    } else {
+        detectLandscapePromo();
+    }
+})();
+</script>
+<!-- END LANDSCAPE-PROMO-AUTO-DETECT-V2 -->
+
+
+<!-- LANDSCAPE-PROMO-AUTO-DETECT-V3 -->
+<script>
+(function () {
+    function detectLandscapePromo() {
+        document.querySelectorAll(
+            "#promo-container > .promo-image-card"
+        ).forEach(function (card) {
+
+            var img = card.querySelector(".promo-banner-img");
+
+            if (!img) return;
+
+            function apply() {
+                if (!img.naturalWidth || !img.naturalHeight) return;
+
+                card.classList.toggle(
+                    "landscape-promo",
+                    img.naturalWidth > img.naturalHeight
+                );
+            }
+
+            if (img.complete) {
+                apply();
+            }
+
+            img.addEventListener("load", apply);
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            detectLandscapePromo
+        );
+    } else {
+        detectLandscapePromo();
+    }
+})();
+</script>
+<!-- END LANDSCAPE-PROMO-AUTO-DETECT-V3 -->
 
 </body>
 </html>

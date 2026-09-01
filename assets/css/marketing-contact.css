@@ -504,53 +504,106 @@ body {
 
 }
 
+
+
+
+
+
+
+
 /* ==========================================================
-   PATCH — CENTER LANDSCAPE PROMO IMAGE
-   Landscape = center horizontal + vertical
-   Portrait = layout existing, tidak diubah
+   FINAL LANDSCAPE PROMO — CLEAN
+   Landscape center horizontal.
+   Tinggi mengikuti rasio gambar.
+   Tidak crop.
+   Tidak mengubah portrait.
+   Swipe tetap aktif.
    ========================================================== */
 
 @media (max-width: 600px) {
 
     #promo-container > .promo-image-card.landscape-promo {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        box-sizing: border-box !important;
-    }
+        display: block !important;
 
-    #promo-container > .promo-image-card.landscape-promo > .promo-only-card {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
 
-        width: 100% !important;
-        height: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
 
         margin: 0 !important;
         padding: 0 !important;
 
-        overflow: hidden !important;
+        flex: 0 0 260px !important;
+
+        align-self: center !important;
+
         box-sizing: border-box !important;
+
+        transform: none !important;
+        perspective: none !important;
     }
 
-    #promo-container > .promo-image-card.landscape-promo .promo-banner-img {
+    #promo-container > .promo-image-card.landscape-promo
+    > .promo-only-card {
+
         display: block !important;
 
         width: 100% !important;
         height: auto !important;
 
+        min-height: 0 !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow: hidden !important;
+
+        box-sizing: border-box !important;
+
+        transform: none !important;
+        perspective: none !important;
+    }
+
+    #promo-container > .promo-image-card.landscape-promo
+    .promo-banner-img {
+
+        display: block !important;
+
+        width: 100% !important;
+        height: auto !important;
+
+        min-width: 0 !important;
         max-width: 100% !important;
-        max-height: 100% !important;
+
+        min-height: 0 !important;
+        max-height: none !important;
 
         margin: 0 auto !important;
         padding: 0 !important;
 
+        box-sizing: border-box !important;
+
         object-fit: contain !important;
         object-position: center center !important;
+
+        transform: none !important;
+    }
+}
+
+/* HP sangat kecil */
+@media (max-width: 320px) {
+
+    #promo-container > .promo-image-card.landscape-promo {
+        width: 230px !important;
+        min-width: 230px !important;
+        max-width: 230px !important;
+
+        flex-basis: 230px !important;
     }
 }
 
 /* ==========================================================
-   END LANDSCAPE CENTER PATCH
+   END FINAL LANDSCAPE PROMO — CLEAN
    ========================================================== */
