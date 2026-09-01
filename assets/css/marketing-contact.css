@@ -395,3 +395,111 @@ body {
 /* =========================================================
    END FINAL PROMO WIDTH FIX
    ========================================================= */
+
+/* ==========================================================
+   FAQ BUTTON - NAIK DARI BOTTOM NAV ANDROID
+   ========================================================== */
+
+@media (max-width: 767px) {
+    #faqButton {
+        position: relative !important;
+        top: -30px !important;
+    }
+}
+
+/* ==========================================================
+   PROMO MOBILE - CENTER CARD
+   ========================================================== */
+
+@media (max-width: 767px) {
+
+    #promo-container {
+        display: flex !important;
+        flex-direction: row !important;
+
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+
+        scroll-snap-type: x mandatory !important;
+
+        /* ruang agar card pertama bisa benar-benar center */
+        padding-left: calc((100vw - 260px) / 2) !important;
+        padding-right: calc((100vw - 260px) / 2) !important;
+
+        box-sizing: border-box !important;
+    }
+
+    #promo-container > .promo-image-card {
+        flex: 0 0 260px !important;
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+
+        scroll-snap-align: center !important;
+
+        margin: 0 !important;
+    }
+
+    #promo-container > .promo-image-card .promo-only-card {
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+    }
+
+    #promo-container > .promo-image-card .promo-banner-img {
+        display: block !important;
+
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+
+        height: auto !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* HP sangat kecil */
+@media (max-width: 320px) {
+
+    #promo-container {
+        padding-left: calc((100vw - 230px) / 2) !important;
+        padding-right: calc((100vw - 230px) / 2) !important;
+    }
+
+    #promo-container > .promo-image-card {
+        flex-basis: 230px !important;
+        width: 230px !important;
+        min-width: 230px !important;
+        max-width: 230px !important;
+    }
+
+    #promo-container > .promo-image-card .promo-only-card,
+    #promo-container > .promo-image-card .promo-banner-img {
+        width: 230px !important;
+        min-width: 230px !important;
+        max-width: 230px !important;
+    }
+}
+
+
+/* ==========================================================
+   MOBILE PATCH — RAPATKAN PROMO KE BAGIAN WHATSAPP/FOOTER
+   Tidak mengubah ukuran, posisi horizontal, atau swipe card
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    /* Buang ruang kosong ekstra di bawah area promo */
+    #promo-container {
+        height: auto !important;
+        min-height: 0 !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Kurangi jarak antara akhir main/promo dan section berikutnya */
+    main.container:has(#promo-container) {
+        margin-bottom: 20px !important;
+    }
+
+}
