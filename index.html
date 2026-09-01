@@ -883,7 +883,103 @@
    END FINAL PROMO SWIPE
    ========================================================= */
 
-    </style>
+    
+
+/* =========================================================
+   FIX FOOTER GAP — DEKATKAN FOOTER KE PROMO
+   ========================================================= */
+
+#promo-container {
+    margin-bottom: -120px !important;
+}
+
+/* Jangan ubah ukuran / swipe / posisi gambar */
+#promo-container .promo-image-card {
+    margin-bottom: 0 !important;
+}
+
+/* =========================================================
+   END FIX FOOTER GAP
+   ========================================================= */
+
+    
+
+/* =========================================================
+   FOOTER GAP — DEKATKAN 40PX
+   HANYA MENGUBAH JARAK MAIN -> FOOTER
+   ========================================================= */
+
+main.container {
+    margin-bottom: 40px !important;
+}
+
+/* =========================================================
+   END FOOTER GAP
+   ========================================================= */
+
+
+
+/* =========================================================
+   FAQ BUTTON — NAIKKAN 50PX
+   ========================================================= */
+
+.faq-section,
+#faq,
+.faq-container {
+    transform: translateY(-50px) !important;
+}
+
+/* =========================================================
+   END FAQ BUTTON
+   ========================================================= */
+
+
+
+/* =========================================================
+   FAQ BOTTOM — JARAK AMAN DARI BAR ADDRESS
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .faq-section,
+    #faq,
+    .faq-container {
+        transform: none !important;
+    }
+
+    .faq-section,
+    #faq,
+    .faq-container {
+        position: relative !important;
+        z-index: 10 !important;
+        margin-bottom: 70px !important;
+    }
+
+}
+
+/* =========================================================
+   END FAQ BOTTOM
+   ========================================================= */
+
+
+
+/* =========================================================
+   FAQ — NAIK DARI HOME BAR ANDROID
+   ========================================================= */
+
+@media (max-width: 768px) {
+    #faq,
+    .faq-section,
+    .faq-container {
+        margin-bottom: 45px !important;
+    }
+}
+
+/* =========================================================
+   END FAQ SAFE BOTTOM
+   ========================================================= */
+
+</style>
     <link rel="stylesheet" href="/assets/css/marketing-contact.css?v=promo260">
 </head>
 <body>
@@ -1458,5 +1554,31 @@
 <link rel="stylesheet" href="assets/css/faq.css">
 <script src="assets/js/faq-data.js"></script>
 <script src="assets/js/faq.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("#promo-container > .promo-image-card").forEach(function (card) {
+        const img = card.querySelector(".promo-banner-img");
+
+        if (!img) return;
+
+        function checkOrientation() {
+            if (!img.naturalWidth || !img.naturalHeight) return;
+
+            card.classList.toggle(
+                "landscape-promo",
+                img.naturalWidth > img.naturalHeight
+            );
+        }
+
+        if (img.complete) {
+            checkOrientation();
+        } else {
+            img.addEventListener("load", checkOrientation, { once: true });
+        }
+    });
+});
+</script>
+
 </body>
 </html>
