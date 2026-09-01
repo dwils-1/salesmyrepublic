@@ -451,3 +451,183 @@ body {
 #promo-container {
     touch-action: pan-x !important;
 }
+
+/* ==========================================================
+   FINAL PROMO SLIDER — NATURAL TOUCH
+   KIRI/KANAN = PROMO
+   ATAS/BAWAH = WEBSITE
+   GAMBAR UTUH / TANPA CROP
+   ========================================================== */
+
+/* Container promo */
+#promo-container {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+
+    align-items: flex-start !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    gap: 16px;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    box-sizing: border-box;
+
+    /* PENTING:
+       Jangan gunakan pan-x.
+       Browser bebas menentukan gesture vertikal/horizontal. */
+    touch-action: auto !important;
+
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    scroll-snap-type: x proximity;
+
+    scrollbar-width: none;
+}
+
+/* Hilangkan scrollbar Chrome/Safari HP */
+#promo-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* ==========================================================
+   SETIAP GAMBAR = 1 SLIDE
+   ========================================================== */
+
+#promo-container .promo-image-card {
+    flex: 0 0 calc(100vw - 80px) !important;
+
+    width: calc(100vw - 80px) !important;
+    min-width: calc(100vw - 80px) !important;
+    max-width: calc(100vw - 80px) !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box;
+
+    scroll-snap-align: center;
+}
+
+/* ==========================================================
+   KARTU MENGIKUTI UKURAN ASLI GAMBAR
+   ========================================================== */
+
+#promo-container .promo-only-card {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    overflow: visible !important;
+
+    display: block !important;
+
+    aspect-ratio: auto !important;
+
+    transform: none !important;
+}
+
+/* ==========================================================
+   GAMBAR ASLI — SELURUHNYA TAMPIL
+   ========================================================== */
+
+#promo-container .promo-only-card .promo-banner-img {
+    display: block !important;
+
+    width: 100% !important;
+    height: auto !important;
+
+    max-width: 100% !important;
+    max-height: none !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 18px;
+
+    transform: none !important;
+}
+
+/* ==========================================================
+   TOUCH / INTERACTION
+   ========================================================== */
+
+/*
+ * Jangan mengunci gesture.
+ *
+ * Horizontal:
+ *   → slider promo
+ *
+ * Vertical:
+ *   → halaman website
+ *
+ * Diagonal:
+ *   → browser menentukan arah dominan secara natural
+ */
+
+#promo-container,
+#promo-container .promo-image-card,
+#promo-container .promo-only-card,
+#promo-container .promo-banner-img {
+    touch-action: auto !important;
+}
+
+/* ==========================================================
+   DESKTOP
+   ========================================================== */
+
+@media (min-width: 769px) {
+
+    #promo-container {
+        gap: 24px;
+        scroll-snap-type: x proximity;
+    }
+
+    #promo-container .promo-image-card {
+        flex: 0 0 420px !important;
+
+        width: 420px !important;
+        min-width: 420px !important;
+        max-width: 420px !important;
+    }
+}
+
+/* ==========================================================
+   BODY TIDAK BOLEH PUNYA HORIZONTAL SCROLL
+   ========================================================== */
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden !important;
+}
+
+/*
+ * Jangan gunakan:
+ * body { touch-action: pan-y; }
+ *
+ * karena dapat mengganggu gesture slider.
+ */
+
+body {
+    touch-action: auto !important;
+}
+
