@@ -607,3 +607,345 @@ body {
 /* ==========================================================
    END FINAL LANDSCAPE PROMO — CLEAN
    ========================================================== */
+
+/* ==========================================================
+   LANDSCAPE CENTER — VERTICAL REFERENCE AREA
+   Hanya landscape.
+   Portrait tidak disentuh.
+   Gambar tetap 260px dan tidak crop.
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    /*
+     * Area promo memiliki tinggi minimum yang cukup
+     * untuk menjadi bidang referensi vertikal.
+     */
+    #promo-container {
+        align-items: center !important;
+    }
+
+    /*
+     * Landscape tetap mempunyai lebar asli 260px.
+     * Tingginya mengikuti rasio gambar.
+     */
+    #promo-container > .promo-image-card.landscape-promo {
+
+        align-self: center !important;
+
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        flex: 0 0 260px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        display: block !important;
+
+        transform: none !important;
+        box-sizing: border-box !important;
+    }
+
+    #promo-container > .promo-image-card.landscape-promo
+    > .promo-only-card {
+
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        display: block !important;
+
+        transform: none !important;
+        box-sizing: border-box !important;
+    }
+
+    #promo-container > .promo-image-card.landscape-promo
+    .promo-banner-img {
+
+        display: block !important;
+
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        object-fit: contain !important;
+        object-position: center center !important;
+
+        transform: none !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* HP sangat kecil */
+@media (max-width: 320px) {
+
+    #promo-container > .promo-image-card.landscape-promo,
+    #promo-container > .promo-image-card.landscape-promo
+    > .promo-only-card,
+    #promo-container > .promo-image-card.landscape-promo
+    .promo-banner-img {
+
+        width: 230px !important;
+        min-width: 230px !important;
+        max-width: 230px !important;
+    }
+
+    #promo-container > .promo-image-card.landscape-promo {
+        flex-basis: 230px !important;
+    }
+}
+
+/* ==========================================================
+   END LANDSCAPE CENTER
+   ========================================================== */
+
+/* ==========================================================
+   AUTO FRAME LANDSCAPE — MYREPUBLIC STYLE
+   ----------------------------------------------------------
+   Landscape  : otomatis diberi frame
+   Portrait   : tidak disentuh
+   Image      : tidak crop
+   Image      : tetap utuh
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    /*
+     * Frame landscape.
+     * Lebar frame dibuat sedikit lebih besar daripada gambar
+     * supaya gambar benar-benar berada di dalam frame.
+     */
+    #promo-container
+    > .promo-image-card.landscape-promo {
+
+        width: 300px !important;
+        min-width: 300px !important;
+        max-width: 300px !important;
+
+        flex: 0 0 300px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        box-sizing: border-box !important;
+
+        position: relative !important;
+
+        /*
+         * Frame utama MyRepublic.
+         */
+        background:
+            radial-gradient(
+                circle at 50% 45%,
+                rgba(255,255,255,.10),
+                transparent 48%
+            ),
+            linear-gradient(
+                145deg,
+                #401060 0%,
+                #65218a 48%,
+                #3a0757 100%
+            ) !important;
+
+        border-radius: 24px !important;
+
+        padding: 42px 20px 48px !important;
+
+        overflow: hidden !important;
+
+        box-shadow:
+            0 12px 30px rgba(65, 15, 100, .28),
+            inset 0 0 0 1px rgba(255,255,255,.16) !important;
+
+        box-sizing: border-box !important;
+    }
+
+    /*
+     * Glow border.
+     */
+    #promo-container
+    > .promo-image-card.landscape-promo::before {
+
+        content: "" !important;
+
+        position: absolute !important;
+
+        inset: 14px !important;
+
+        border-radius: 18px !important;
+
+        border: 2px solid rgba(255,255,255,.72) !important;
+
+        box-shadow:
+            0 0 8px rgba(255,255,255,.65),
+            0 0 18px rgba(214,85,255,.72),
+            inset 0 0 16px rgba(214,85,255,.22) !important;
+
+        pointer-events: none !important;
+
+        z-index: 0 !important;
+    }
+
+    /*
+     * Logo / branding bagian atas.
+     */
+    #promo-container
+    > .promo-image-card.landscape-promo::after {
+
+        content: "🚀 MyRepublic" !important;
+
+        position: absolute !important;
+
+        top: 12px !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        text-align: center !important;
+
+        color: #ffffff !important;
+
+        font-size: 16px !important;
+        font-weight: 800 !important;
+
+        letter-spacing: .2px !important;
+
+        text-shadow:
+            0 0 8px rgba(255,255,255,.8),
+            0 0 16px rgba(226,82,255,.8) !important;
+
+        z-index: 2 !important;
+
+        pointer-events: none !important;
+    }
+
+    /*
+     * Isi kartu.
+     */
+    #promo-container
+    > .promo-image-card.landscape-promo
+    > .promo-only-card {
+
+        position: relative !important;
+
+        z-index: 1 !important;
+
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        margin: 0 auto !important;
+        padding: 0 !important;
+
+        display: block !important;
+
+        background: transparent !important;
+
+        border-radius: 18px !important;
+
+        overflow: visible !important;
+
+        box-sizing: border-box !important;
+
+        transform: none !important;
+    }
+
+    /*
+     * Gambar tetap utuh.
+     */
+    #promo-container
+    > .promo-image-card.landscape-promo
+    .promo-banner-img {
+
+        display: block !important;
+
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+
+        height: auto !important;
+
+        min-height: 0 !important;
+        max-height: none !important;
+
+        margin: 0 auto !important;
+        padding: 0 !important;
+
+        object-fit: contain !important;
+        object-position: center center !important;
+
+        border-radius: 16px !important;
+
+        box-shadow:
+            0 5px 18px rgba(0,0,0,.24) !important;
+
+        transform: none !important;
+
+        box-sizing: border-box !important;
+    }
+}
+
+/*
+ * HP sangat kecil.
+ */
+@media (max-width: 320px) {
+
+    #promo-container
+    > .promo-image-card.landscape-promo {
+
+        width: 270px !important;
+        min-width: 270px !important;
+        max-width: 270px !important;
+
+        flex-basis: 270px !important;
+
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    #promo-container
+    > .promo-image-card.landscape-promo
+    > .promo-only-card,
+    #promo-container
+    > .promo-image-card.landscape-promo
+    .promo-banner-img {
+
+        width: 240px !important;
+        min-width: 240px !important;
+        max-width: 240px !important;
+    }
+}
+
+/* ==========================================================
+   END AUTO FRAME LANDSCAPE
+   ========================================================== */
