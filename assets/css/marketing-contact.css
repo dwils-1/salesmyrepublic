@@ -262,3 +262,192 @@ body {
     display: none !important;
 }
 
+
+/* ==========================================================
+   RAPiKAN PROMO
+   - Tidak ada ruang kosong raksasa
+   - Tinggi mengikuti gambar
+   - Hanya promo yang horizontal scroll
+   ========================================================== */
+
+#promo-container {
+    /* slider tetap horizontal */
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+
+    /* jangan membuat tinggi mengikuti row grid */
+    height: auto !important;
+    min-height: 0 !important;
+
+    /* isi mulai dari atas */
+    align-items: flex-start !important;
+    align-content: flex-start !important;
+
+    /* hilangkan tinggi minimum grid */
+    grid-auto-rows: auto !important;
+    grid-template-rows: none !important;
+
+    /* hanya area ini yang scroll */
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    /* jangan memaksa tinggi */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    box-sizing: border-box;
+
+    touch-action: pan-x !important;
+    overscroll-behavior-x: contain !important;
+}
+
+/* ==========================================================
+   SLIDE
+   ========================================================== */
+
+#promo-container .promo-image-card {
+    flex: 0 0 calc(100vw - 70px) !important;
+
+    width: calc(100vw - 70px) !important;
+    min-width: calc(100vw - 70px) !important;
+    max-width: calc(100vw - 70px) !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    align-self: flex-start !important;
+
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    box-sizing: border-box;
+}
+
+/* ==========================================================
+   CARD
+   ========================================================== */
+
+#promo-container .promo-only-card {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    aspect-ratio: auto !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: block !important;
+
+    overflow: visible !important;
+
+    box-sizing: border-box;
+
+    transform: none !important;
+}
+
+/* ==========================================================
+   GAMBAR ASLI — UTUH
+   ========================================================== */
+
+#promo-container .promo-only-card .promo-banner-img {
+    display: block !important;
+
+    width: 100% !important;
+    height: auto !important;
+
+    max-width: 100% !important;
+    max-height: none !important;
+
+    aspect-ratio: auto !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 18px;
+
+    transform: none !important;
+}
+
+/* ==========================================================
+   HILANGKAN JARAK KOSONG SETELAH PROMO
+   ========================================================== */
+
+#promo-container + * {
+    margin-top: 0;
+}
+
+/* container pembungkus section promo */
+.promo-section,
+#promo-container-wrapper,
+.promo-container-wrapper {
+    min-height: 0 !important;
+    height: auto !important;
+}
+
+/* ==========================================================
+   FOOTER LEBIH RAPI DI HP
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    .site-footer {
+        width: 100% !important;
+        box-sizing: border-box;
+
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+
+        overflow: hidden;
+    }
+
+    .site-footer .marketing-contact {
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        text-align: center;
+    }
+
+    .site-footer > p:last-child {
+        width: 100% !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        text-align: center;
+
+        font-size: clamp(13px, 3.5vw, 16px);
+
+        line-height: 1.5;
+
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+}
+
+/* ==========================================================
+   BODY TETAP VERTICAL
+   ========================================================== */
+
+html,
+body {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    overflow-x: hidden !important;
+}
+
+body {
+    touch-action: pan-y !important;
+}
+
+/* HANYA PROMO */
+#promo-container {
+    touch-action: pan-x !important;
+}
