@@ -631,3 +631,247 @@ body {
     touch-action: auto !important;
 }
 
+
+/* ==========================================================
+   PROMO SLIDER — SETIAP GAMBAR SELALU CENTER
+   HORIZONTAL = SLIDER
+   VERTICAL   = HALAMAN
+   GAMBAR     = UTUH / TANPA CROP
+   ========================================================== */
+
+#promo-container {
+    /* ukuran slide */
+    --promo-slide-width: calc(100vw - 80px);
+
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    gap: 16px !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    box-sizing: border-box !important;
+
+    /* RUANG AGAR SLIDE BISA TEPAT DI TENGAH */
+    padding-left: calc(
+        (100% - var(--promo-slide-width)) / 2
+    ) !important;
+
+    padding-right: calc(
+        (100% - var(--promo-slide-width)) / 2
+    ) !important;
+
+    /*
+     * Saat snap, posisi gambar dihitung terhadap
+     * area tengah container.
+     */
+    scroll-padding-left: calc(
+        (100% - var(--promo-slide-width)) / 2
+    ) !important;
+
+    scroll-padding-right: calc(
+        (100% - var(--promo-slide-width)) / 2
+    ) !important;
+
+    scroll-snap-type: x mandatory !important;
+
+    /* gesture tetap natural */
+    touch-action: auto !important;
+
+    overscroll-behavior-x: contain !important;
+    overscroll-behavior-y: auto !important;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+}
+
+#promo-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ==========================================================
+   SETIAP PROMO = 1 SLIDE
+   ========================================================== */
+
+#promo-container .promo-image-card {
+    flex: 0 0 var(--promo-slide-width) !important;
+
+    width: var(--promo-slide-width) !important;
+    min-width: var(--promo-slide-width) !important;
+    max-width: var(--promo-slide-width) !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    /*
+     * INI YANG MEMBUAT SETIAP GAMBAR
+     * BERHENTI DI TENGAH LAYAR.
+     */
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+
+    touch-action: auto !important;
+}
+
+
+/* ==========================================================
+   KARTU — TIDAK MEMOTONG GAMBAR
+   ========================================================== */
+
+#promo-container .promo-only-card {
+    width: 100% !important;
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    display: block !important;
+
+    aspect-ratio: auto !important;
+
+    transform: none !important;
+}
+
+
+/* ==========================================================
+   GAMBAR ASLI — 100% UTUH
+   ========================================================== */
+
+#promo-container .promo-only-card .promo-banner-img {
+    display: block !important;
+
+    width: 100% !important;
+    height: auto !important;
+
+    max-width: 100% !important;
+    max-height: none !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 18px !important;
+
+    transform: none !important;
+
+    touch-action: auto !important;
+}
+
+
+/* ==========================================================
+   HP
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    #promo-container {
+        --promo-slide-width: calc(100vw - 80px);
+
+        gap: 16px !important;
+
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+
+        scroll-padding-left: 40px !important;
+        scroll-padding-right: 40px !important;
+
+        scroll-snap-type: x mandatory !important;
+
+        touch-action: auto !important;
+    }
+
+    #promo-container .promo-image-card {
+        flex: 0 0 var(--promo-slide-width) !important;
+
+        width: var(--promo-slide-width) !important;
+        min-width: var(--promo-slide-width) !important;
+        max-width: var(--promo-slide-width) !important;
+
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+    }
+}
+
+
+/* ==========================================================
+   DESKTOP
+   ========================================================== */
+
+@media (min-width: 769px) {
+
+    #promo-container {
+        --promo-slide-width: 420px;
+
+        padding-left: calc(
+            (100% - 420px) / 2
+        ) !important;
+
+        padding-right: calc(
+            (100% - 420px) / 2
+        ) !important;
+
+        scroll-padding-left: calc(
+            (100% - 420px) / 2
+        ) !important;
+
+        scroll-padding-right: calc(
+            (100% - 420px) / 2
+        ) !important;
+    }
+
+    #promo-container .promo-image-card {
+        flex: 0 0 420px !important;
+
+        width: 420px !important;
+        min-width: 420px !important;
+        max-width: 420px !important;
+
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+    }
+}
+
+
+/* ==========================================================
+   WEBSITE TETAP TIDAK BOLEH HORIZONTAL SCROLL
+   ========================================================== */
+
+html,
+body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+body {
+    touch-action: auto !important;
+}
+
+
+/* ==========================================================
+   MATIKAN TRANSFORM YANG BISA MENGGESER KARTU
+   ========================================================== */
+
+#promo-container .promo-image-card:hover,
+#promo-container .promo-image-card:hover .promo-only-card {
+    transform: none !important;
+}
+
