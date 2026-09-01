@@ -12,48 +12,14 @@
 }
 
 /* ==========================================================
-   PROMO GAMBAR DARI GOOGLE SHEETS
-   ========================================================== */
-
-.promo-image-card {
-    width: 100%;
-}
-
-.promo-only-card {
-    padding: 16px;
-    overflow: hidden;
-}
-
-.promo-only-card .promo-banner-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: none;
-    object-fit: contain;
-    border-radius: 18px;
-    margin: 0;
-    border: 1px solid var(--border-color);
-}
-
-.promo-empty {
-    width: 100%;
-    text-align: center;
-    font-size: 1rem;
-    color: var(--text-muted);
-    padding: 30px 0;
-}
-
-/* Jangan tampilkan container promo bawah lama */
-#full-promo-bottom {
-    display: none !important;
-}
-
-/* ==========================================================
-   PROMO ONLY HORIZONTAL SLIDER
-   - Hanya area promo yang dapat digeser kiri/kanan
-   - Website tidak ikut horizontal scroll
-   - Gambar mengikuti ukuran asli
-   - Tidak crop
+   PROMO — SINGLE FINAL RULE
+   ==========================================================
+   - hanya area promo yang horizontal
+   - halaman tetap vertical
+   - gambar asli tidak crop
+   - tinggi mengikuti rasio asli
+   - slide dapat digeser kanan/kiri
+   - slide pertama/terakhir dapat berada di tengah
    ========================================================== */
 
 #promo-container {
@@ -61,78 +27,67 @@
     flex-direction: row !important;
     flex-wrap: nowrap !important;
 
-    align-items: flex-start !important;
-
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
 
-    gap: 16px;
+    box-sizing: border-box !important;
 
-    /* SCROLL HANYA DI SINI */
+    align-items: flex-start !important;
+
+    gap: 20px !important;
+
     overflow-x: auto !important;
     overflow-y: hidden !important;
 
-    box-sizing: border-box;
+    /*
+     * Ruang awal/akhir untuk memungkinkan
+     * slide pertama dan terakhir berada di tengah.
+     */
+    padding-left: max(20px, calc((100% - 420px) / 2)) !important;
+    padding-right: max(20px, calc((100% - 420px) / 2)) !important;
 
-    /* gesture horizontal hanya ditangani promo */
-    touch-action: pan-x !important;
+    margin: 0 !important;
+
+    scroll-snap-type: none !important;
+    scroll-behavior: auto !important;
 
     overscroll-behavior-x: contain !important;
     overscroll-behavior-y: auto !important;
 
-    scroll-behavior: smooth;
-    scroll-snap-type: x proximity;
+    touch-action: pan-x pan-y !important;
 
-    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
 
-    scrollbar-width: none;
-}
-
-#promo-container::-webkit-scrollbar {
-    display: none;
+    contain: inline-size !important;
 }
 
 /* ==========================================================
-   SETIAP GAMBAR = 1 SLIDE
+   SLIDE
    ========================================================== */
 
-#promo-container .promo-image-card {
-    flex: 0 0 auto !important;
 
-    width: min(420px, calc(100vw - 60px)) !important;
-    min-width: min(420px, calc(100vw - 60px)) !important;
-    max-width: min(420px, calc(100vw - 60px)) !important;
-
-    height: auto !important;
-    min-height: 0 !important;
-
-    margin: 0 !important;
-
-    align-self: flex-start !important;
-
-    scroll-snap-align: start;
-
-    box-sizing: border-box;
-}
 
 /* ==========================================================
-   CARD TIDAK MEMAKSA RASIO
+   KARTU
    ========================================================== */
 
-#promo-container .promo-only-card {
+#promo-container > .promo-image-card > .promo-only-card {
+    display: block !important;
+
     width: 100% !important;
-
     height: auto !important;
+
     min-height: 0 !important;
 
     aspect-ratio: auto !important;
 
-    padding: 0 !important;
     margin: 0 !important;
-
-    display: block !important;
+    padding: 0 !important;
 
     overflow: visible !important;
+
+    box-sizing: border-box !important;
 
     transform: none !important;
 }
@@ -141,35 +96,42 @@
    GAMBAR ASLI
    ========================================================== */
 
-#promo-container .promo-only-card .promo-banner-img {
+#promo-container .promo-banner-img {
     display: block !important;
 
     width: 100% !important;
     height: auto !important;
 
+    min-width: 0 !important;
+    min-height: 0 !important;
+
     max-width: 100% !important;
     max-height: none !important;
 
-    aspect-ratio: auto !important;
+    /*
+     * Tidak ada fixed height.
+     * Tidak ada crop.
+     * Rasio asli gambar dipertahankan.
+     */
+    object-fit: initial !important;
+    object-position: initial !important;
 
-    object-fit: contain !important;
-    object-position: center !important;
-
+    margin: 0 auto !important;
     padding: 0 !important;
-    margin: 0 !important;
 
     border: 0 !important;
-    border-radius: 18px;
+    border-radius: 18px !important;
+
+    box-sizing: border-box !important;
 
     transform: none !important;
 }
 
-/* ==========================================================
-   MATIKAN EFEK GERAK PADA CARD
-   ========================================================== */
-
+/* Matikan transform/hover yang mungkin berasal
+   dari sistem kartu lama. */
 #promo-container .promo-image-card:hover,
-#promo-container .promo-image-card:hover .promo-only-card {
+#promo-container .promo-only-card:hover,
+#promo-container .promo-banner-img:hover {
     transform: none !important;
 }
 
@@ -183,35 +145,22 @@
         width: 100% !important;
         max-width: 100% !important;
 
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
+        gap: 16px !important;
+
+        padding-left: 20px !important;
+        padding-right: 20px !important;
 
         overflow-x: auto !important;
         overflow-y: hidden !important;
 
-        gap: 14px;
+        touch-action: pan-x pan-y !important;
 
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-
-        /* HANYA PROMO */
-        touch-action: pan-x !important;
-
-        overscroll-behavior-x: contain !important;
+        scroll-snap-type: none !important;
     }
 
-    #promo-container .promo-image-card {
-        flex: 0 0 calc(100vw - 70px) !important;
+    
 
-        width: calc(100vw - 70px) !important;
-        min-width: calc(100vw - 70px) !important;
-        max-width: calc(100vw - 70px) !important;
-
-        height: auto !important;
-    }
-
-    #promo-container .promo-only-card {
+    #promo-container > .promo-image-card > .promo-only-card {
         width: 100% !important;
         height: auto !important;
 
@@ -220,1067 +169,229 @@
         overflow: visible !important;
     }
 
-    #promo-container .promo-only-card .promo-banner-img {
+    #promo-container .promo-banner-img {
         width: 100% !important;
         height: auto !important;
 
         max-width: 100% !important;
         max-height: none !important;
 
-        aspect-ratio: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
 
-        object-fit: contain !important;
+        object-fit: initial !important;
     }
 }
 
 /* ==========================================================
-   WEBSITE TIDAK BOLEH HORIZONTAL SCROLL
+   BODY
    ========================================================== */
 
 html,
 body {
-    width: 100%;
-    max-width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
+
     overflow-x: hidden !important;
 }
 
-/*
- * JANGAN beri touch-action pan-x ke body.
- * Body tetap normal untuk scroll atas/bawah.
- */
 body {
-    touch-action: pan-y;
+    touch-action: auto !important;
 }
 
-/* Hanya promo yang menerima gesture horizontal */
-#promo-container {
-    touch-action: pan-x !important;
-}
-
-/* Promo bawah lama tidak digunakan */
-#full-promo-bottom {
+/* Promo bawah lama */
+#full-promo-bottom,
+.full-promo-container {
     display: none !important;
 }
 
 
-/* ==========================================================
-   RAPiKAN PROMO
-   - Tidak ada ruang kosong raksasa
-   - Tinggi mengikuti gambar
-   - Hanya promo yang horizontal scroll
-   ========================================================== */
+
+/* =========================================================
+   PROMO OVERRIDE — 260PX / SWIPE / FULL IMAGE / NO CROP
+   ========================================================= */
 
 #promo-container {
-    /* slider tetap horizontal */
+    width: 100% !important;
+    max-width: none !important;
+
     display: flex !important;
     flex-direction: row !important;
-    flex-wrap: nowrap !important;
 
-    /* jangan membuat tinggi mengikuti row grid */
-    height: auto !important;
-    min-height: 0 !important;
+    gap: 20px !important;
 
-    /* isi mulai dari atas */
-    align-items: flex-start !important;
-    align-content: flex-start !important;
-
-    /* hilangkan tinggi minimum grid */
-    grid-auto-rows: auto !important;
-    grid-template-rows: none !important;
-
-    /* hanya area ini yang scroll */
     overflow-x: auto !important;
-    overflow-y: hidden !important;
+    overflow-y: visible !important;
 
-    /* jangan memaksa tinggi */
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-
-    box-sizing: border-box;
-
-    touch-action: pan-x !important;
-    overscroll-behavior-x: contain !important;
-}
-
-/* ==========================================================
-   SLIDE
-   ========================================================== */
-
-#promo-container .promo-image-card {
-    flex: 0 0 calc(100vw - 70px) !important;
-
-    width: calc(100vw - 70px) !important;
-    min-width: calc(100vw - 70px) !important;
-    max-width: calc(100vw - 70px) !important;
-
-    height: auto !important;
-    min-height: 0 !important;
-
-    align-self: flex-start !important;
-
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-
-    box-sizing: border-box;
-}
-
-/* ==========================================================
-   CARD
-   ========================================================== */
-
-#promo-container .promo-only-card {
-    width: 100% !important;
-
-    height: auto !important;
-    min-height: 0 !important;
-
-    aspect-ratio: auto !important;
-
-    padding: 0 !important;
+    padding: 10px 24px 30px 30px !important;
     margin: 0 !important;
 
-    display: block !important;
+    box-sizing: border-box !important;
 
-    overflow: visible !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
 
-    box-sizing: border-box;
-
-    transform: none !important;
+    scrollbar-width: none !important;
 }
 
-/* ==========================================================
-   GAMBAR ASLI — UTUH
-   ========================================================== */
+#promo-container::-webkit-scrollbar {
+    display: none !important;
+}
 
-#promo-container .promo-only-card .promo-banner-img {
+#promo-container > .promo-image-card {
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
+
+    flex: 0 0 260px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    transform: none !important;
+    transform-style: flat !important;
+    perspective: none !important;
+}
+
+#promo-container > .promo-image-card .promo-only-card {
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    box-sizing: border-box !important;
+
+    transform: none !important;
+    transform-style: flat !important;
+    perspective: none !important;
+}
+
+#promo-container > .promo-image-card .promo-banner-img {
     display: block !important;
 
-    width: 100% !important;
-    height: auto !important;
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
 
-    max-width: 100% !important;
+    height: auto !important;
     max-height: none !important;
 
-    aspect-ratio: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
 
     object-fit: contain !important;
     object-position: center !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
-
-    border: 0 !important;
-    border-radius: 18px;
-
     transform: none !important;
 }
 
-/* ==========================================================
-   HILANGKAN JARAK KOSONG SETELAH PROMO
-   ========================================================== */
+/* HP sangat kecil */
+@media (max-width: 320px) {
+    #promo-container > .promo-image-card {
+        width: 230px !important;
+        min-width: 230px !important;
+        max-width: 230px !important;
 
-#promo-container + * {
-    margin-top: 0;
-}
-
-/* container pembungkus section promo */
-.promo-section,
-#promo-container-wrapper,
-.promo-container-wrapper {
-    min-height: 0 !important;
-    height: auto !important;
-}
-
-/* ==========================================================
-   FOOTER LEBIH RAPI DI HP
-   ========================================================== */
-
-@media (max-width: 768px) {
-
-    .site-footer {
-        width: 100% !important;
-        box-sizing: border-box;
-
-        padding-left: 16px !important;
-        padding-right: 16px !important;
-
-        overflow: hidden;
+        flex-basis: 230px !important;
     }
 
-    .site-footer .marketing-contact {
-        margin-left: auto !important;
-        margin-right: auto !important;
-
-        text-align: center;
-    }
-
-    .site-footer > p:last-child {
-        width: 100% !important;
-
-        margin-left: auto !important;
-        margin-right: auto !important;
-
-        text-align: center;
-
-        font-size: clamp(13px, 3.5vw, 16px);
-
-        line-height: 1.5;
-
-        overflow-wrap: normal;
-        word-break: normal;
+    #promo-container > .promo-image-card .promo-only-card,
+    #promo-container > .promo-image-card .promo-banner-img {
+        width: 230px !important;
+        min-width: 230px !important;
+        max-width: 230px !important;
     }
 }
 
-/* ==========================================================
-   BODY TETAP VERTICAL
-   ========================================================== */
+/* =========================================================
+   END PROMO OVERRIDE
+   ========================================================= */
 
-html,
-body {
-    width: 100% !important;
-    max-width: 100% !important;
 
-    overflow-x: hidden !important;
-}
+/* =========================================================
+   FINAL PROMO WIDTH FIX
+   Override 420px → 260px
+   Swipe kanan/kiri tetap aktif
+   ========================================================= */
 
-body {
-    touch-action: pan-y !important;
-}
+#promo-container > .promo-image-card {
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
 
-/* HANYA PROMO */
-#promo-container {
-    touch-action: pan-x !important;
-}
-
-/* ==========================================================
-   FINAL PROMO SLIDER — NATURAL TOUCH
-   KIRI/KANAN = PROMO
-   ATAS/BAWAH = WEBSITE
-   GAMBAR UTUH / TANPA CROP
-   ========================================================== */
-
-/* Container promo */
-#promo-container {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-
-    align-items: flex-start !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-
-    gap: 16px;
-
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-
-    box-sizing: border-box;
-
-    /* PENTING:
-       Jangan gunakan pan-x.
-       Browser bebas menentukan gesture vertikal/horizontal. */
-    touch-action: auto !important;
-
-    overscroll-behavior-x: contain;
-    overscroll-behavior-y: auto;
-
-    -webkit-overflow-scrolling: touch;
-
-    scroll-snap-type: x proximity;
-
-    scrollbar-width: none;
-}
-
-/* Hilangkan scrollbar Chrome/Safari HP */
-#promo-container::-webkit-scrollbar {
-    display: none;
-}
-
-/* ==========================================================
-   SETIAP GAMBAR = 1 SLIDE
-   ========================================================== */
-
-#promo-container .promo-image-card {
-    flex: 0 0 calc(100vw - 80px) !important;
-
-    width: calc(100vw - 80px) !important;
-    min-width: calc(100vw - 80px) !important;
-    max-width: calc(100vw - 80px) !important;
-
-    height: auto !important;
-    min-height: 0 !important;
+    flex: 0 0 260px !important;
 
     margin: 0 !important;
     padding: 0 !important;
 
-    box-sizing: border-box;
-
-    scroll-snap-align: center;
-}
-
-/* ==========================================================
-   KARTU MENGIKUTI UKURAN ASLI GAMBAR
-   ========================================================== */
-
-#promo-container .promo-only-card {
-    width: 100% !important;
-
-    height: auto !important;
-    min-height: 0 !important;
-
-    padding: 0 !important;
-    margin: 0 !important;
-
-    overflow: visible !important;
-
-    display: block !important;
-
-    aspect-ratio: auto !important;
+    box-sizing: border-box !important;
 
     transform: none !important;
+    transform-style: flat !important;
+    perspective: none !important;
 }
 
-/* ==========================================================
-   GAMBAR ASLI — SELURUHNYA TAMPIL
-   ========================================================== */
+#promo-container > .promo-image-card > .promo-only-card {
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
 
-#promo-container .promo-only-card .promo-banner-img {
+    height: auto !important;
+    min-height: 0 !important;
+
+    box-sizing: border-box !important;
+
+    overflow: hidden !important;
+
+    transform: none !important;
+    transform-style: flat !important;
+    perspective: none !important;
+}
+
+#promo-container > .promo-image-card .promo-banner-img {
     display: block !important;
 
-    width: 100% !important;
-    height: auto !important;
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
 
-    max-width: 100% !important;
+    height: auto !important;
     max-height: none !important;
 
     object-fit: contain !important;
     object-position: center !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
-
-    border: 0 !important;
-    border-radius: 18px;
-
     transform: none !important;
 }
 
-/* ==========================================================
-   TOUCH / INTERACTION
-   ========================================================== */
-
-/*
- * Jangan mengunci gesture.
- *
- * Horizontal:
- *   → slider promo
- *
- * Vertical:
- *   → halaman website
- *
- * Diagonal:
- *   → browser menentukan arah dominan secara natural
- */
-
-#promo-container,
-#promo-container .promo-image-card,
-#promo-container .promo-only-card,
-#promo-container .promo-banner-img {
-    touch-action: auto !important;
-}
-
-/* ==========================================================
-   DESKTOP
-   ========================================================== */
-
-@media (min-width: 769px) {
-
-    #promo-container {
-        gap: 24px;
-        scroll-snap-type: x proximity;
+/* HP sangat kecil */
+@media (max-width: 320px) {
+    #promo-container > .promo-image-card {
+        width: 230px !important;
+        min-width: 230px !important;
+        max-width: 230px !important;
+        flex-basis: 230px !important;
     }
 
-    #promo-container .promo-image-card {
-        flex: 0 0 420px !important;
-
-        width: 420px !important;
-        min-width: 420px !important;
-        max-width: 420px !important;
+    #promo-container > .promo-image-card > .promo-only-card,
+    #promo-container > .promo-image-card .promo-banner-img {
+        width: 230px !important;
+        min-width: 230px !important;
+        max-width: 230px !important;
     }
 }
 
-/* ==========================================================
-   BODY TIDAK BOLEH PUNYA HORIZONTAL SCROLL
-   ========================================================== */
-
-html,
-body {
-    max-width: 100%;
-    overflow-x: hidden !important;
-}
-
-/*
- * Jangan gunakan:
- * body { touch-action: pan-y; }
- *
- * karena dapat mengganggu gesture slider.
- */
-
-body {
-    touch-action: auto !important;
-}
-
-
-/* ==========================================================
-   PROMO SLIDER — SETIAP GAMBAR SELALU CENTER
-   HORIZONTAL = SLIDER
-   VERTICAL   = HALAMAN
-   GAMBAR     = UTUH / TANPA CROP
-   ========================================================== */
-
-#promo-container {
-    /* ukuran slide */
-    --promo-slide-width: calc(100vw - 80px);
-
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-
-    gap: 16px !important;
-
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-
-    box-sizing: border-box !important;
-
-    /* RUANG AGAR SLIDE BISA TEPAT DI TENGAH */
-    padding-left: calc(
-        (100% - var(--promo-slide-width)) / 2
-    ) !important;
-
-    padding-right: calc(
-        (100% - var(--promo-slide-width)) / 2
-    ) !important;
-
-    /*
-     * Saat snap, posisi gambar dihitung terhadap
-     * area tengah container.
-     */
-    scroll-padding-left: calc(
-        (100% - var(--promo-slide-width)) / 2
-    ) !important;
-
-    scroll-padding-right: calc(
-        (100% - var(--promo-slide-width)) / 2
-    ) !important;
-
-    scroll-snap-type: x mandatory !important;
-
-    /* gesture tetap natural */
-    touch-action: auto !important;
-
-    overscroll-behavior-x: contain !important;
-    overscroll-behavior-y: auto !important;
-
-    -webkit-overflow-scrolling: touch;
-
-    scrollbar-width: none;
-}
-
-#promo-container::-webkit-scrollbar {
-    display: none;
-}
-
-
-/* ==========================================================
-   SETIAP PROMO = 1 SLIDE
-   ========================================================== */
-
-#promo-container .promo-image-card {
-    flex: 0 0 var(--promo-slide-width) !important;
-
-    width: var(--promo-slide-width) !important;
-    min-width: var(--promo-slide-width) !important;
-    max-width: var(--promo-slide-width) !important;
-
-    height: auto !important;
-    min-height: 0 !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    box-sizing: border-box !important;
-
-    /*
-     * INI YANG MEMBUAT SETIAP GAMBAR
-     * BERHENTI DI TENGAH LAYAR.
-     */
-    scroll-snap-align: center !important;
-    scroll-snap-stop: always !important;
-
-    touch-action: auto !important;
-}
-
-
-/* ==========================================================
-   KARTU — TIDAK MEMOTONG GAMBAR
-   ========================================================== */
-
-#promo-container .promo-only-card {
-    width: 100% !important;
-    height: auto !important;
-
-    min-height: 0 !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    overflow: visible !important;
-
-    display: block !important;
-
-    aspect-ratio: auto !important;
-
-    transform: none !important;
-}
-
-
-/* ==========================================================
-   GAMBAR ASLI — 100% UTUH
-   ========================================================== */
-
-#promo-container .promo-only-card .promo-banner-img {
-    display: block !important;
-
-    width: 100% !important;
-    height: auto !important;
-
-    max-width: 100% !important;
-    max-height: none !important;
-
-    object-fit: contain !important;
-    object-position: center center !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    border: 0 !important;
-    border-radius: 18px !important;
-
-    transform: none !important;
-
-    touch-action: auto !important;
-}
-
-
-/* ==========================================================
-   HP
-   ========================================================== */
-
-@media (max-width: 768px) {
-
-    #promo-container {
-        --promo-slide-width: calc(100vw - 80px);
-
-        gap: 16px !important;
-
-        padding-left: 40px !important;
-        padding-right: 40px !important;
-
-        scroll-padding-left: 40px !important;
-        scroll-padding-right: 40px !important;
-
-        scroll-snap-type: x mandatory !important;
-
-        touch-action: auto !important;
-    }
-
-    #promo-container .promo-image-card {
-        flex: 0 0 var(--promo-slide-width) !important;
-
-        width: var(--promo-slide-width) !important;
-        min-width: var(--promo-slide-width) !important;
-        max-width: var(--promo-slide-width) !important;
-
-        scroll-snap-align: center !important;
-        scroll-snap-stop: always !important;
-    }
-}
-
-
-/* ==========================================================
-   DESKTOP
-   ========================================================== */
-
-@media (min-width: 769px) {
-
-    #promo-container {
-        --promo-slide-width: 420px;
-
-        padding-left: calc(
-            (100% - 420px) / 2
-        ) !important;
-
-        padding-right: calc(
-            (100% - 420px) / 2
-        ) !important;
-
-        scroll-padding-left: calc(
-            (100% - 420px) / 2
-        ) !important;
-
-        scroll-padding-right: calc(
-            (100% - 420px) / 2
-        ) !important;
-    }
-
-    #promo-container .promo-image-card {
-        flex: 0 0 420px !important;
-
-        width: 420px !important;
-        min-width: 420px !important;
-        max-width: 420px !important;
-
-        scroll-snap-align: center !important;
-        scroll-snap-stop: always !important;
-    }
-}
-
-
-/* ==========================================================
-   WEBSITE TETAP TIDAK BOLEH HORIZONTAL SCROLL
-   ========================================================== */
-
-html,
-body {
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-}
-
-body {
-    touch-action: auto !important;
-}
-
-
-/* ==========================================================
-   MATIKAN TRANSFORM YANG BISA MENGGESER KARTU
-   ========================================================== */
-
-#promo-container .promo-image-card:hover,
-#promo-container .promo-image-card:hover .promo-only-card {
-    transform: none !important;
-}
-
-
-/* ==========================================================
-   FIX FINAL — SLIDE PERTAMA & TERAKHIR WAJIB BISA CENTER
-   ========================================================== */
-
-/* Reset padding lama */
-#promo-container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-
-    scroll-padding-left: 0 !important;
-    scroll-padding-right: 0 !important;
-
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-
-    scroll-snap-type: x mandatory !important;
-
-    touch-action: auto !important;
-    -webkit-overflow-scrolling: touch;
-
-    box-sizing: border-box !important;
-}
-
-/* ==========================================================
-   SLIDE PERTAMA
-   Beri ruang sebelum gambar agar bisa berada tepat CENTER
-   ========================================================== */
-
-#promo-container .promo-image-card:first-child {
-    margin-left: calc(
-        (100vw - var(--promo-slide-width)) / 2
-    ) !important;
-}
-
-/* ==========================================================
-   SLIDE TERAKHIR
-   Beri ruang sesudah gambar agar slide terakhir juga CENTER
-   ========================================================== */
-
-#promo-container .promo-image-card:last-child {
-    margin-right: calc(
-        (100vw - var(--promo-slide-width)) / 2
-    ) !important;
-}
-
-/* Semua slide tetap snap ke tengah */
-#promo-container .promo-image-card {
-    scroll-snap-align: center !important;
-    scroll-snap-stop: always !important;
-
-    touch-action: auto !important;
-}
-
-/* ==========================================================
-   HP
-   ========================================================== */
-
-@media (max-width: 768px) {
-
-    #promo-container {
-        --promo-slide-width: calc(100vw - 80px);
-
-        gap: 16px !important;
-
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-
-        scroll-padding-left: 0 !important;
-        scroll-padding-right: 0 !important;
-
-        touch-action: auto !important;
-    }
-
-    #promo-container .promo-image-card {
-        flex: 0 0 var(--promo-slide-width) !important;
-
-        width: var(--promo-slide-width) !important;
-        min-width: var(--promo-slide-width) !important;
-        max-width: var(--promo-slide-width) !important;
-
-        scroll-snap-align: center !important;
-        scroll-snap-stop: always !important;
-
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
-
-    /*
-     * Jarak awal = setengah sisa layar.
-     * Hasilnya slide pertama tepat di tengah.
-     */
-    #promo-container .promo-image-card:first-child {
-        margin-left: 40px !important;
-    }
-
-    /*
-     * Jarak akhir agar slide terakhir juga bisa tepat tengah.
-     */
-    #promo-container .promo-image-card:last-child {
-        margin-right: 40px !important;
-    }
-}
-
-/* ==========================================================
-   DESKTOP
-   ========================================================== */
-
-@media (min-width: 769px) {
-
-    #promo-container {
-        --promo-slide-width: 420px;
-
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-
-        scroll-padding-left: 0 !important;
-        scroll-padding-right: 0 !important;
-    }
-
-    #promo-container .promo-image-card {
-        flex: 0 0 420px !important;
-
-        width: 420px !important;
-        min-width: 420px !important;
-        max-width: 420px !important;
-    }
-
-    #promo-container .promo-image-card:first-child {
-        margin-left: calc(
-            (100vw - 420px) / 2
-        ) !important;
-    }
-
-    #promo-container .promo-image-card:last-child {
-        margin-right: calc(
-            (100vw - 420px) / 2
-        ) !important;
-    }
-}
-
-/* ==========================================================
-   GAMBAR TETAP UTUH
-   ========================================================== */
-
-#promo-container .promo-banner-img {
-    width: 100% !important;
-    height: auto !important;
-
-    max-width: 100% !important;
-    max-height: none !important;
-
-    object-fit: contain !important;
-    object-position: center center !important;
-
-    display: block !important;
-}
-
-/* ==========================================================
-   WEBSITE TETAP BISA SCROLL ATAS / BAWAH
-   ========================================================== */
-
-html,
-body {
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-}
-
-body {
-    touch-action: auto !important;
-}
-
-
-/* ==========================================================
-   TRUE CENTER PROMO SLIDER
-   CENTER BERDASARKAN LEBAR CONTAINER AKTUAL
-   BUKAN 100vw
-   ========================================================== */
-
-#promo-container {
-    --promo-side-gap: 40px;
-
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-
-    padding: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-
-    gap: 16px !important;
-
-    box-sizing: border-box !important;
-
-    scroll-snap-type: x mandatory !important;
-    scroll-padding-inline: 0 !important;
-
-    touch-action: auto !important;
-
-    overscroll-behavior-x: contain !important;
-    overscroll-behavior-y: auto !important;
-
-    -webkit-overflow-scrolling: touch;
-
-    scrollbar-width: none;
-}
-
-#promo-container::-webkit-scrollbar {
-    display: none;
-}
-
-
-/* ==========================================================
-   SLIDE
-   ========================================================== */
-
-#promo-container .promo-image-card {
-    /*
-     * Lebar slide = lebar container dikurangi
-     * jarak kiri + kanan.
-     *
-     * Jadi slide selalu mempunyai ruang yang sama
-     * di kedua sisi.
-     */
-    flex: 0 0 calc(100% - 80px) !important;
-
-    width: calc(100% - 80px) !important;
-    min-width: calc(100% - 80px) !important;
-    max-width: calc(100% - 80px) !important;
-
-    height: auto !important;
-    min-height: 0 !important;
-
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-
-    box-sizing: border-box !important;
-
-    scroll-snap-align: center !important;
-    scroll-snap-stop: always !important;
-
-    touch-action: auto !important;
-}
-
-
-/* ==========================================================
-   SLIDE PERTAMA
-   ========================================================== */
-
-#promo-container .promo-image-card:first-child {
-    /*
-     * Ruang kiri tepat setengah sisa lebar container.
-     */
-    margin-left: 40px !important;
-}
-
-
-/* ==========================================================
-   SLIDE TERAKHIR
-   ========================================================== */
-
-#promo-container .promo-image-card:last-child {
-    /*
-     * Ruang kanan sama dengan kiri.
-     */
-    margin-right: 40px !important;
-}
-
-
-/* ==========================================================
-   KARTU
-   ========================================================== */
-
-#promo-container .promo-only-card {
-    width: 100% !important;
-    height: auto !important;
-
-    min-height: 0 !important;
-
-    padding: 0 !important;
-    margin: 0 !important;
-
-    display: block !important;
-
-    overflow: visible !important;
-
-    aspect-ratio: auto !important;
-
-    transform: none !important;
-}
-
-
-/* ==========================================================
-   GAMBAR ASLI — UTUH
-   ========================================================== */
-
-#promo-container .promo-banner-img {
-    display: block !important;
-
-    width: 100% !important;
-    height: auto !important;
-
-    max-width: 100% !important;
-    max-height: none !important;
-
-    object-fit: contain !important;
-    object-position: center center !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    border: 0 !important;
-    border-radius: 18px !important;
-
-    transform: none !important;
-
-    touch-action: auto !important;
-}
-
-
-/* ==========================================================
-   HP
-   ========================================================== */
-
-@media (max-width: 768px) {
-
-    #promo-container {
-        gap: 16px !important;
-
-        padding: 0 !important;
-
-        scroll-snap-type: x mandatory !important;
-
-        touch-action: auto !important;
-    }
-
-    #promo-container .promo-image-card {
-        /*
-         * 40px kiri + 40px kanan.
-         * Gambar berada tepat di tengah area slider.
-         */
-        flex: 0 0 calc(100% - 80px) !important;
-
-        width: calc(100% - 80px) !important;
-        min-width: calc(100% - 80px) !important;
-        max-width: calc(100% - 80px) !important;
-
-        scroll-snap-align: center !important;
-        scroll-snap-stop: always !important;
-    }
-
-    #promo-container .promo-image-card:first-child {
-        margin-left: 40px !important;
-    }
-
-    #promo-container .promo-image-card:last-child {
-        margin-right: 40px !important;
-    }
-}
-
-
-/* ==========================================================
-   DESKTOP
-   ========================================================== */
-
-@media (min-width: 769px) {
-
-    #promo-container {
-        gap: 24px !important;
-    }
-
-    #promo-container .promo-image-card {
-        flex: 0 0 420px !important;
-
-        width: 420px !important;
-        min-width: 420px !important;
-        max-width: 420px !important;
-    }
-
-    #promo-container .promo-image-card:first-child {
-        margin-left: calc((100% - 420px) / 2) !important;
-    }
-
-    #promo-container .promo-image-card:last-child {
-        margin-right: calc((100% - 420px) / 2) !important;
-    }
-}
-
-
-/* ==========================================================
-   WEBSITE TETAP BISA SCROLL VERTIKAL
-   ========================================================== */
-
-html,
-body {
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-}
-
-body {
-    touch-action: auto !important;
-}
-
+/* =========================================================
+   END FINAL PROMO WIDTH FIX
+   ========================================================= */
