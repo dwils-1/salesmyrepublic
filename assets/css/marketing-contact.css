@@ -49,177 +49,98 @@
 }
 
 /* ==========================================================
-   PROMO FINAL
-   RASIO GAMBAR ASLI
-   TANPA CROP
-   TANPA FIXED HEIGHT
-   ========================================================== */
-
-/* Container promo tetap mengikuti responsive layout asli */
-#promo-container {
-    align-items: start;
-}
-
-/* Kartu promo mengikuti tinggi gambarnya sendiri */
-#promo-container .promo-image-card {
-    width: 100%;
-    min-width: 0;
-    height: auto;
-    min-height: 0;
-    align-self: start;
-}
-
-/* Jangan paksa tinggi kartu */
-#promo-container .promo-only-card {
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    padding: 0;
-    margin: 0;
-
-    display: block;
-
-    overflow: visible;
-
-    transform: none !important;
-}
-
-/* GAMBAR ASLI — SELURUH GAMBAR TAMPIL */
-#promo-container .promo-only-card .promo-banner-img {
-    display: block;
-
-    width: 100%;
-    height: auto;
-
-    max-width: 100%;
-    max-height: none;
-
-    margin: 0;
-    padding: 0;
-
-    object-fit: contain;
-    object-position: center;
-
-    border: 0;
-    border-radius: 18px;
-
-    transform: none !important;
-}
-
-/* Matikan efek 3D khusus promo */
-#promo-container .promo-image-card:hover .promo-only-card {
-    transform: none !important;
-}
-
-/* Promo bawah lama */
-#full-promo-bottom {
-    display: none !important;
-}
-
-/* ==========================================================
-   MOBILE
-   Jangan sampai promo mengecil menjadi banyak kolom kecil
-   ========================================================== */
-
-@media (max-width: 768px) {
-
-    #promo-container {
-        grid-template-columns: repeat(
-            auto-fit,
-            minmax(280px, 1fr)
-        );
-        align-items: start;
-    }
-
-    #promo-container .promo-image-card {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    #promo-container .promo-only-card {
-        width: 100%;
-        height: auto;
-        overflow: visible;
-    }
-
-    #promo-container .promo-only-card .promo-banner-img {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-        max-height: none;
-        object-fit: contain;
-    }
-}
-
-/* ==========================================================
-   PROMO HORIZONTAL SLIDER ONLY
-   WEBSITE TIDAK IKUT BERGESER
-   GAMBAR TIDAK CROP
+   PROMO ONLY HORIZONTAL SLIDER
+   - Hanya area promo yang dapat digeser kiri/kanan
+   - Website tidak ikut horizontal scroll
+   - Gambar mengikuti ukuran asli
+   - Tidak crop
    ========================================================== */
 
 #promo-container {
     display: flex !important;
-
     flex-direction: row !important;
     flex-wrap: nowrap !important;
 
     align-items: flex-start !important;
 
-    gap: 24px;
-
     width: 100% !important;
     max-width: 100% !important;
 
+    gap: 16px;
+
+    /* SCROLL HANYA DI SINI */
     overflow-x: auto !important;
     overflow-y: hidden !important;
 
     box-sizing: border-box;
 
-    /* hanya promo yang boleh scroll */
-    overscroll-behavior-x: contain;
-    touch-action: pan-x;
+    /* gesture horizontal hanya ditangani promo */
+    touch-action: pan-x !important;
 
-    /* scrollbar */
-    scrollbar-width: thin;
+    overscroll-behavior-x: contain !important;
+    overscroll-behavior-y: auto !important;
 
-    /* jangan sampai menyebabkan halaman melebar */
-    contain: inline-size;
+    scroll-behavior: smooth;
+    scroll-snap-type: x proximity;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
 }
 
-/* setiap promo = satu slide */
-#promo-container .promo-image-card {
-    flex: 0 0 420px !important;
+#promo-container::-webkit-scrollbar {
+    display: none;
+}
 
-    width: 420px !important;
-    min-width: 420px !important;
-    max-width: 420px !important;
+/* ==========================================================
+   SETIAP GAMBAR = 1 SLIDE
+   ========================================================== */
+
+#promo-container .promo-image-card {
+    flex: 0 0 auto !important;
+
+    width: min(420px, calc(100vw - 60px)) !important;
+    min-width: min(420px, calc(100vw - 60px)) !important;
+    max-width: min(420px, calc(100vw - 60px)) !important;
 
     height: auto !important;
     min-height: 0 !important;
 
+    margin: 0 !important;
+
     align-self: flex-start !important;
+
+    scroll-snap-align: start;
 
     box-sizing: border-box;
 }
 
-/* kartu mengikuti gambar */
+/* ==========================================================
+   CARD TIDAK MEMAKSA RASIO
+   ========================================================== */
+
 #promo-container .promo-only-card {
     width: 100% !important;
-    height: auto !important;
 
+    height: auto !important;
     min-height: 0 !important;
+
+    aspect-ratio: auto !important;
 
     padding: 0 !important;
     margin: 0 !important;
 
-    overflow: visible !important;
-
     display: block !important;
+
+    overflow: visible !important;
 
     transform: none !important;
 }
 
-/* gambar SELURUHNYA tampil */
+/* ==========================================================
+   GAMBAR ASLI
+   ========================================================== */
+
 #promo-container .promo-only-card .promo-banner-img {
     display: block !important;
 
@@ -229,11 +150,13 @@
     max-width: 100% !important;
     max-height: none !important;
 
+    aspect-ratio: auto !important;
+
     object-fit: contain !important;
     object-position: center !important;
 
-    margin: 0 !important;
     padding: 0 !important;
+    margin: 0 !important;
 
     border: 0 !important;
     border-radius: 18px;
@@ -241,45 +164,49 @@
     transform: none !important;
 }
 
-/* jangan ada efek hover yang menggeser kartu */
+/* ==========================================================
+   MATIKAN EFEK GERAK PADA CARD
+   ========================================================== */
+
 #promo-container .promo-image-card:hover,
 #promo-container .promo-image-card:hover .promo-only-card {
     transform: none !important;
 }
 
 /* ==========================================================
-   HP
+   MOBILE
    ========================================================== */
 
 @media (max-width: 768px) {
 
     #promo-container {
-        display: flex !important;
+        width: 100% !important;
+        max-width: 100% !important;
 
+        display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
 
         overflow-x: auto !important;
         overflow-y: hidden !important;
 
-        width: 100% !important;
-        max-width: 100% !important;
+        gap: 14px;
 
-        gap: 16px;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
 
-        padding-left: 0;
-        padding-right: 0;
+        /* HANYA PROMO */
+        touch-action: pan-x !important;
 
-        touch-action: pan-x;
-        overscroll-behavior-x: contain;
+        overscroll-behavior-x: contain !important;
     }
 
     #promo-container .promo-image-card {
-        flex: 0 0 calc(100vw - 80px) !important;
+        flex: 0 0 calc(100vw - 70px) !important;
 
-        width: calc(100vw - 80px) !important;
-        min-width: calc(100vw - 80px) !important;
-        max-width: calc(100vw - 80px) !important;
+        width: calc(100vw - 70px) !important;
+        min-width: calc(100vw - 70px) !important;
+        max-width: calc(100vw - 70px) !important;
 
         height: auto !important;
     }
@@ -287,6 +214,8 @@
     #promo-container .promo-only-card {
         width: 100% !important;
         height: auto !important;
+
+        aspect-ratio: auto !important;
 
         overflow: visible !important;
     }
@@ -298,25 +227,38 @@
         max-width: 100% !important;
         max-height: none !important;
 
+        aspect-ratio: auto !important;
+
         object-fit: contain !important;
     }
 }
 
 /* ==========================================================
-   CEGAH BODY WEBSITE IKUT HORIZONTAL SCROLL
+   WEBSITE TIDAK BOLEH HORIZONTAL SCROLL
    ========================================================== */
 
 html,
 body {
+    width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 }
 
+/*
+ * JANGAN beri touch-action pan-x ke body.
+ * Body tetap normal untuk scroll atas/bawah.
+ */
 body {
     touch-action: pan-y;
 }
 
-/* Promo tetap boleh pan-x meskipun body pan-y */
+/* Hanya promo yang menerima gesture horizontal */
 #promo-container {
-    touch-action: pan-x;
+    touch-action: pan-x !important;
 }
+
+/* Promo bawah lama tidak digunakan */
+#full-promo-bottom {
+    display: none !important;
+}
+
