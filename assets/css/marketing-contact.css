@@ -49,120 +49,42 @@
 }
 
 /* ==========================================================
-   FINAL PROMO IMAGE LAYOUT
+   PROMO FINAL
+   RASIO GAMBAR ASLI
+   TANPA CROP
+   TANPA FIXED HEIGHT
    ========================================================== */
 
+/* Container promo tetap mengikuti responsive layout asli */
 #promo-container {
     align-items: start;
 }
 
+/* Kartu promo mengikuti tinggi gambarnya sendiri */
 #promo-container .promo-image-card {
     width: 100%;
     min-width: 0;
-}
-
-#promo-container .promo-only-card {
-    padding: 0;
+    height: auto;
     min-height: 0;
-    height: auto;
-    overflow: hidden;
-    transform: none !important;
-}
-
-#promo-container .promo-only-card .promo-banner-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: none;
-    object-fit: contain;
-    margin: 0;
-    border: 0;
-    border-radius: 18px;
-}
-
-#promo-container .promo-image-card:hover .promo-only-card {
-    transform: none !important;
-}
-/* ==========================================================
-   FINAL PROMO — UKURAN SERAGAM, GAMBAR UTUH, TANPA CROP
-   ========================================================== */
-
-#promo-container {
-    align-items: start;
-}
-
-#promo-container .promo-image-card {
-    width: 100%;
-    min-width: 0;
-}
-
-#promo-container .promo-only-card {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    padding: 0;
-    min-height: 0;
-    height: auto;
-    overflow: hidden;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transform: none !important;
-}
-
-#promo-container .promo-only-card .promo-banner-img {
-    display: block;
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-    object-position: center;
-
-    margin: 0;
-    padding: 0;
-
-    border: 0;
-    border-radius: 18px;
-}
-
-#promo-container .promo-image-card:hover .promo-only-card {
-    transform: none !important;
-}
-
-/* Promo bawah lama tidak digunakan */
-#full-promo-bottom {
-    display: none !important;
-}
-
-/* ==========================================================
-   FINAL PROMO — GAMBAR UTUH, RASIO ASLI, TANPA CROP
-   ========================================================== */
-
-#promo-container {
-    align-items: start;
-}
-
-#promo-container .promo-image-card {
-    width: 100%;
-    min-width: 0;
-    height: auto;
     align-self: start;
 }
 
+/* Jangan paksa tinggi kartu */
 #promo-container .promo-only-card {
     width: 100%;
     height: auto;
     min-height: 0;
     padding: 0;
     margin: 0;
-    overflow: hidden;
 
     display: block;
+
+    overflow: visible;
 
     transform: none !important;
 }
 
+/* GAMBAR ASLI — SELURUH GAMBAR TAMPIL */
 #promo-container .promo-only-card .promo-banner-img {
     display: block;
 
@@ -172,104 +94,59 @@
     max-width: 100%;
     max-height: none;
 
-    object-fit: contain;
-    object-position: center;
-
     margin: 0;
     padding: 0;
 
+    object-fit: contain;
+    object-position: center;
+
     border: 0;
     border-radius: 18px;
+
+    transform: none !important;
 }
 
+/* Matikan efek 3D khusus promo */
 #promo-container .promo-image-card:hover .promo-only-card {
     transform: none !important;
 }
 
-/* Promo bawah lama tidak digunakan */
+/* Promo bawah lama */
 #full-promo-bottom {
     display: none !important;
 }
 
 /* ==========================================================
-   PROMO FINAL PATCH
-   GAMBAR ASLI 100% TERLIHAT — TANPA CROP
-   SETIAP GAMBAR MENGIKUTI RASIO ASLINYA
+   MOBILE
+   Jangan sampai promo mengecil menjadi banyak kolom kecil
    ========================================================== */
 
-/* Jangan biarkan CSS Grid menyamakan tinggi kartu promo */
-#promo-container {
-    align-items: start !important;
-    grid-auto-rows: max-content !important;
-    overflow: visible !important;
-}
+@media (max-width: 768px) {
 
-/* Setiap promo berdiri dengan tinggi sendiri */
-#promo-container .promo-image-card {
-    width: 100% !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-    height: max-content !important;
-    align-self: start !important;
-    overflow: visible !important;
-}
+    #promo-container {
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+        align-items: start;
+    }
 
-/* Kartu promo jangan pernah memotong isi */
-#promo-container .promo-only-card {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
+    #promo-container .promo-image-card {
+        width: 100%;
+        max-width: 100%;
+    }
 
-    padding: 0 !important;
-    margin: 0 !important;
+    #promo-container .promo-only-card {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+    }
 
-    display: block !important;
-
-    overflow: visible !important;
-
-    transform: none !important;
-}
-
-/* Gambar WAJIB mengikuti rasio asli */
-#promo-container .promo-only-card .promo-banner-img {
-    display: block !important;
-
-    width: 100% !important;
-    height: auto !important;
-
-    min-width: 0 !important;
-    min-height: 0 !important;
-
-    max-width: 100% !important;
-    max-height: none !important;
-
-    object-fit: fill !important;
-    object-position: center !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    border: 0 !important;
-    border-radius: 18px !important;
-
-    transform: none !important;
-}
-
-/* Pastikan wrapper tidak melakukan clipping */
-#promo-container .promo-image-card,
-#promo-container .promo-only-card,
-#promo-container .promo-only-card .promo-banner-img {
-    box-sizing: border-box !important;
-}
-
-/* Hilangkan efek 3D yang dapat mengganggu batas gambar */
-#promo-container .promo-image-card:hover .promo-only-card,
-#promo-container .promo-image-card:hover .promo-banner-img {
-    transform: none !important;
-}
-
-/* Promo bawah lama tetap dimatikan */
-#full-promo-bottom {
-    display: none !important;
+    #promo-container .promo-only-card .promo-banner-img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: none;
+        object-fit: contain;
+    }
 }
