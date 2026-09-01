@@ -134,3 +134,59 @@
 #full-promo-bottom {
     display: none !important;
 }
+
+/* ==========================================================
+   FINAL PROMO — GAMBAR UTUH, RASIO ASLI, TANPA CROP
+   ========================================================== */
+
+#promo-container {
+    align-items: start;
+}
+
+#promo-container .promo-image-card {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    align-self: start;
+}
+
+#promo-container .promo-only-card {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+
+    display: block;
+
+    transform: none !important;
+}
+
+#promo-container .promo-only-card .promo-banner-img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-width: 100%;
+    max-height: none;
+
+    object-fit: contain;
+    object-position: center;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    border-radius: 18px;
+}
+
+#promo-container .promo-image-card:hover .promo-only-card {
+    transform: none !important;
+}
+
+/* Promo bawah lama tidak digunakan */
+#full-promo-bottom {
+    display: none !important;
+}
