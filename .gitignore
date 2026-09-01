@@ -1,0 +1,5 @@
+
+# Local backup files - jangan masuk repository
+.backup-*
+assets/css/.bak-*
+assets/css/*.bak-*
