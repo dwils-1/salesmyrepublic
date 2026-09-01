@@ -503,3 +503,54 @@ body {
     }
 
 }
+
+/* ==========================================================
+   PATCH — CENTER LANDSCAPE PROMO IMAGE
+   Landscape = center horizontal + vertical
+   Portrait = layout existing, tidak diubah
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    #promo-container > .promo-image-card.landscape-promo {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+
+    #promo-container > .promo-image-card.landscape-promo > .promo-only-card {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+    }
+
+    #promo-container > .promo-image-card.landscape-promo .promo-banner-img {
+        display: block !important;
+
+        width: 100% !important;
+        height: auto !important;
+
+        max-width: 100% !important;
+        max-height: 100% !important;
+
+        margin: 0 auto !important;
+        padding: 0 !important;
+
+        object-fit: contain !important;
+        object-position: center center !important;
+    }
+}
+
+/* ==========================================================
+   END LANDSCAPE CENTER PATCH
+   ========================================================== */
