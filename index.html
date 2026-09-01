@@ -1680,5 +1680,107 @@ main.container {
 </script>
 <!-- END LANDSCAPE-PROMO-AUTO-DETECT-V3 -->
 
+
+<!-- AUTO-FRAME-LANDSCAPE-V2 -->
+<script>
+(function () {
+    "use strict";
+
+    function detectLandscapeCard(card) {
+        if (!card) return;
+
+        const img = card.querySelector(".promo-banner-img");
+
+        if (!img) return;
+
+        function detect() {
+            if (!img.naturalWidth || !img.naturalHeight) return;
+
+            const ratio =
+                img.naturalWidth / img.naturalHeight;
+
+            /*
+             * HANYA gambar landscape yang cukup panjang
+             * yang mendapatkan frame.
+             *
+             * Portrait dan square tetap normal.
+             */
+            const isLandscape = ratio > 1.20;
+
+            card.classList.toggle(
+                "landscape-promo",
+                isLandscape
+            );
+        }
+
+        if (img.complete) {
+            detect();
+        } else {
+            img.addEventListener("load", detect, {
+                once: true
+            });
+        }
+    }
+
+    function scanPromo() {
+        const container =
+            document.querySelector("#promo-container");
+
+        if (!container) return;
+
+        container
+            .querySelectorAll(
+                ":scope > .promo-image-card"
+            )
+            .forEach(detectLandscapeCard);
+    }
+
+    function start() {
+        const container =
+            document.querySelector("#promo-container");
+
+        if (!container) return;
+
+        scanPromo();
+
+        /*
+         * Promo dibuat dinamis dari Google Sheets.
+         * Scan ulang hanya ketika card baru masuk.
+         */
+        const observer = new MutationObserver(
+            function (mutations) {
+                let changed = false;
+
+                mutations.forEach(function (mutation) {
+                    if (mutation.addedNodes.length) {
+                        changed = true;
+                    }
+                });
+
+                if (changed) {
+                    scanPromo();
+                }
+            }
+        );
+
+        observer.observe(container, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            start,
+            { once: true }
+        );
+    } else {
+        start();
+    }
+
+})();
+</script>
+<!-- END AUTO-FRAME-LANDSCAPE-V2 -->
 </body>
 </html>
