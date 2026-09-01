@@ -1596,91 +1596,6 @@ main.container {
 })();
 </script>
 
-
-<!-- LANDSCAPE-PROMO-AUTO-DETECT-V2 -->
-<script>
-(function () {
-    function detectLandscapePromo() {
-        document.querySelectorAll(
-            "#promo-container > .promo-image-card"
-        ).forEach(function (card) {
-
-            var img = card.querySelector(".promo-banner-img");
-
-            if (!img) return;
-
-            function apply() {
-                if (!img.naturalWidth || !img.naturalHeight) return;
-
-                card.classList.toggle(
-                    "landscape-promo",
-                    img.naturalWidth > img.naturalHeight
-                );
-            }
-
-            if (img.complete) {
-                apply();
-            }
-
-            img.addEventListener("load", apply);
-        });
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener(
-            "DOMContentLoaded",
-            detectLandscapePromo
-        );
-    } else {
-        detectLandscapePromo();
-    }
-})();
-</script>
-<!-- END LANDSCAPE-PROMO-AUTO-DETECT-V2 -->
-
-
-<!-- LANDSCAPE-PROMO-AUTO-DETECT-V3 -->
-<script>
-(function () {
-    function detectLandscapePromo() {
-        document.querySelectorAll(
-            "#promo-container > .promo-image-card"
-        ).forEach(function (card) {
-
-            var img = card.querySelector(".promo-banner-img");
-
-            if (!img) return;
-
-            function apply() {
-                if (!img.naturalWidth || !img.naturalHeight) return;
-
-                card.classList.toggle(
-                    "landscape-promo",
-                    img.naturalWidth > img.naturalHeight
-                );
-            }
-
-            if (img.complete) {
-                apply();
-            }
-
-            img.addEventListener("load", apply);
-        });
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener(
-            "DOMContentLoaded",
-            detectLandscapePromo
-        );
-    } else {
-        detectLandscapePromo();
-    }
-})();
-</script>
-<!-- END LANDSCAPE-PROMO-AUTO-DETECT-V3 -->
-
-
 <!-- AUTO-FRAME-LANDSCAPE-V2 -->
 <script>
 (function () {
@@ -1694,16 +1609,18 @@ main.container {
         if (!img) return;
 
         function detect() {
-            if (!img.naturalWidth || !img.naturalHeight) return;
+            if (!img.naturalWidth || !img.naturalHeight) {
+                return;
+            }
 
             const ratio =
                 img.naturalWidth / img.naturalHeight;
 
             /*
-             * HANYA gambar landscape yang cukup panjang
-             * yang mendapatkan frame.
+             * AUTO FRAME hanya untuk gambar landscape
+             * yang benar-benar panjang.
              *
-             * Portrait dan square tetap normal.
+             * Portrait dan square DIABAIKAN.
              */
             const isLandscape = ratio > 1.20;
 
@@ -1716,9 +1633,11 @@ main.container {
         if (img.complete) {
             detect();
         } else {
-            img.addEventListener("load", detect, {
-                once: true
-            });
+            img.addEventListener(
+                "load",
+                detect,
+                { once: true }
+            );
         }
     }
 
@@ -1745,10 +1664,11 @@ main.container {
 
         /*
          * Promo dibuat dinamis dari Google Sheets.
-         * Scan ulang hanya ketika card baru masuk.
+         * Scan ulang ketika card baru dibuat.
          */
-        const observer = new MutationObserver(
-            function (mutations) {
+        const observer =
+            new MutationObserver(function (mutations) {
+
                 let changed = false;
 
                 mutations.forEach(function (mutation) {
@@ -1760,8 +1680,7 @@ main.container {
                 if (changed) {
                     scanPromo();
                 }
-            }
-        );
+            });
 
         observer.observe(container, {
             childList: true,
@@ -1782,5 +1701,8 @@ main.container {
 })();
 </script>
 <!-- END AUTO-FRAME-LANDSCAPE-V2 -->
+
 </body>
 </html>
+
+

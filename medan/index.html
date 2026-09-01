@@ -1430,89 +1430,113 @@
 })();
 </script>
 
-
-<!-- LANDSCAPE-PROMO-AUTO-DETECT-V2 -->
+<!-- AUTO-FRAME-LANDSCAPE-V2 -->
 <script>
 (function () {
-    function detectLandscapePromo() {
-        document.querySelectorAll(
-            "#promo-container > .promo-image-card"
-        ).forEach(function (card) {
+    "use strict";
 
-            var img = card.querySelector(".promo-banner-img");
+    function detectLandscapeCard(card) {
+        if (!card) return;
 
-            if (!img) return;
+        const img = card.querySelector(".promo-banner-img");
 
-            function apply() {
-                if (!img.naturalWidth || !img.naturalHeight) return;
+        if (!img) return;
 
-                card.classList.toggle(
-                    "landscape-promo",
-                    img.naturalWidth > img.naturalHeight
-                );
+        function detect() {
+            if (!img.naturalWidth || !img.naturalHeight) {
+                return;
             }
 
-            if (img.complete) {
-                apply();
-            }
+            const ratio =
+                img.naturalWidth / img.naturalHeight;
 
-            img.addEventListener("load", apply);
+            /*
+             * AUTO FRAME hanya untuk gambar landscape
+             * yang benar-benar panjang.
+             *
+             * Portrait dan square DIABAIKAN.
+             */
+            const isLandscape = ratio > 1.20;
+
+            card.classList.toggle(
+                "landscape-promo",
+                isLandscape
+            );
+        }
+
+        if (img.complete) {
+            detect();
+        } else {
+            img.addEventListener(
+                "load",
+                detect,
+                { once: true }
+            );
+        }
+    }
+
+    function scanPromo() {
+        const container =
+            document.querySelector("#promo-container");
+
+        if (!container) return;
+
+        container
+            .querySelectorAll(
+                ":scope > .promo-image-card"
+            )
+            .forEach(detectLandscapeCard);
+    }
+
+    function start() {
+        const container =
+            document.querySelector("#promo-container");
+
+        if (!container) return;
+
+        scanPromo();
+
+        /*
+         * Promo dibuat dinamis dari Google Sheets.
+         * Scan ulang ketika card baru dibuat.
+         */
+        const observer =
+            new MutationObserver(function (mutations) {
+
+                let changed = false;
+
+                mutations.forEach(function (mutation) {
+                    if (mutation.addedNodes.length) {
+                        changed = true;
+                    }
+                });
+
+                if (changed) {
+                    scanPromo();
+                }
+            });
+
+        observer.observe(container, {
+            childList: true,
+            subtree: true
         });
     }
 
     if (document.readyState === "loading") {
         document.addEventListener(
             "DOMContentLoaded",
-            detectLandscapePromo
+            start,
+            { once: true }
         );
     } else {
-        detectLandscapePromo();
+        start();
     }
+
 })();
 </script>
-<!-- END LANDSCAPE-PROMO-AUTO-DETECT-V2 -->
-
-
-<!-- LANDSCAPE-PROMO-AUTO-DETECT-V3 -->
-<script>
-(function () {
-    function detectLandscapePromo() {
-        document.querySelectorAll(
-            "#promo-container > .promo-image-card"
-        ).forEach(function (card) {
-
-            var img = card.querySelector(".promo-banner-img");
-
-            if (!img) return;
-
-            function apply() {
-                if (!img.naturalWidth || !img.naturalHeight) return;
-
-                card.classList.toggle(
-                    "landscape-promo",
-                    img.naturalWidth > img.naturalHeight
-                );
-            }
-
-            if (img.complete) {
-                apply();
-            }
-
-            img.addEventListener("load", apply);
-        });
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener(
-            "DOMContentLoaded",
-            detectLandscapePromo
-        );
-    } else {
-        detectLandscapePromo();
-    }
-})();
-</script>
-<!-- END LANDSCAPE-PROMO-AUTO-DETECT-V3 -->
+<!-- END AUTO-FRAME-LANDSCAPE-V2 -->
 
 </body>
 </html>
+
+
