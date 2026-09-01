@@ -190,3 +190,86 @@
 #full-promo-bottom {
     display: none !important;
 }
+
+/* ==========================================================
+   PROMO FINAL PATCH
+   GAMBAR ASLI 100% TERLIHAT — TANPA CROP
+   SETIAP GAMBAR MENGIKUTI RASIO ASLINYA
+   ========================================================== */
+
+/* Jangan biarkan CSS Grid menyamakan tinggi kartu promo */
+#promo-container {
+    align-items: start !important;
+    grid-auto-rows: max-content !important;
+    overflow: visible !important;
+}
+
+/* Setiap promo berdiri dengan tinggi sendiri */
+#promo-container .promo-image-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: max-content !important;
+    align-self: start !important;
+    overflow: visible !important;
+}
+
+/* Kartu promo jangan pernah memotong isi */
+#promo-container .promo-only-card {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: block !important;
+
+    overflow: visible !important;
+
+    transform: none !important;
+}
+
+/* Gambar WAJIB mengikuti rasio asli */
+#promo-container .promo-only-card .promo-banner-img {
+    display: block !important;
+
+    width: 100% !important;
+    height: auto !important;
+
+    min-width: 0 !important;
+    min-height: 0 !important;
+
+    max-width: 100% !important;
+    max-height: none !important;
+
+    object-fit: fill !important;
+    object-position: center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 18px !important;
+
+    transform: none !important;
+}
+
+/* Pastikan wrapper tidak melakukan clipping */
+#promo-container .promo-image-card,
+#promo-container .promo-only-card,
+#promo-container .promo-only-card .promo-banner-img {
+    box-sizing: border-box !important;
+}
+
+/* Hilangkan efek 3D yang dapat mengganggu batas gambar */
+#promo-container .promo-image-card:hover .promo-only-card,
+#promo-container .promo-image-card:hover .promo-banner-img {
+    transform: none !important;
+}
+
+/* Promo bawah lama tetap dimatikan */
+#full-promo-bottom {
+    display: none !important;
+}
