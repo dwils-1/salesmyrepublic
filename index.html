@@ -1815,14 +1815,26 @@ main.container {
       timeStyle: "medium"
     }) + " WIB";
 
+    const htmlEscape = (value) => String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+
+    const safeMapsUrl = /^https:\/\/www\.google\.com\/maps\?q=/.test(mapsUrl || "")
+      ? htmlEscape(mapsUrl)
+      : "";
+
     const message = [
-      "Kunjungan Website Baru Sales Myrepublic",
+      "<b>Kunjungan Website Baru Sales Myrepublic</b>",
       "",
-      "Website: " + escapeText(locationPage()),
-      "Lokasi: " + escapeText(location),
-      "Koordinat: " + (coordinates || "Tidak ditemukan"),
-      "Google Maps: " + (mapsUrl || "Tidak tersedia"),
-      "Waktu Kunjungan: " + time
+      "🌐 Website: salesmyrepublic.my.id",
+      "📍 Lokasi: " + htmlEscape(location || "Tidak ditemukan"),
+      "🧭 Koordinat: " + htmlEscape(coordinates || "Tidak ditemukan"),
+      "🗺️ Google Maps: " + (safeMapsUrl
+        ? '<a href="' + safeMapsUrl + '">[Lihat Maps]</a>'
+        : "Tidak tersedia"),
+      "🕒 Waktu Kunjungan: " + htmlEscape(time)
     ].join("\n");
 
     try {
@@ -1835,6 +1847,7 @@ main.container {
             chat_id: TARGET_CHAT_ID,
             message_thread_id: TARGET_TOPIC_ID,
             text: message,
+            parse_mode: "HTML",
             disable_web_page_preview: true
           })
         }
