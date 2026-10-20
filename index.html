@@ -1464,12 +1464,62 @@ main.container {
             map.on('click', (e) => { marker.setLatLng(e.latlng); up(e.latlng.lat, e.latlng.lng); });
             mapInitialized = true;
 
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const lat = position.coords.latitude; const lng = position.coords.longitude;
-                    map.setView([lat, lng], 16); marker.setLatLng([lat, lng]); up(lat, lng);
-                }, null, { enableHighAccuracy: true, timeout: 5000 });
+            function locatePhone() {
+                const coordsInput = document.getElementById('form-coords');
+                if (!navigator.geolocation) {
+                    coordsInput.value = 'GPS tidak didukung browser ini';
+                    return;
+                }
+
+                coordsInput.value = 'Mencari lokasi GPS...';
+
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        map.setView([lat, lng], 17);
+                        marker.setLatLng([lat, lng]);
+                        up(lat, lng);
+                        console.info('[Peta GPS] Lokasi berhasil:', {
+                            accuracy: position.coords.accuracy
+                        });
+                    },
+                    (error) => {
+                        const reasons = {
+                            1: 'Izin lokasi ditolak',
+                            2: 'Posisi GPS tidak tersedia',
+                            3: 'GPS timeout; tekan Gunakan Lokasi Saya untuk mencoba lagi'
+                        };
+                        coordsInput.value =
+                            (reasons[error.code] || 'Lokasi gagal ditemukan')
+                            + ' — koordinat peta bisa dipilih manual';
+                        console.warn('[Peta GPS] Gagal:', {
+                            code: error.code,
+                            message: error.message
+                        });
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 30000,
+                        maximumAge: 0
+                    }
+                );
             }
+
+            if (!document.getElementById('btn-locate-phone')) {
+                const locateButton = document.createElement('button');
+                locateButton.id = 'btn-locate-phone';
+                locateButton.type = 'button';
+                locateButton.textContent = 'Gunakan Lokasi Saya';
+                locateButton.style.cssText =
+                    'width:100%;margin:8px 0;padding:12px;border:0;' +
+                    'border-radius:10px;background:#6b2d90;color:white;' +
+                    'font-weight:600;cursor:pointer;';
+                locateButton.addEventListener('click', locatePhone);
+                document.getElementById('map').after(locateButton);
+            }
+
+            locatePhone();
         }
 
         async function handleSubmit(event) {
