@@ -805,7 +805,150 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
-    </style>
+    /* ARTIKEL_CARD_THEME_V1 */
+.city-article-links {
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  max-width: 1000px;
+  margin: 30px auto !important;
+  padding: clamp(18px, 4vw, 28px) !important;
+  border: 1px solid rgba(108,45,145,.14);
+  border-radius: 20px !important;
+  background: var(--bg-card,#fff) !important;
+  color: var(--text-color,#292033);
+  box-shadow: 0 8px 28px rgba(49,25,64,.07);
+  font-family: inherit;
+}
+.city-article-links .article-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 10px;
+}
+.city-article-links .article-heading-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg,var(--primary,#6c2d91),var(--primary-dark,#4a1e63));
+  color: #fff;
+  font-size: 23px;
+}
+.city-article-links h2 {
+  margin: 0 !important;
+  color: var(--primary-dark,#4a1e63);
+  font-size: clamp(21px,4vw,27px);
+  font-weight: 750;
+  line-height: 1.3;
+}
+.city-article-links .article-intro {
+  margin: 0 0 19px !important;
+  color: var(--text-muted,#716879);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.city-article-links .article-list {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 12px;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+.city-article-links .article-list li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+.city-article-links a.article-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 100px;
+  padding: 14px;
+  border: 1px solid rgba(108,45,145,.15);
+  border-radius: 15px;
+  background: var(--bg-color,rgba(108,45,145,.035));
+  color: inherit;
+  text-decoration: none !important;
+  transition: border-color .2s,transform .2s,box-shadow .2s;
+}
+.city-article-links a.article-link:hover {
+  border-color: var(--primary-light,#8e44ad);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(49,25,64,.08);
+}
+.city-article-links .article-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: var(--primary,#6c2d91);
+  background: rgba(108,45,145,.10);
+  font-size: 21px;
+}
+.city-article-links .article-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.city-article-links .article-title {
+  color: var(--primary-dark,#4a1e63);
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.45;
+}
+.city-article-links .article-desc {
+  color: var(--text-muted,#716879);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.city-article-links .article-arrow {
+  margin-top: 2px;
+  color: var(--primary,#6c2d91);
+  font-size: 12px;
+  font-weight: 700;
+}
+.city-article-links .article-all { margin-top: 17px; }
+.city-article-links .article-all a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: var(--primary,#6c2d91);
+  color: #fff !important;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+.city-article-links .article-all a:hover {
+  background: var(--primary-dark,#4a1e63);
+}
+@media(max-width:560px) {
+  .city-article-links {
+    width: calc(100% - 24px);
+    padding: 17px !important;
+    border-radius: 17px !important;
+  }
+  .city-article-links .article-list {
+    grid-template-columns: minmax(0,1fr);
+    gap: 10px;
+  }
+  .city-article-links a.article-link {
+    min-height: 0;
+    padding: 12px;
+  }
+}
+/* /ARTIKEL_CARD_THEME_V1 */
+</style>
     <link rel="canonical" href="https://salesmyrepublic.my.id/bandaaceh/">
 
 <script type="application/ld+json">
@@ -911,16 +1054,55 @@
     </main>
 
 <!-- LINK_PANDUAN_ARTIKEL_V1 -->
-<section class="city-article-links" style="max-width:1000px;margin:30px auto;padding:22px;border-radius:14px;background:var(--card-bg,#fff);color:var(--text-color,#24212b);">
-  <h2>Artikel dan Panduan MyRepublic</h2>
-  <p>Pelajari panduan pemasangan, pengecekan jangkauan jaringan, dan tips internet rumah.</p>
-  <ul style="line-height:2;">
-    <li><a href="/artikel/cara-pasang-myrepublic/">Cara Pasang MyRepublic</a></li>
-    <li><a href="/artikel/cara-cek-coverage-myrepublic/">Cara Cek Coverage MyRepublic</a></li>
-    <li><a href="/artikel/tips-memilih-paket-internet/">Tips Memilih Paket Internet Rumah</a></li>
-    <li><a href="/artikel/mengatasi-wifi-lambat/">Cara Mengatasi WiFi Lambat</a></li>
+<section class="city-article-links" aria-labelledby="judul-panduan-internet">
+  <div class="article-heading">
+    <span class="article-heading-icon" aria-hidden="true">▤</span>
+    <h2 id="judul-panduan-internet">Tips &amp; Panduan Internet</h2>
+  </div>
+  <p class="article-intro">Informasi praktis tentang pemasangan, jangkauan jaringan, dan penggunaan internet rumah.</p>
+  <ul class="article-list">
+    <li>
+      <a class="article-link" href="/artikel/cara-pasang-myrepublic/">
+        <span class="article-icon" aria-hidden="true">⌂</span>
+        <span class="article-copy">
+          <span class="article-title">Cara Pasang MyRepublic</span>
+          <span class="article-desc">Panduan pendaftaran dan pemasangan internet rumah.</span>
+          <span class="article-arrow">Baca panduan →</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="article-link" href="/artikel/cara-cek-coverage-myrepublic/">
+        <span class="article-icon" aria-hidden="true">⌖</span>
+        <span class="article-copy">
+          <span class="article-title">Cek Jangkauan Jaringan</span>
+          <span class="article-desc">Pelajari cara mengecek ketersediaan layanan.</span>
+          <span class="article-arrow">Baca panduan →</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="article-link" href="/artikel/tips-memilih-paket-internet/">
+        <span class="article-icon" aria-hidden="true">▣</span>
+        <span class="article-copy">
+          <span class="article-title">Tips Memilih Paket Internet</span>
+          <span class="article-desc">Hal yang perlu dipertimbangkan saat memilih internet rumah.</span>
+          <span class="article-arrow">Baca panduan →</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="article-link" href="/artikel/mengatasi-wifi-lambat/">
+        <span class="article-icon" aria-hidden="true">◉</span>
+        <span class="article-copy">
+          <span class="article-title">Mengatasi WiFi Lambat</span>
+          <span class="article-desc">Langkah dasar saat koneksi WiFi terasa lambat.</span>
+          <span class="article-arrow">Baca panduan →</span>
+        </span>
+      </a>
+    </li>
   </ul>
-  <p><a href="/artikel/">Lihat semua artikel →</a></p>
+  <div class="article-all"><a href="/artikel/">Lihat semua artikel <span aria-hidden="true">→</span></a></div>
 </section>
 <!-- /LINK_PANDUAN_ARTIKEL_V1 -->
 

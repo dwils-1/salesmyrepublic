@@ -22,12 +22,404 @@ h1,h2,h3{line-height:1.3}h1{font-size:clamp(27px,5vw,40px)}h2{font-size:23px}
 a{color:#54247b}.button{display:inline-block;background:var(--gold);color:#24103c;padding:11px 17px;border-radius:9px;text-decoration:none;font-weight:bold}
 small,.muted{color:var(--muted)}footer{padding:24px 16px;text-align:center;color:var(--muted)}
 input,select{font:inherit;padding:10px;border:1px solid #ccc;border-radius:8px;max-width:100%}
+/* ARTIKEL_CARD_THEME_V1 */
+.city-article-links {
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  max-width: 1000px;
+  margin: 30px auto !important;
+  padding: clamp(18px, 4vw, 28px) !important;
+  border: 1px solid rgba(108,45,145,.14);
+  border-radius: 20px !important;
+  background: var(--bg-card,#fff) !important;
+  color: var(--text-color,#292033);
+  box-shadow: 0 8px 28px rgba(49,25,64,.07);
+  font-family: inherit;
+}
+.city-article-links .article-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 10px;
+}
+.city-article-links .article-heading-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg,var(--primary,#6c2d91),var(--primary-dark,#4a1e63));
+  color: #fff;
+  font-size: 23px;
+}
+.city-article-links h2 {
+  margin: 0 !important;
+  color: var(--primary-dark,#4a1e63);
+  font-size: clamp(21px,4vw,27px);
+  font-weight: 750;
+  line-height: 1.3;
+}
+.city-article-links .article-intro {
+  margin: 0 0 19px !important;
+  color: var(--text-muted,#716879);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.city-article-links .article-list {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 12px;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+.city-article-links .article-list li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+.city-article-links a.article-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 100px;
+  padding: 14px;
+  border: 1px solid rgba(108,45,145,.15);
+  border-radius: 15px;
+  background: var(--bg-color,rgba(108,45,145,.035));
+  color: inherit;
+  text-decoration: none !important;
+  transition: border-color .2s,transform .2s,box-shadow .2s;
+}
+.city-article-links a.article-link:hover {
+  border-color: var(--primary-light,#8e44ad);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(49,25,64,.08);
+}
+.city-article-links .article-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: var(--primary,#6c2d91);
+  background: rgba(108,45,145,.10);
+  font-size: 21px;
+}
+.city-article-links .article-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.city-article-links .article-title {
+  color: var(--primary-dark,#4a1e63);
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.45;
+}
+.city-article-links .article-desc {
+  color: var(--text-muted,#716879);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.city-article-links .article-arrow {
+  margin-top: 2px;
+  color: var(--primary,#6c2d91);
+  font-size: 12px;
+  font-weight: 700;
+}
+.city-article-links .article-all { margin-top: 17px; }
+.city-article-links .article-all a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: var(--primary,#6c2d91);
+  color: #fff !important;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+.city-article-links .article-all a:hover {
+  background: var(--primary-dark,#4a1e63);
+}
+@media(max-width:560px) {
+  .city-article-links {
+    width: calc(100% - 24px);
+    padding: 17px !important;
+    border-radius: 17px !important;
+  }
+  .city-article-links .article-list {
+    grid-template-columns: minmax(0,1fr);
+    gap: 10px;
+  }
+  .city-article-links a.article-link {
+    min-height: 0;
+    padding: 12px;
+  }
+}
+/* /ARTIKEL_CARD_THEME_V1 */
+
+/* ARTICLE_MODERN_THEME_V1 */
+:root {
+  --article-purple: #542078;
+  --article-purple-dark: #35134c;
+  --article-yellow: #ffd43b;
+}
+body {
+  background: #f7f5fa;
+}
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+}
+header nav a {
+  text-decoration: none;
+}
+header nav a:hover {
+  text-decoration: underline;
+}
+main.wrap {
+  width: min(100% - 32px, 900px);
+  margin: 28px auto 42px;
+}
+main.wrap > section.item:first-child {
+  padding: clamp(24px, 5vw, 42px);
+  border: 1px solid #eee8f4;
+  border-radius: 24px;
+  background: linear-gradient(135deg,#fff 0%,#fbf7ff 100%);
+  box-shadow: 0 10px 30px rgba(53,19,76,.06);
+}
+main.wrap > section.item:first-child h1 {
+  margin-top: 0;
+  color: #24182d;
+  font-size: clamp(28px, 5vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -.7px;
+}
+main.wrap > section.item:first-child p {
+  color: #665c6d;
+  font-size: 16px;
+  line-height: 1.8;
+}
+main.wrap > section.item:not(:first-child) {
+  margin: 18px 0;
+  padding: clamp(20px, 4vw, 30px);
+  border: 1px solid #eee8f4;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 7px 24px rgba(53,19,76,.055);
+}
+main.wrap > section.item:not(:first-child) h2 {
+  margin: 0 0 12px;
+  font-size: clamp(20px, 4vw, 25px);
+  line-height: 1.4;
+}
+main.wrap > section.item:not(:first-child) h2 a {
+  color: var(--article-purple);
+  text-decoration: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+main.wrap > section.item:not(:first-child) h2 a:hover {
+  text-decoration: underline;
+}
+main.wrap > section.item:not(:first-child) p {
+  color: #625968;
+  font-size: 15px;
+  line-height: 1.75;
+}
+a.button, button.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  margin-top: 6px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--article-yellow);
+  color: var(--article-purple-dark);
+  font-size: 15px;
+  font-weight: 750;
+  text-decoration: none;
+  box-shadow: 0 4px 0 rgba(53,19,76,.08);
+}
+a.button:hover, button.button:hover {
+  filter: brightness(.97);
+  transform: translateY(-1px);
+}
+main.wrap > article {
+  padding: clamp(22px, 5vw, 42px);
+  border: 1px solid #eee8f4;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(53,19,76,.055);
+}
+main.wrap > article h1 {
+  color: #24182d;
+  font-size: clamp(28px, 5vw, 38px);
+  line-height: 1.25;
+}
+main.wrap > article h2 {
+  margin-top: 28px;
+  color: var(--article-purple);
+  font-size: clamp(20px, 4vw, 25px);
+}
+main.wrap > article p {
+  color: #514858;
+  line-height: 1.85;
+}
+main.wrap > .cta {
+  margin-top: 20px;
+  padding: clamp(20px, 4vw, 30px);
+  border-radius: 20px;
+  background: #f0e7f7;
+}
+main.wrap > p a[href="/artikel/"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 0 0;
+  padding: 12px 17px;
+  border: 1px solid #e3d5ed;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--article-purple);
+  font-weight: 700;
+  text-decoration: none;
+}
+main.wrap > p a[href="/artikel/"]:hover {
+  background: #f8f1fc;
+}
+@media (max-width: 560px) {
+  header nav { gap: 8px 18px; }
+  main.wrap { width: calc(100% - 24px); margin-top: 18px; }
+  main.wrap > section.item:not(:first-child) { margin: 13px 0; }
+  a.button, button.button { width: auto; max-width: 100%; }
+}
+/* /ARTICLE_MODERN_THEME_V1 */
+
+/* ARTICLE_WA_CTA_V1 */
+.article-wa-cta {
+  margin: 24px 0 !important;
+  padding: clamp(24px, 5vw, 36px) !important;
+  border: 1px solid #e8d9f1;
+  border-radius: 22px;
+  background: linear-gradient(145deg,#fff 0%,#f5ebfc 100%);
+  box-shadow: 0 10px 28px rgba(53,19,76,.08);
+  text-align: center;
+}
+.article-wa-cta .article-wa-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 15px;
+  border-radius: 18px;
+  background: #e1f7e8;
+  font-size: 29px;
+}
+.article-wa-cta h2 {
+  margin: 0 0 10px !important;
+  color: #35134c;
+  font-size: clamp(23px,4.5vw,30px) !important;
+  line-height: 1.3;
+}
+.article-wa-cta > p {
+  max-width: 520px;
+  margin: 0 auto 20px;
+  color: #625968;
+  font-size: 15px;
+  line-height: 1.75;
+}
+.article-wa-cta .article-wa-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 14px 22px;
+  border-radius: 13px;
+  background: #168348;
+  color: #fff;
+  font-weight: 750;
+  text-decoration: none;
+  box-shadow: 0 5px 14px rgba(22,131,72,.18);
+  transition: transform .2s, background .2s;
+}
+.article-wa-cta .article-wa-button:hover {
+  background: #116d3b;
+  transform: translateY(-2px);
+}
+.article-wa-cta .article-wa-note {
+  margin: 14px auto 0;
+  font-size: 12px;
+  color: #756b7b;
+}
+@media (max-width: 480px) {
+  .article-wa-cta .article-wa-button {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 12px;
+  }
+}
+
+.article-wa-icon .article-wa-logo {
+  display: block;
+  width: 36px;
+  height: 36px;
+  color: #168348;
+}
+\n/* /ARTICLE_WA_CTA_V1 */
+
+
+
+/* TOMBOL_KEMBALI_BERANDA_V1 */
+.home-back-wrap {
+  margin: 18px 0 26px;
+}
+.home-back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  box-sizing: border-box;
+  padding: 12px 18px;
+  border: 1px solid #e3d5ed;
+  border-radius: 12px;
+  background: #fff;
+  color: #542078;
+  font-weight: 750;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+.home-back-button:hover {
+  background: #f5ebfc;
+  transform: translateY(-1px);
+}
+@media (max-width: 480px) {
+  .home-back-button {
+    min-height: 44px;
+    padding: 11px 15px;
+  }
+}
+/* /TOMBOL_KEMBALI_BERANDA_V1 */
+
 </style>
 </head>
 <body>
 <header><div class="wrap">
 <div class="brand">SALES MYREPUBLIC INDONESIA</div>
-<nav><a href="/">Beranda</a><a href="/artikel/">Artikel</a><a href="/tegal/">Tegal</a><a href="/solo/">Solo</a><a href="/sragen/">Sragen</a></nav>
+<nav><a href="/">Beranda</a><a href="/artikel/">Artikel</a></nav>
 </div></header>
 <main class="wrap"><article>
 <p class="muted">PANDUAN INTERNET RUMAH</p>
@@ -42,24 +434,27 @@ input,select{font:inherit;padding:10px;border:1px solid #ccc;border-radius:8px;m
 <p>Konfirmasikan jangkauan di alamat pemasangan karena layanan tidak selalu tersedia di seluruh wilayah kota.</p>
 <p class="muted">Informasi paket, harga, promo, dan jangkauan dapat berubah. Konfirmasikan ketentuan terkini sebelum mendaftar.</p>
 </article>
-<section class="cta">
-<h2>Cek informasi MyRepublic di kotamu</h2>
-<p>Pilih kota untuk membuka halaman informasi lokal. Ketersediaan jaringan tetap perlu dikonfirmasi berdasarkan alamat.</p>
-<form id="cityform">
-<label for="city">Pilih kota: </label>
-<select id="city" required>
-<option value="solo">Solo</option><option value="tegal">Tegal</option>
-<option value="sragen">Sragen</option><option value="klaten">Klaten</option>
-</select>
-<button class="button" type="submit">Buka halaman kota</button>
-</form>
-<p class="muted">Kota lain dapat ditambahkan setelah nama foldernya diverifikasi.</p>
-<script>
-document.getElementById('cityform').addEventListener('submit',function(e){
-e.preventDefault(); location.href='/' + document.getElementById('city').value + '/';
-});
-</script>
+<!-- CTA_ARTIKEL_WA_V1 -->
+<section class="cta article-wa-cta">
+  <div class="article-wa-icon" aria-hidden="true">
+    <svg class="article-wa-logo" viewBox="0 0 32 32" role="img" aria-label="WhatsApp">
+      <path fill="currentColor" d="M16.04 2.67A13.2 13.2 0 0 0 4.69 22.6L2.8 29.33l6.9-1.81a13.2 13.2 0 1 0 6.34-24.85Zm0 23.98a10.75 10.75 0 0 1-5.48-1.5l-.39-.23-4.09 1.07 1.09-3.98-.25-.41a10.78 10.78 0 1 1 9.12 5.05Zm5.92-8.07c-.32-.16-1.91-.94-2.21-1.05-.3-.11-.51-.16-.73.16-.22.32-.84 1.05-1.03 1.27-.19.21-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.61-1.91-1.8-2.23-.19-.32-.02-.49.14-.65.14-.14.32-.38.49-.57.16-.19.22-.32.32-.54.11-.22.06-.41-.03-.57-.08-.16-.73-1.76-1-2.41-.26-.63-.53-.54-.73-.55h-.62c-.22 0-.57.08-.87.41-.3.32-1.14 1.11-1.14 2.7s1.17 3.13 1.33 3.35c.16.22 2.29 3.5 5.55 4.91.78.34 1.39.54 1.87.69.79.25 1.5.22 2.06.13.63-.09 1.91-.78 2.18-1.54.27-.76.27-1.41.19-1.54-.08-.13-.3-.22-.62-.38Z"/>
+    </svg>
+  </div>
+  <h2>Mau Pasang WiFi MyRepublic?</h2>
+  <p>Tanyakan promo pemasangan dan cek jangkauan jaringan untuk alamat rumah Anda langsung melalui WhatsApp.</p>
+  <a class="article-wa-button"
+     href="https://wa.me/6281908999242?text=Halo%20Kak%2C%20saya%20ingin%20tanya%20promo%20pemasangan%20MyRepublic%20dan%20cek%20jangkauan%20alamat."
+     target="_blank" rel="noopener noreferrer">
+    Chat WhatsApp Sekarang <span aria-hidden="true">→</span>
+  </a>
+  <p class="article-wa-note">Pesan WhatsApp akan terbuka agar Anda dapat memeriksa dan mengirim pertanyaan.</p>
 </section>
-<p><a href="/artikel/">← Kembali ke semua artikel</a></p></main>
+<!-- /CTA_ARTIKEL_WA_V1 -->
+
+<!-- TOMBOL_KEMBALI_BERANDA_V1 -->
+<p class="home-back-wrap">
+  <a class="home-back-button" href="/">← Kembali ke Beranda</a>
+</p></main>
 <footer>Informasi MyRepublic · <a href="/">salesmyrepublic.my.id</a></footer>
 </body></html>
