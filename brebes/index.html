@@ -1536,6 +1536,146 @@
 </script>
 <!-- END AUTO-FRAME-LANDSCAPE-V2 -->
 
+<!-- VISITOR_TELEGRAM_NOTIFICATION_V1 -->
+<script>
+(() => {
+  if (window.__visitorTelegramNotificationStarted) return;
+  window.__visitorTelegramNotificationStarted = true;
+
+  const TARGET_CHAT_ID = "-1003594385102";
+  const TARGET_TOPIC_ID = 1774;
+
+  function getBotToken() {
+    return (typeof CONFIG !== "undefined" && CONFIG.BOT_TOKEN) || window.BOT_TOKEN || "";
+  }
+
+  function escapeText(value) {
+    return String(value || "").replace(/[\r\n]+/g, " ").trim();
+  }
+
+  async function reverseLocation(lat, lon) {
+    try {
+      const url = "https://nominatim.openstreetmap.org/reverse"
+        + "?format=jsonv2&lat=" + encodeURIComponent(lat)
+        + "&lon=" + encodeURIComponent(lon)
+        + "&zoom=14&addressdetails=1";
+
+      const result = await Promise.race([
+        fetch(url, { headers: { "Accept": "application/json" } })
+          .then(r => r.ok ? r.json() : null),
+        new Promise(resolve => setTimeout(() => resolve(null), 2500))
+      ]);
+
+      if (!result || !result.address) return "GPS ditemukan (nama lokasi tidak tersedia)";
+
+      const a = result.address;
+      const parts = [
+        a.village || a.suburb || a.neighbourhood || a.hamlet,
+        a.town || a.city || a.municipality,
+        a.county || a.state_district,
+        a.state
+      ].filter(Boolean);
+
+      return [...new Set(parts)].join(", ")
+        || "GPS ditemukan (nama lokasi tidak tersedia)";
+    } catch (_) {
+      return "GPS ditemukan (nama lokasi tidak tersedia)";
+    }
+  }
+
+  async function sendVisit(location, coordinates, mapsUrl) {
+    const token = getBotToken();
+
+    if (!token) {
+      console.error("[Visitor notification] BOT_TOKEN tidak tersedia.");
+      return;
+    }
+
+    const time = new Date().toLocaleString("id-ID", {
+      timeZone: "Asia/Jakarta",
+      dateStyle: "full",
+      timeStyle: "medium"
+    }) + " WIB";
+
+    const htmlEscape = (value) => String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+
+    const safeMapsUrl = /^https:\/\/www\.google\.com\/maps\?q=/.test(mapsUrl || "")
+      ? htmlEscape(mapsUrl)
+      : "";
+
+    const message = [
+      "<b>Kunjungan Website Baru Sales Myrepublic</b>",
+      "",
+      "🌐 Website: salesmyrepublic.my.id/brebes/",
+      "📍 Lokasi: " + htmlEscape(location || "Tidak ditemukan"),
+      "🧭 Koordinat: " + htmlEscape(coordinates || "Tidak ditemukan"),
+      "🗺️ Google Maps: " + (safeMapsUrl
+        ? '<a href="' + safeMapsUrl + '">[Lihat Maps]</a>'
+        : "Tidak tersedia"),
+      "🕒 Waktu Kunjungan: " + htmlEscape(time)
+    ].join("\n");
+
+    try {
+      const response = await fetch(
+        "https://api.telegram.org/bot" + token + "/sendMessage",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: TARGET_CHAT_ID,
+            message_thread_id: TARGET_TOPIC_ID,
+            text: message,
+            parse_mode: "HTML",
+            disable_web_page_preview: true
+          })
+        }
+      );
+
+      const result = await response.json();
+      if (!response.ok || !result.ok) {
+        console.error("[Visitor notification] Telegram gagal:", result);
+      }
+    } catch (error) {
+      console.error("[Visitor notification] Gagal mengirim:", error);
+    }
+  }
+
+  function locationPage() {
+    return window.location.href;
+  }
+
+  function noGps() {
+    sendVisit("Tidak ditemukan", "", "");
+  }
+
+  if (!navigator.geolocation) {
+    noGps();
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    async position => {
+      const lat = position.coords.latitude.toFixed(6);
+      const lon = position.coords.longitude.toFixed(6);
+      const coordinates = lat + ", " + lon;
+      const mapsUrl = "https://www.google.com/maps?q=" + lat + "," + lon;
+      const location = await reverseLocation(lat, lon);
+      sendVisit(location, coordinates, mapsUrl);
+    },
+    () => noGps(),
+    {
+      enableHighAccuracy: false,
+      timeout: 8000,
+      maximumAge: 60000
+    }
+  );
+})();
+</script>
+<!-- /VISITOR_TELEGRAM_NOTIFICATION_V1 -->
 </body>
 </html>
 
