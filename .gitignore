@@ -3,3 +3,5 @@
 .backup-*
 assets/css/.bak-*
 assets/css/*.bak-*
+
+index.html.backup-seo
