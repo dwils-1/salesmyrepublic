@@ -1283,6 +1283,25 @@ main.container {
 </style>
     <link rel="stylesheet" href="/assets/css/marketing-contact.css?v=promo260">
     <link rel="canonical" href="https://salesmyrepublic.my.id/">
+
+<style>
+.direktori-search-wrap { margin:18px 0 20px; }
+.direktori-search-wrap label { display:block; font-weight:700; margin-bottom:9px; color:var(--text-main); }
+.direktori-search-row { display:flex; gap:9px; }
+.direktori-search-row input { flex:1; min-width:0; padding:13px 15px; border:1px solid var(--border-color); border-radius:10px; background:var(--bg-main); color:var(--text-main); font:inherit; }
+.direktori-search-row button,.direktori-wa-button { border:0; border-radius:10px; padding:12px 20px; background:var(--primary); color:white; font-weight:700; cursor:pointer; text-decoration:none; }
+#direktori-search-info { min-height:20px; margin:8px 0 0; font-size:13px; }
+.direktori-search-highlight { outline:3px solid var(--primary) !important; }
+.direktori-modal[hidden] { display:none !important; }
+.direktori-modal { position:fixed; inset:0; z-index:99999; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(0,0,0,.65); }
+.direktori-modal-box { position:relative; width:min(100%,430px); padding:28px 22px; border-radius:16px; background:var(--bg-card,#fff); color:var(--text-main,#222); text-align:center; box-shadow:0 15px 50px rgba(0,0,0,.25); }
+.direktori-modal-box h3 { margin:8px 0 12px; }
+.direktori-modal-box p { margin-bottom:22px; }
+.direktori-modal-close { position:absolute; top:8px; right:12px; border:0; background:none; font-size:28px; cursor:pointer; color:inherit; }
+.direktori-wa-button { display:inline-block; background:#168b50; }
+@media(max-width:480px) { .direktori-search-row button { padding:11px 14px; } }
+</style>
+
 </head>
 <body>
 
@@ -2252,7 +2271,18 @@ main.container {
 
 <section id="direktori-halaman" aria-label="Direktori layanan MyRepublic">
 <h2>Direktori Area Layanan MyRepublic</h2>
-<p>Pilih provinsi untuk melihat area layanan MyRepublic.</p><div class="direktori-tabs" role="tablist" aria-label="Pilih provinsi"><button type="button" class="direktori-tab" data-panel="provinsi-panel-1" aria-controls="provinsi-panel-1" aria-selected="true">Aceh</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-2" aria-controls="provinsi-panel-2" aria-selected="false">Bali</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-3" aria-controls="provinsi-panel-3" aria-selected="false">Banten</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-4" aria-controls="provinsi-panel-4" aria-selected="false">Bengkulu</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-5" aria-controls="provinsi-panel-5" aria-selected="false">DI Yogyakarta</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-6" aria-controls="provinsi-panel-6" aria-selected="false">DKI Jakarta</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-7" aria-controls="provinsi-panel-7" aria-selected="false">Gorontalo</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-8" aria-controls="provinsi-panel-8" aria-selected="false">Jambi</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-9" aria-controls="provinsi-panel-9" aria-selected="false">Jawa Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-10" aria-controls="provinsi-panel-10" aria-selected="false">Jawa Tengah</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-11" aria-controls="provinsi-panel-11" aria-selected="false">Jawa Timur</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-12" aria-controls="provinsi-panel-12" aria-selected="false">Kalimantan Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-13" aria-controls="provinsi-panel-13" aria-selected="false">Kalimantan Selatan</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-14" aria-controls="provinsi-panel-14" aria-selected="false">Kalimantan Tengah</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-15" aria-controls="provinsi-panel-15" aria-selected="false">Kalimantan Timur</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-16" aria-controls="provinsi-panel-16" aria-selected="false">Kepulauan Riau</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-17" aria-controls="provinsi-panel-17" aria-selected="false">Lampung</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-18" aria-controls="provinsi-panel-18" aria-selected="false">Nusa Tenggara Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-19" aria-controls="provinsi-panel-19" aria-selected="false">Riau</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-20" aria-controls="provinsi-panel-20" aria-selected="false">Sulawesi Selatan</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-21" aria-controls="provinsi-panel-21" aria-selected="false">Sulawesi Tengah</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-22" aria-controls="provinsi-panel-22" aria-selected="false">Sulawesi Tenggara</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-23" aria-controls="provinsi-panel-23" aria-selected="false">Sulawesi Utara</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-24" aria-controls="provinsi-panel-24" aria-selected="false">Sumatera Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-25" aria-controls="provinsi-panel-25" aria-selected="false">Sumatera Selatan</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-26" aria-controls="provinsi-panel-26" aria-selected="false">Sumatera Utara</button></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-1"><h3>Aceh</h3>
+<p>Pilih provinsi untuk melihat area layanan MyRepublic.</p>
+<div class="direktori-search-wrap">
+  <label for="direktori-search">Cari Kota / Kabupaten</label>
+  <div class="direktori-search-row">
+    <input id="direktori-search" type="search"
+      placeholder="Contoh: Surakarta, Tangerang, Medan..."
+      autocomplete="off">
+    <button type="button" id="direktori-search-btn">Cari</button>
+  </div>
+  <p id="direktori-search-info" aria-live="polite"></p>
+</div>
+<div class="direktori-tabs" role="tablist" aria-label="Pilih provinsi"><button type="button" class="direktori-tab" data-panel="provinsi-panel-1" aria-controls="provinsi-panel-1" aria-selected="true">Aceh</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-2" aria-controls="provinsi-panel-2" aria-selected="false">Bali</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-3" aria-controls="provinsi-panel-3" aria-selected="false">Banten</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-4" aria-controls="provinsi-panel-4" aria-selected="false">Bengkulu</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-5" aria-controls="provinsi-panel-5" aria-selected="false">DI Yogyakarta</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-6" aria-controls="provinsi-panel-6" aria-selected="false">DKI Jakarta</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-7" aria-controls="provinsi-panel-7" aria-selected="false">Gorontalo</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-8" aria-controls="provinsi-panel-8" aria-selected="false">Jambi</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-9" aria-controls="provinsi-panel-9" aria-selected="false">Jawa Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-10" aria-controls="provinsi-panel-10" aria-selected="false">Jawa Tengah</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-11" aria-controls="provinsi-panel-11" aria-selected="false">Jawa Timur</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-12" aria-controls="provinsi-panel-12" aria-selected="false">Kalimantan Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-13" aria-controls="provinsi-panel-13" aria-selected="false">Kalimantan Selatan</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-14" aria-controls="provinsi-panel-14" aria-selected="false">Kalimantan Tengah</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-15" aria-controls="provinsi-panel-15" aria-selected="false">Kalimantan Timur</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-16" aria-controls="provinsi-panel-16" aria-selected="false">Kepulauan Riau</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-17" aria-controls="provinsi-panel-17" aria-selected="false">Lampung</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-18" aria-controls="provinsi-panel-18" aria-selected="false">Nusa Tenggara Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-19" aria-controls="provinsi-panel-19" aria-selected="false">Riau</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-20" aria-controls="provinsi-panel-20" aria-selected="false">Sulawesi Selatan</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-21" aria-controls="provinsi-panel-21" aria-selected="false">Sulawesi Tengah</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-22" aria-controls="provinsi-panel-22" aria-selected="false">Sulawesi Tenggara</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-23" aria-controls="provinsi-panel-23" aria-selected="false">Sulawesi Utara</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-24" aria-controls="provinsi-panel-24" aria-selected="false">Sumatera Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-25" aria-controls="provinsi-panel-25" aria-selected="false">Sumatera Selatan</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-26" aria-controls="provinsi-panel-26" aria-selected="false">Sumatera Utara</button></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-1"><h3>Aceh</h3>
 <div class="direktori-scroll">
 <a href="/bandaaceh/">Bandaaceh</a>
 </div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-2" hidden><h3>Bali</h3>
@@ -2434,19 +2464,116 @@ main.container {
 
 
 
+
+<div id="direktori-modal" class="direktori-modal" hidden>
+  <div class="direktori-modal-box" role="dialog"
+       aria-modal="true" aria-labelledby="direktori-modal-title">
+    <button type="button" id="direktori-modal-close"
+      class="direktori-modal-close" aria-label="Tutup">&times;</button>
+    <h3 id="direktori-modal-title">Wilayah belum ditemukan</h3>
+    <p id="direktori-modal-message">
+      Wilayah yang Anda cari belum ada dalam daftar.
+      Ingin meminta Tim Sales MyRepublic melakukan pengecekan manual?
+    </p>
+    <a id="direktori-whatsapp" target="_blank"
+       rel="noopener noreferrer" class="direktori-wa-button">
+       Konfirmasi via WhatsApp
+    </a>
+  </div>
+</div>
 </section>
 
 <script>
 (() => {
-  const tabs = document.querySelectorAll('#direktori-halaman .direktori-tab');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(item => {
-        item.setAttribute('aria-selected', String(item === tab));
-        const panel = document.getElementById(item.dataset.panel);
-        if (panel) panel.hidden = item !== tab;
-      });
+  const root = document.getElementById('direktori-halaman');
+  if (!root) return;
+
+  const tabs = [...root.querySelectorAll('.direktori-tab')];
+  const panels = [...root.querySelectorAll('.direktori-panel')];
+  const input = document.getElementById('direktori-search');
+  const searchBtn = document.getElementById('direktori-search-btn');
+  const info = document.getElementById('direktori-search-info');
+  const modal = document.getElementById('direktori-modal');
+  const close = document.getElementById('direktori-modal-close');
+  const wa = document.getElementById('direktori-whatsapp');
+
+  function normalize(value) {
+    return value.toLocaleLowerCase('id-ID')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]/g, '');
+  }
+
+  function normalizeArea(value) {
+    return normalize(value)
+      .replace(/^(kotaadministrasi|kabupatenadministrasi|kabupaten|kab|kota)/, '');
+  }
+
+  function activate(panelId) {
+    tabs.forEach(tab => {
+      const active = tab.dataset.panel === panelId;
+      tab.setAttribute('aria-selected', String(active));
     });
+    panels.forEach(panel => {
+      panel.hidden = panel.id !== panelId;
+    });
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activate(tab.dataset.panel));
+  });
+
+  function showNotFound(query) {
+    const message = 'Halo Tim Sales MyRepublic, saya ingin konfirmasi ketersediaan jaringan untuk wilayah ' +
+      query + '. Mohon bantu pengecekan secara manual. Terima kasih.';
+    wa.href = 'https://wa.me/6281908999242?text=' + encodeURIComponent(message);
+    modal.hidden = false;
+    close.focus();
+  }
+
+  function searchCity() {
+    const query = input.value.trim();
+    if (!query) {
+      info.textContent = 'Masukkan nama kota atau kabupaten terlebih dahulu.';
+      input.focus();
+      return;
+    }
+
+    const key = normalizeArea(query);
+    const links = panels.flatMap(panel =>
+      [...panel.querySelectorAll('.direktori-scroll a')].map(link => ({
+        link, panel, name: link.textContent.trim()
+      }))
+    );
+
+    const found = links.find(item =>
+      normalizeArea(item.name) === key ||
+      normalize(item.name) === normalize(query)
+    );
+
+    if (found) {
+      activate(found.panel.id);
+      links.forEach(item => item.link.classList.remove('direktori-search-highlight'));
+      found.link.classList.add('direktori-search-highlight');
+      info.textContent = 'Ditemukan: ' + found.name + ' — ' +
+        found.panel.querySelector('h3').textContent;
+      found.link.scrollIntoView({ behavior:'smooth', block:'center', inline:'center' });
+      return;
+    }
+
+    info.textContent = 'Wilayah belum ada dalam daftar.';
+    showNotFound(query);
+  }
+
+  searchBtn.addEventListener('click', searchCity);
+  input.addEventListener('keydown', event => {
+    if (event.key === 'Enter') searchCity();
+  });
+  close.addEventListener('click', () => { modal.hidden = true; });
+  modal.addEventListener('click', event => {
+    if (event.target === modal) modal.hidden = true;
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') modal.hidden = true;
   });
 })();
 </script>
