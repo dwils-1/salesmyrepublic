@@ -2162,7 +2162,48 @@ main.container {
 
       const result = await response.json();
       if (!response.ok || !result.ok) {
-        console.error("[Visitor notific<section id="direktori-halaman" aria-label="Direktori layanan MyRepublic">
+        console.error("[Visitor notification] Telegram gagal:", result);
+      }
+    } catch (error) {
+      console.error("[Visitor notification] Gagal mengirim:", error);
+    }
+  }
+
+  function locationPage() {
+    return window.location.href;
+  }
+
+  function noGps() {
+    sendVisit("Tidak ditemukan", "", "");
+  }
+
+  if (!navigator.geolocation) {
+    noGps();
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    async position => {
+      const lat = position.coords.latitude.toFixed(6);
+      const lon = position.coords.longitude.toFixed(6);
+      const coordinates = lat + ", " + lon;
+      const mapsUrl = "https://www.google.com/maps?q=" + lat + "," + lon;
+      const location = await reverseLocation(lat, lon);
+      sendVisit(location, coordinates, mapsUrl);
+    },
+    () => noGps(),
+    {
+      enableHighAccuracy: false,
+      timeout: 8000,
+      maximumAge: 60000
+    }
+  );
+})();
+</script>
+<!-- /VISITOR_TELEGRAM_NOTIFICATION_V1 -->
+
+
+<section id="direktori-halaman" aria-label="Direktori layanan MyRepublic">
 <h2>Direktori Area Layanan MyRepublic</h2>
 <p>Temukan informasi layanan MyRepublic berdasarkan provinsi dan wilayah.</p>
 <div class="direktori-provinsi"><h3>Aceh</h3>
@@ -2353,27 +2394,7 @@ main.container {
 <a href="/artikel/cara-cek-coverage-myrepublic/">Cara Cek Coverage Myrepublic</a>
 <a href="/artikel/tips-memilih-paket-internet/">Tips Memilih Paket Internet</a>
 <a href="/artikel/mengatasi-wifi-lambat/">Mengatasi Wifi Lambat</a>
-</div></div></section>f="/sumedang/">Sumedang</a></li>
-<li><a href="/surabaya/">Surabaya</a></li>
-<li><a href="/tangerang/">Tangerang</a></li>
-<li><a href="/tasikmalaya/">Tasikmalaya</a></li>
-<li><a href="/tebingtinggi/">Tebingtinggi</a></li>
-<li><a href="/tegal/">Tegal</a></li>
-<li><a href="/temanggung/">Temanggung</a></li>
-<li><a href="/tuban/">Tuban</a></li>
-<li><a href="/tulungagung/">Tulungagung</a></li>
-<li><a href="/wonosobo/">Wonosobo</a></li>
-<li><a href="/yogyakarta/">Yogyakarta</a></li>
-</ul>
-<h2>Artikel dan Panduan MyRepublic</h2>
-<ul>
-<li><a href="/artikel/">Artikel</a></li>
-<li><a href="/artikel/cara-pasang-myrepublic/">Cara Pasang Myrepublic</a></li>
-<li><a href="/artikel/cara-cek-coverage-myrepublic/">Cara Cek Coverage Myrepublic</a></li>
-<li><a href="/artikel/tips-memilih-paket-internet/">Tips Memilih Paket Internet</a></li>
-<li><a href="/artikel/mengatasi-wifi-lambat/">Mengatasi Wifi Lambat</a></li>
-</ul>
-</section>
+</div></div></section>
 
 </body>
 </html>
