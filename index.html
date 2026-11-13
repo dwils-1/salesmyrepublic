@@ -1232,6 +1232,54 @@ main.container {
     color: white;
 }
 
+
+/* TAB PROVINSI HORIZONTAL */
+#direktori-halaman .direktori-tabs {
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding:8px 2px 14px;
+  margin:12px 0 18px;
+  white-space:nowrap;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+#direktori-halaman .direktori-tab {
+  flex:0 0 auto;
+  border:1px solid var(--border-color);
+  border-radius:22px;
+  padding:10px 17px;
+  background:var(--bg-main);
+  color:var(--text-main);
+  font:inherit;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+#direktori-halaman .direktori-tab[aria-selected="true"] {
+  background:var(--primary);
+  border-color:var(--primary);
+  color:white;
+}
+#direktori-halaman .direktori-panel[hidden] {
+  display:none !important;
+}
+#direktori-halaman .direktori-panel {
+  margin:0 0 22px;
+}
+#direktori-halaman .direktori-panel .direktori-scroll {
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:5px 2px 14px;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+#direktori-halaman .direktori-panel .direktori-scroll a {
+  flex:0 0 auto;
+  min-width:115px;
+}
+
 </style>
     <link rel="stylesheet" href="/assets/css/marketing-contact.css?v=promo260">
     <link rel="canonical" href="https://salesmyrepublic.my.id/">
@@ -2157,64 +2205,15 @@ main.container {
             parse_mode: "HTML",
             disable_web_page_preview: true
           })
-        }
-      );
-
-      const result = await response.json();
-      if (!response.ok || !result.ok) {
-        console.error("[Visitor notification] Telegram gagal:", result);
-      }
-    } catch (error) {
-      console.error("[Visitor notification] Gagal mengirim:", error);
-    }
-  }
-
-  function locationPage() {
-    return window.location.href;
-  }
-
-  function noGps() {
-    sendVisit("Tidak ditemukan", "", "");
-  }
-
-  if (!navigator.geolocation) {
-    noGps();
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    async position => {
-      const lat = position.coords.latitude.toFixed(6);
-      const lon = position.coords.longitude.toFixed(6);
-      const coordinates = lat + ", " + lon;
-      const mapsUrl = "https://www.google.com/maps?q=" + lat + "," + lon;
-      const location = await reverseLocation(lat, lon);
-      sendVisit(location, coordinates, mapsUrl);
-    },
-    () => noGps(),
-    {
-      enableHighAccuracy: false,
-      timeout: 8000,
-      maximumAge: 60000
-    }
-  );
-})();
-</script>
-<!-- /VISITOR_TELEGRAM_NOTIFICATION_V1 -->
-
-
-<section id="direktori-halaman" aria-label="Direktori layanan MyRepublic">
+     <section id="direktori-halaman" aria-label="Direktori layanan MyRepublic">
 <h2>Direktori Area Layanan MyRepublic</h2>
-<p>Temukan informasi layanan MyRepublic berdasarkan provinsi dan wilayah.</p>
-<div class="direktori-provinsi"><h3>Aceh</h3>
+<p>Pilih provinsi untuk melihat area layanan MyRepublic.</p><div class="direktori-tabs" role="tablist" aria-label="Pilih provinsi"><button type="button" class="direktori-tab" data-panel="provinsi-panel-1" aria-controls="provinsi-panel-1" aria-selected="true">Aceh</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-2" aria-controls="provinsi-panel-2" aria-selected="false">Bali</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-3" aria-controls="provinsi-panel-3" aria-selected="false">Banten</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-4" aria-controls="provinsi-panel-4" aria-selected="false">Bengkulu</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-5" aria-controls="provinsi-panel-5" aria-selected="false">DI Yogyakarta</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-6" aria-controls="provinsi-panel-6" aria-selected="false">DKI Jakarta</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-7" aria-controls="provinsi-panel-7" aria-selected="false">Gorontalo</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-8" aria-controls="provinsi-panel-8" aria-selected="false">Jambi</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-9" aria-controls="provinsi-panel-9" aria-selected="false">Jawa Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-10" aria-controls="provinsi-panel-10" aria-selected="false">Jawa Tengah</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-11" aria-controls="provinsi-panel-11" aria-selected="false">Jawa Timur</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-12" aria-controls="provinsi-panel-12" aria-selected="false">Kalimantan Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-13" aria-controls="provinsi-panel-13" aria-selected="false">Kalimantan Selatan</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-14" aria-controls="provinsi-panel-14" aria-selected="false">Kalimantan Tengah</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-15" aria-controls="provinsi-panel-15" aria-selected="false">Kalimantan Timur</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-16" aria-controls="provinsi-panel-16" aria-selected="false">Kepulauan Riau</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-17" aria-controls="provinsi-panel-17" aria-selected="false">Lampung</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-18" aria-controls="provinsi-panel-18" aria-selected="false">Nusa Tenggara Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-19" aria-controls="provinsi-panel-19" aria-selected="false">Riau</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-20" aria-controls="provinsi-panel-20" aria-selected="false">Sulawesi Selatan</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-21" aria-controls="provinsi-panel-21" aria-selected="false">Sulawesi Tengah</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-22" aria-controls="provinsi-panel-22" aria-selected="false">Sulawesi Tenggara</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-23" aria-controls="provinsi-panel-23" aria-selected="false">Sulawesi Utara</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-24" aria-controls="provinsi-panel-24" aria-selected="false">Sumatera Barat</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-25" aria-controls="provinsi-panel-25" aria-selected="false">Sumatera Selatan</button><button type="button" class="direktori-tab" data-panel="provinsi-panel-26" aria-controls="provinsi-panel-26" aria-selected="false">Sumatera Utara</button></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-1"><h3>Aceh</h3>
 <div class="direktori-scroll">
 <a href="/bandaaceh/">Bandaaceh</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Bali</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-2" hidden><h3>Bali</h3>
 <div class="direktori-scroll">
 <a href="/bali/">Bali</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Banten</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-3" hidden><h3>Banten</h3>
 <div class="direktori-scroll">
 <a href="/anyer/">Anyer</a>
 <a href="/bsd/">Bsd</a>
@@ -2222,33 +2221,27 @@ main.container {
 <a href="/rangkasbitung/">Rangkasbitung</a>
 <a href="/serang/">Serang</a>
 <a href="/tangerang/">Tangerang</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Bengkulu</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-4" hidden><h3>Bengkulu</h3>
 <div class="direktori-scroll">
 <a href="/bengkulu/">Bengkulu</a>
-</div></div>
-<div class="direktori-provinsi"><h3>DI Yogyakarta</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-5" hidden><h3>DI Yogyakarta</h3>
 <div class="direktori-scroll">
 <a href="/jogja/">Jogja</a>
 <a href="/metroyogyakarta/">Metroyogyakarta</a>
 <a href="/sleman/">Sleman</a>
 <a href="/yogyakarta/">Yogyakarta</a>
-</div></div>
-<div class="direktori-provinsi"><h3>DKI Jakarta</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-6" hidden><h3>DKI Jakarta</h3>
 <div class="direktori-scroll">
 <a href="/cibubur/">Cibubur</a>
 <a href="/jakarta/">Jakarta</a>
 <a href="/jakartabarat/">Jakartabarat</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Gorontalo</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-7" hidden><h3>Gorontalo</h3>
 <div class="direktori-scroll">
 <a href="/gorontalo/">Gorontalo</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Jambi</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-8" hidden><h3>Jambi</h3>
 <div class="direktori-scroll">
 <a href="/jambi/">Jambi</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Jawa Barat</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-9" hidden><h3>Jawa Barat</h3>
 <div class="direktori-scroll">
 <a href="/bandung/">Bandung</a>
 <a href="/bekasi/">Bekasi</a>
@@ -2267,8 +2260,7 @@ main.container {
 <a href="/sukabumi/">Sukabumi</a>
 <a href="/sumedang/">Sumedang</a>
 <a href="/tasikmalaya/">Tasikmalaya</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Jawa Tengah</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-10" hidden><h3>Jawa Tengah</h3>
 <div class="direktori-scroll">
 <a href="/banjarnegara/">Banjarnegara</a>
 <a href="/boyolali/">Boyolali</a>
@@ -2297,8 +2289,7 @@ main.container {
 <a href="/tegal/">Tegal</a>
 <a href="/temanggung/">Temanggung</a>
 <a href="/wonosobo/">Wonosobo</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Jawa Timur</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-11" hidden><h3>Jawa Timur</h3>
 <div class="direktori-scroll">
 <a href="/bangkalan/">Bangkalan</a>
 <a href="/banyuwangi/">Banyuwangi</a>
@@ -2320,56 +2311,92 @@ main.container {
 <a href="/surabaya/">Surabaya</a>
 <a href="/tuban/">Tuban</a>
 <a href="/tulungagung/">Tulungagung</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Kalimantan Barat</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-12" hidden><h3>Kalimantan Barat</h3>
 <div class="direktori-scroll">
 <a href="/singkawang/">Singkawang</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Kalimantan Selatan</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-13" hidden><h3>Kalimantan Selatan</h3>
 <div class="direktori-scroll">
 <a href="/banjarbaru/">Banjarbaru</a>
 <a href="/banjarmasin/">Banjarmasin</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Kalimantan Tengah</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-14" hidden><h3>Kalimantan Tengah</h3>
 <div class="direktori-scroll">
 <a href="/palangkaraya/">Palangkaraya</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Kalimantan Timur</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-15" hidden><h3>Kalimantan Timur</h3>
 <div class="direktori-scroll">
 <a href="/balikpapan/">Balikpapan</a>
 <a href="/samarinda/">Samarinda</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Kepulauan Riau</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-16" hidden><h3>Kepulauan Riau</h3>
 <div class="direktori-scroll">
 <a href="/batam/">Batam</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Lampung</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-17" hidden><h3>Lampung</h3>
 <div class="direktori-scroll">
 <a href="/lampung/">Lampung</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Nusa Tenggara Barat</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-18" hidden><h3>Nusa Tenggara Barat</h3>
 <div class="direktori-scroll">
 <a href="/mataram/">Mataram</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Riau</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-19" hidden><h3>Riau</h3>
 <div class="direktori-scroll">
 <a href="/pekanbaru/">Pekanbaru</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Sulawesi Selatan</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-20" hidden><h3>Sulawesi Selatan</h3>
 <div class="direktori-scroll">
 <a href="/makassar/">Makassar</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Sulawesi Tengah</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-21" hidden><h3>Sulawesi Tengah</h3>
 <div class="direktori-scroll">
 <a href="/palu/">Palu</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Sulawesi Tenggara</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-22" hidden><h3>Sulawesi Tenggara</h3>
 <div class="direktori-scroll">
 <a href="/kendari/">Kendari</a>
-</div></div>
-<div class="direktori-provinsi"><h3>Sulawesi Utara</h3>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-23" hidden><h3>Sulawesi Utara</h3>
 <div class="direktori-scroll">
 <a href="/manado/">Manado</a>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-24" hidden><h3>Sumatera Barat</h3>
+<div class="direktori-scroll">
+<a href="/padang/">Padang</a>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-25" hidden><h3>Sumatera Selatan</h3>
+<div class="direktori-scroll">
+<a href="/palembang/">Palembang</a>
+<a href="/prabumulih/">Prabumulih</a>
+</div></div><div class="direktori-provinsi direktori-panel" id="provinsi-panel-26" hidden><h3>Sumatera Utara</h3>
+<div class="direktori-scroll">
+<a href="/deliserdang/">Deliserdang</a>
+<a href="/medan/">Medan</a>
+<a href="/pematangsiantar/">Pematangsiantar</a>
+<a href="/tebingtinggi/">Tebingtinggi</a>
+</div></div><div class="direktori-provinsi"><h3>Artikel dan Panduan MyRepublic</h3>
+<div class="direktori-scroll">
+<a href="/artikel/">Artikel</a>
+<a href="/artikel/cara-pasang-myrepublic/">Cara Pasang Myrepublic</a>
+<a href="/artikel/cara-cek-coverage-myrepublic/">Cara Cek Coverage Myrepublic</a>
+<a href="/artikel/tips-memilih-paket-internet/">Tips Memilih Paket Internet</a>
+<a href="/artikel/mengatasi-wifi-lambat/">Mengatasi Wifi Lambat</a>
+</div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>a href="/manado/">Manado</a>
 </div></div>
 <div class="direktori-provinsi"><h3>Sumatera Barat</h3>
 <div class="direktori-scroll">
@@ -2395,6 +2422,22 @@ main.container {
 <a href="/artikel/tips-memilih-paket-internet/">Tips Memilih Paket Internet</a>
 <a href="/artikel/mengatasi-wifi-lambat/">Mengatasi Wifi Lambat</a>
 </div></div></section>
+
+
+<script>
+(() => {
+  const tabs = document.querySelectorAll('#direktori-halaman .direktori-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(item => {
+        item.setAttribute('aria-selected', String(item === tab));
+        const panel = document.getElementById(item.dataset.panel);
+        if (panel) panel.hidden = item !== tab;
+      });
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
