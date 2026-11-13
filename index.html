@@ -1193,6 +1193,45 @@ main.container {
     }
 }
 
+
+/* DIREKTORI PROVINSI HORIZONTAL */
+#direktori-halaman .direktori-provinsi {
+    margin-top: 28px;
+}
+#direktori-halaman .direktori-provinsi h3 {
+    color: var(--primary);
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+#direktori-halaman .direktori-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 2px 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+#direktori-halaman .direktori-scroll a {
+    flex: 0 0 155px;
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    scroll-snap-align: start;
+}
+#direktori-halaman .direktori-scroll a:hover {
+    background: var(--primary);
+    color: white;
+}
+
 </style>
     <link rel="stylesheet" href="/assets/css/marketing-contact.css?v=promo260">
     <link rel="canonical" href="https://salesmyrepublic.my.id/">
@@ -2123,144 +2162,198 @@ main.container {
 
       const result = await response.json();
       if (!response.ok || !result.ok) {
-        console.error("[Visitor notification] Telegram gagal:", result);
-      }
-    } catch (error) {
-      console.error("[Visitor notification] Gagal mengirim:", error);
-    }
-  }
-
-  function locationPage() {
-    return window.location.href;
-  }
-
-  function noGps() {
-    sendVisit("Tidak ditemukan", "", "");
-  }
-
-  if (!navigator.geolocation) {
-    noGps();
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    async position => {
-      const lat = position.coords.latitude.toFixed(6);
-      const lon = position.coords.longitude.toFixed(6);
-      const coordinates = lat + ", " + lon;
-      const mapsUrl = "https://www.google.com/maps?q=" + lat + "," + lon;
-      const location = await reverseLocation(lat, lon);
-      sendVisit(location, coordinates, mapsUrl);
-    },
-    () => noGps(),
-    {
-      enableHighAccuracy: false,
-      timeout: 8000,
-      maximumAge: 60000
-    }
-  );
-})();
-</script>
-<!-- /VISITOR_TELEGRAM_NOTIFICATION_V1 -->
-
-
-<section id="direktori-halaman" aria-label="Direktori layanan MyRepublic">
+        console.error("[Visitor notific<section id="direktori-halaman" aria-label="Direktori layanan MyRepublic">
 <h2>Direktori Area Layanan MyRepublic</h2>
-<p>Temukan halaman informasi layanan berdasarkan wilayah.</p>
-<ul>
-<li><a href="/anyer/">Anyer</a></li>
-<li><a href="/bali/">Bali</a></li>
-<li><a href="/balikpapan/">Balikpapan</a></li>
-<li><a href="/bandaaceh/">Bandaaceh</a></li>
-<li><a href="/bandung/">Bandung</a></li>
-<li><a href="/bangkalan/">Bangkalan</a></li>
-<li><a href="/banjarbaru/">Banjarbaru</a></li>
-<li><a href="/banjarmasin/">Banjarmasin</a></li>
-<li><a href="/banjarnegara/">Banjarnegara</a></li>
-<li><a href="/banyuwangi/">Banyuwangi</a></li>
-<li><a href="/batam/">Batam</a></li>
-<li><a href="/bekasi/">Bekasi</a></li>
-<li><a href="/bengkulu/">Bengkulu</a></li>
-<li><a href="/blitar/">Blitar</a></li>
-<li><a href="/bogor/">Bogor</a></li>
-<li><a href="/bojonegoro/">Bojonegoro</a></li>
-<li><a href="/boyolali/">Boyolali</a></li>
-<li><a href="/brebes/">Brebes</a></li>
-<li><a href="/bsd/">Bsd</a></li>
-<li><a href="/ciamis/">Ciamis</a></li>
-<li><a href="/cianjur/">Cianjur</a></li>
-<li><a href="/cibubur/">Cibubur</a></li>
-<li><a href="/cilacap/">Cilacap</a></li>
-<li><a href="/cilegon/">Cilegon</a></li>
-<li><a href="/cirebon/">Cirebon</a></li>
-<li><a href="/deliserdang/">Deliserdang</a></li>
-<li><a href="/demak/">Demak</a></li>
-<li><a href="/depok/">Depok</a></li>
-<li><a href="/garut/">Garut</a></li>
-<li><a href="/gorontalo/">Gorontalo</a></li>
-<li><a href="/gresik/">Gresik</a></li>
-<li><a href="/indramayu/">Indramayu</a></li>
-<li><a href="/jakarta/">Jakarta</a></li>
-<li><a href="/jakartabarat/">Jakartabarat</a></li>
-<li><a href="/jambi/">Jambi</a></li>
-<li><a href="/jember/">Jember</a></li>
-<li><a href="/jepara/">Jepara</a></li>
-<li><a href="/jogja/">Jogja</a></li>
-<li><a href="/jombang/">Jombang</a></li>
-<li><a href="/karanganyar/">Karanganyar</a></li>
-<li><a href="/karawang/">Karawang</a></li>
-<li><a href="/kebumen/">Kebumen</a></li>
-<li><a href="/kediri/">Kediri</a></li>
-<li><a href="/kendal/">Kendal</a></li>
-<li><a href="/kendari/">Kendari</a></li>
-<li><a href="/klaten/">Klaten</a></li>
-<li><a href="/kudus/">Kudus</a></li>
-<li><a href="/kuningan/">Kuningan</a></li>
-<li><a href="/lamongan/">Lamongan</a></li>
-<li><a href="/lampung/">Lampung</a></li>
-<li><a href="/madiun/">Madiun</a></li>
-<li><a href="/magelang/">Magelang</a></li>
-<li><a href="/majalengka/">Majalengka</a></li>
-<li><a href="/makassar/">Makassar</a></li>
-<li><a href="/malang/">Malang</a></li>
-<li><a href="/manado/">Manado</a></li>
-<li><a href="/mataram/">Mataram</a></li>
-<li><a href="/medan/">Medan</a></li>
-<li><a href="/metroyogyakarta/">Metroyogyakarta</a></li>
-<li><a href="/mojokerto/">Mojokerto</a></li>
-<li><a href="/nganjuk/">Nganjuk</a></li>
-<li><a href="/ngawi/">Ngawi</a></li>
-<li><a href="/padang/">Padang</a></li>
-<li><a href="/palangkaraya/">Palangkaraya</a></li>
-<li><a href="/palembang/">Palembang</a></li>
-<li><a href="/palu/">Palu</a></li>
-<li><a href="/pasuruan/">Pasuruan</a></li>
-<li><a href="/pati/">Pati</a></li>
-<li><a href="/pekalongan/">Pekalongan</a></li>
-<li><a href="/pekanbaru/">Pekanbaru</a></li>
-<li><a href="/pemalang/">Pemalang</a></li>
-<li><a href="/pematangsiantar/">Pematangsiantar</a></li>
-<li><a href="/ponorogo/">Ponorogo</a></li>
-<li><a href="/prabumulih/">Prabumulih</a></li>
-<li><a href="/probolinggo/">Probolinggo</a></li>
-<li><a href="/purbalingga/">Purbalingga</a></li>
-<li><a href="/purwakarta/">Purwakarta</a></li>
-<li><a href="/purwodadi/">Purwodadi</a></li>
-<li><a href="/purwokerto/">Purwokerto</a></li>
-<li><a href="/purworejo/">Purworejo</a></li>
-<li><a href="/rangkasbitung/">Rangkasbitung</a></li>
-<li><a href="/salatiga/">Salatiga</a></li>
-<li><a href="/samarinda/">Samarinda</a></li>
-<li><a href="/semarang/">Semarang</a></li>
-<li><a href="/serang/">Serang</a></li>
-<li><a href="/singkawang/">Singkawang</a></li>
-<li><a href="/sleman/">Sleman</a></li>
-<li><a href="/solo/">Solo</a></li>
-<li><a href="/sragen/">Sragen</a></li>
-<li><a href="/subang/">Subang</a></li>
-<li><a href="/sukabumi/">Sukabumi</a></li>
-<li><a href="/sukoharjo/">Sukoharjo</a></li>
-<li><a href="/sumedang/">Sumedang</a></li>
+<p>Temukan informasi layanan MyRepublic berdasarkan provinsi dan wilayah.</p>
+<div class="direktori-provinsi"><h3>Aceh</h3>
+<div class="direktori-scroll">
+<a href="/bandaaceh/">Bandaaceh</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Bali</h3>
+<div class="direktori-scroll">
+<a href="/bali/">Bali</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Banten</h3>
+<div class="direktori-scroll">
+<a href="/anyer/">Anyer</a>
+<a href="/bsd/">Bsd</a>
+<a href="/cilegon/">Cilegon</a>
+<a href="/rangkasbitung/">Rangkasbitung</a>
+<a href="/serang/">Serang</a>
+<a href="/tangerang/">Tangerang</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Bengkulu</h3>
+<div class="direktori-scroll">
+<a href="/bengkulu/">Bengkulu</a>
+</div></div>
+<div class="direktori-provinsi"><h3>DI Yogyakarta</h3>
+<div class="direktori-scroll">
+<a href="/jogja/">Jogja</a>
+<a href="/metroyogyakarta/">Metroyogyakarta</a>
+<a href="/sleman/">Sleman</a>
+<a href="/yogyakarta/">Yogyakarta</a>
+</div></div>
+<div class="direktori-provinsi"><h3>DKI Jakarta</h3>
+<div class="direktori-scroll">
+<a href="/cibubur/">Cibubur</a>
+<a href="/jakarta/">Jakarta</a>
+<a href="/jakartabarat/">Jakartabarat</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Gorontalo</h3>
+<div class="direktori-scroll">
+<a href="/gorontalo/">Gorontalo</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Jambi</h3>
+<div class="direktori-scroll">
+<a href="/jambi/">Jambi</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Jawa Barat</h3>
+<div class="direktori-scroll">
+<a href="/bandung/">Bandung</a>
+<a href="/bekasi/">Bekasi</a>
+<a href="/bogor/">Bogor</a>
+<a href="/ciamis/">Ciamis</a>
+<a href="/cianjur/">Cianjur</a>
+<a href="/cirebon/">Cirebon</a>
+<a href="/depok/">Depok</a>
+<a href="/garut/">Garut</a>
+<a href="/indramayu/">Indramayu</a>
+<a href="/karawang/">Karawang</a>
+<a href="/kuningan/">Kuningan</a>
+<a href="/majalengka/">Majalengka</a>
+<a href="/purwakarta/">Purwakarta</a>
+<a href="/subang/">Subang</a>
+<a href="/sukabumi/">Sukabumi</a>
+<a href="/sumedang/">Sumedang</a>
+<a href="/tasikmalaya/">Tasikmalaya</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Jawa Tengah</h3>
+<div class="direktori-scroll">
+<a href="/banjarnegara/">Banjarnegara</a>
+<a href="/boyolali/">Boyolali</a>
+<a href="/brebes/">Brebes</a>
+<a href="/cilacap/">Cilacap</a>
+<a href="/demak/">Demak</a>
+<a href="/jepara/">Jepara</a>
+<a href="/karanganyar/">Karanganyar</a>
+<a href="/kebumen/">Kebumen</a>
+<a href="/kendal/">Kendal</a>
+<a href="/klaten/">Klaten</a>
+<a href="/kudus/">Kudus</a>
+<a href="/magelang/">Magelang</a>
+<a href="/pati/">Pati</a>
+<a href="/pekalongan/">Pekalongan</a>
+<a href="/pemalang/">Pemalang</a>
+<a href="/purbalingga/">Purbalingga</a>
+<a href="/purwodadi/">Purwodadi</a>
+<a href="/purwokerto/">Purwokerto</a>
+<a href="/purworejo/">Purworejo</a>
+<a href="/salatiga/">Salatiga</a>
+<a href="/semarang/">Semarang</a>
+<a href="/solo/">Solo</a>
+<a href="/sragen/">Sragen</a>
+<a href="/sukoharjo/">Sukoharjo</a>
+<a href="/tegal/">Tegal</a>
+<a href="/temanggung/">Temanggung</a>
+<a href="/wonosobo/">Wonosobo</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Jawa Timur</h3>
+<div class="direktori-scroll">
+<a href="/bangkalan/">Bangkalan</a>
+<a href="/banyuwangi/">Banyuwangi</a>
+<a href="/blitar/">Blitar</a>
+<a href="/bojonegoro/">Bojonegoro</a>
+<a href="/gresik/">Gresik</a>
+<a href="/jember/">Jember</a>
+<a href="/jombang/">Jombang</a>
+<a href="/kediri/">Kediri</a>
+<a href="/lamongan/">Lamongan</a>
+<a href="/madiun/">Madiun</a>
+<a href="/malang/">Malang</a>
+<a href="/mojokerto/">Mojokerto</a>
+<a href="/nganjuk/">Nganjuk</a>
+<a href="/ngawi/">Ngawi</a>
+<a href="/pasuruan/">Pasuruan</a>
+<a href="/ponorogo/">Ponorogo</a>
+<a href="/probolinggo/">Probolinggo</a>
+<a href="/surabaya/">Surabaya</a>
+<a href="/tuban/">Tuban</a>
+<a href="/tulungagung/">Tulungagung</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Kalimantan Barat</h3>
+<div class="direktori-scroll">
+<a href="/singkawang/">Singkawang</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Kalimantan Selatan</h3>
+<div class="direktori-scroll">
+<a href="/banjarbaru/">Banjarbaru</a>
+<a href="/banjarmasin/">Banjarmasin</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Kalimantan Tengah</h3>
+<div class="direktori-scroll">
+<a href="/palangkaraya/">Palangkaraya</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Kalimantan Timur</h3>
+<div class="direktori-scroll">
+<a href="/balikpapan/">Balikpapan</a>
+<a href="/samarinda/">Samarinda</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Kepulauan Riau</h3>
+<div class="direktori-scroll">
+<a href="/batam/">Batam</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Lampung</h3>
+<div class="direktori-scroll">
+<a href="/lampung/">Lampung</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Nusa Tenggara Barat</h3>
+<div class="direktori-scroll">
+<a href="/mataram/">Mataram</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Riau</h3>
+<div class="direktori-scroll">
+<a href="/pekanbaru/">Pekanbaru</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Sulawesi Selatan</h3>
+<div class="direktori-scroll">
+<a href="/makassar/">Makassar</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Sulawesi Tengah</h3>
+<div class="direktori-scroll">
+<a href="/palu/">Palu</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Sulawesi Tenggara</h3>
+<div class="direktori-scroll">
+<a href="/kendari/">Kendari</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Sulawesi Utara</h3>
+<div class="direktori-scroll">
+<a href="/manado/">Manado</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Sumatera Barat</h3>
+<div class="direktori-scroll">
+<a href="/padang/">Padang</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Sumatera Selatan</h3>
+<div class="direktori-scroll">
+<a href="/palembang/">Palembang</a>
+<a href="/prabumulih/">Prabumulih</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Sumatera Utara</h3>
+<div class="direktori-scroll">
+<a href="/deliserdang/">Deliserdang</a>
+<a href="/medan/">Medan</a>
+<a href="/pematangsiantar/">Pematangsiantar</a>
+<a href="/tebingtinggi/">Tebingtinggi</a>
+</div></div>
+<div class="direktori-provinsi"><h3>Artikel dan Panduan MyRepublic</h3>
+<div class="direktori-scroll">
+<a href="/artikel/">Artikel</a>
+<a href="/artikel/cara-pasang-myrepublic/">Cara Pasang Myrepublic</a>
+<a href="/artikel/cara-cek-coverage-myrepublic/">Cara Cek Coverage Myrepublic</a>
+<a href="/artikel/tips-memilih-paket-internet/">Tips Memilih Paket Internet</a>
+<a href="/artikel/mengatasi-wifi-lambat/">Mengatasi Wifi Lambat</a>
+</div></div></section>f="/sumedang/">Sumedang</a></li>
 <li><a href="/surabaya/">Surabaya</a></li>
 <li><a href="/tangerang/">Tangerang</a></li>
 <li><a href="/tasikmalaya/">Tasikmalaya</a></li>
