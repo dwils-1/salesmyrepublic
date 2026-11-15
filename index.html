@@ -16,22 +16,39 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Sales MyRepublic INDONESIA",
-      "image": "images/favicon.png",
-      "description": "Layanan Sales & Marketing MyRepublic Indonesia untuk informasi paket internet, konsultasi, pengecekan ketersediaan jaringan, dan pendaftaran pelanggan di berbagai wilayah Indonesia.",
+      "@type": "Organization",
+      "@id": "https://salesmyrepublic.my.id/#organization",
+      "name": "Sales MyRepublic Indonesia",
       "url": "https://salesmyrepublic.my.id/",
-      "telephone": "+6281908999242",
-      "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "ID"
+      "description": "Layanan konsultasi dan informasi pendaftaran paket internet MyRepublic secara online. Ketersediaan jaringan dan penawaran dikonfirmasi berdasarkan alamat pelanggan.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+6281908999242",
+        "contactType": "sales",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Indonesia"
+        },
+        "availableLanguage": "Indonesian"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://salesmyrepublic.my.id/#website",
+      "url": "https://salesmyrepublic.my.id/",
+      "name": "Sales MyRepublic Indonesia",
+      "publisher": {
+        "@id": "https://salesmyrepublic.my.id/#organization"
       },
-      "areaServed": "INDONESIA"
+      "inLanguage": "id-ID"
     }
-    </script>
+  ]
+}
+</script>
     
     <style>
         :root {
