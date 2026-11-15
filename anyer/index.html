@@ -1298,9 +1298,19 @@
         async function fetchSpreadsheetData() {
             try {
                 const resHarga = await fetch(URL_SHEET2_HARGA);
+                if (!resHarga.ok) throw new Error('CSV harga gagal dimuat');
                 const csvHarga = await resHarga.text();
-                renderHarga(parseCSV(csvHarga));
-            } catch (err) { document.getElementById('harga-container').innerHTML = `Gagal memuat harga.`; }
+                const dataHarga = parseCSV(csvHarga);
+                if (!dataHarga.length) throw new Error('CSV harga kosong');
+                renderHarga(dataHarga);
+            } catch (err) {
+                const fallback = window.DATA_HARGA_CADANGAN;
+                if (Array.isArray(fallback) && fallback.length) {
+                    renderHarga(fallback);
+                } else {
+                    document.getElementById('harga-container').innerHTML = `Gagal memuat harga.`;
+                }
+            }
             
             try {
                 const resPromo = await fetch(URL_SHEET1_PROMO);
@@ -1502,7 +1512,7 @@
 
         function initLazyMap() {
             if(mapInitialized || !document.getElementById('map')) return;
-            let defaultLat = -6.0532660; let defaultLng = 105.9227446;
+            let defaultLat = -6.053266; let defaultLng = 105.9227446;
             map = L.map('map').setView([defaultLat, defaultLng], 13);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
             marker = L.marker([defaultLat, defaultLng], {draggable: true}).addTo(map);
@@ -1599,7 +1609,7 @@
 <link rel="stylesheet" href="../assets/css/faq.css">
 <script src="../assets/js/faq-data.js"></script>
 <script src="../assets/js/faq.js"></script>
-<script src="../harga.js"></script>
+<script>window.DATA_HARGA_CADANGAN = [{"Nama Paket": "SAHABAT", "Kecepatan": "75 Mbps", "Harga (Rp/bln)": "Rp205.350"}, {"Nama Paket": "NEXUS", "Kecepatan": "400 Mbps", "Harga (Rp/bln)": "Rp333.000"}, {"Nama Paket": "NEO", "Kecepatan": "200 Mbps", "Harga (Rp/bln)": "Rp233.100"}, {"Nama Paket": "PRIME", "Kecepatan": "500 Mbps", "Harga (Rp/bln)": "Rp555.000"}, {"Nama Paket": "VELO", "Kecepatan": "300 Mbps", "Harga (Rp/bln)": "Rp277.500"}, {"Nama Paket": "WONDER", "Kecepatan": "750 Mbps", "Harga (Rp/bln)": "Rp721.500"}, {"Nama Paket": "ULTRA", "Kecepatan": "1 Gbps", "Harga (Rp/bln)": "Rp943.500"}, {"Nama Paket": "SILVER", "Kecepatan": "350 Mbps", "Harga (Rp/bln)": "Rp444.000"}, {"Nama Paket": "DIAMOND", "Kecepatan": "750 Mbps", "Harga (Rp/bln)": "Rp777.000"}, {"Nama Paket": "GOLD", "Kecepatan": "500 Mbps", "Harga (Rp/bln)": "Rp610.500"}, {"Nama Paket": "PLATINUM", "Kecepatan": "1 Gbps", "Harga (Rp/bln)": "Rp999.000"}, {"Nama Paket": "COMBO TV", "Kecepatan": "add ons", "Harga (Rp/bln)": "Rp94.350"}];</script>
 
 
 

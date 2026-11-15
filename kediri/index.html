@@ -7,6 +7,8 @@
 <title>Sales MyRepublic Kediri - Internet Fiber Optik Tanpa Batas</title>
 <meta name="description" content="Pasang internet fiber optik MyRepublic murah dan cepat di Kediri. Koneksi stabil, harga terbaik, registrasi mudah. Cek harga paket MyRepublic di Kediri sekarang.">
 
+
+    
     <meta name="theme-color" content="#6c2d91">
     <link rel="icon" type="image/png" href="../images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1002,8 +1004,8 @@
 
     <section class="hero">
         <div class="glass-shower-screen scroll-animate">
-            <h2>Koneksi Fiber Optik Tanpa Batas Kuota</h2>
-            <p>Nikmati kecepatan internet ultra stabil 1:1 simetris langsung dari jaringan infrastruktur resmi di Kediri.</p>
+            <h2>Internet Fiber Optik MyRepublic di Kediri</h2>
+            <p>Cari informasi paket internet MyRepublic untuk rumah Anda di Kediri. Periksa ketersediaan jaringan berdasarkan alamat sebelum melakukan pendaftaran.</p>
         </div>
     </section>
 
@@ -1028,31 +1030,27 @@
             <div class="article-divider-line"></div>
         </div>
 
-        <div class="article-holder-out scroll-animate" id="articleContentArea">
-            <h4>Mengapa Memilih MyRepublic Internet Fiber?</h4>
-            <p><strong>MyRepublic</strong> adalah pelopor layanan internet fiber optik berskala internasional yang hadir secara resmi untuk masyarakat Kediri. Berbeda dengan provider konvensional, MyRepublic memiliki pengalaman berinternet premium bebas hambatan dengan keunggulan teknologi mutakhir.</p>
-
-            <div class="article-features">
-                <div class="feature-item">
-                    <h5>🚀 Kecepatan 1:1 Simetris</h5>
-                    <p>Kecepatan <em>Upload</em> and <em>Download</em> yang sama persis sehingga kirim dokumen besar jadi super instan.</p>
-                </div>
-                <div class="feature-item">
-                    <h5>♾️ Murni Tanpa FUP (Tanpa Batas)</h5>
-                    <p>Internet sepuasnya tanpa takut penurunan kecepatan di tengah bulan. Bebas kuota selamanya.</p>
-                </div>
-                <div class="feature-item">
-                    <h5>🎮 Ping Sangat Rendah</h5>
-                    <p>Dilengkapi dengan fitur <em>custom routing</em> khusus untuk jalur server game dan <em>streaming</em> hiburan global terpopuler.</p>
-                </div>
-            </div>
-            
-            <div class="article-cta-box">
-                <h5>Ingin Memastikan Apakah Rumah Anda Sudah Tercover Jaringan?</h5>
-                <p style="font-size: 0.9rem; margin-bottom: 8px;">Gunakan peta koordinat otomatis kami di widget bawah untuk mengunci promo instalasi gratis bulan ini.</p>
-                <button class="btn-article-cta" onclick="toggleChatBox()">Mulai Cek Coverage Sekarang</button>
-            </div>
-        </div>
+        <div class="article-holder-out scroll-animate" id="articleContentArea"><h4>Informasi Internet MyRepublic untuk Area Kediri</h4>
+<p>Calon pelanggan di Kediri dapat mencari informasi layanan internet MyRepublic untuk kebutuhan rumah, pekerjaan, belajar, dan hiburan. Ketersediaan jaringan perlu diperiksa berdasarkan alamat pemasangan sebelum pendaftaran.</p>
+<div class="article-features">
+    <div class="feature-item">
+      <h5>🏠 Pilihan Paket Internet Rumah</h5>
+      <p>Pertimbangkan jumlah pengguna, perangkat yang terhubung, serta aktivitas seperti bekerja, belajar, dan menonton video saat memilih paket.</p>
+    </div>
+    <div class="feature-item">
+      <h5>📋 Periksa Ketentuan Paket</h5>
+      <p>Periksa harga, kecepatan, biaya pemasangan, dan ketentuan penggunaan berdasarkan informasi penawaran yang berlaku saat pendaftaran.</p>
+    </div>
+    <div class="feature-item">
+      <h5>🎮 Sesuaikan dengan Aktivitas</h5>
+      <p>Pertimbangkan kebutuhan bermain game, rapat online, belajar, dan streaming. Pengalaman juga dipengaruhi perangkat serta kondisi jaringan di rumah.</p>
+    </div>
+  </div>
+<div class="article-cta-box">
+    <h5>Ingin Memeriksa Ketersediaan Jaringan di Alamat Anda?</h5>
+    <p style="font-size: 0.9rem; margin-bottom: 8px;">Kirim alamat atau titik lokasi kepada tim sales untuk pengecekan ketersediaan jaringan dan informasi penawaran yang berlaku.</p>
+    <button class="btn-article-cta" onclick="toggleChatBox()">Mulai Cek Coverage Sekarang</button>
+  </div></div>
 
         <hr class="section-divider scroll-animate">
 
@@ -1296,9 +1294,19 @@
         async function fetchSpreadsheetData() {
             try {
                 const resHarga = await fetch(URL_SHEET2_HARGA);
+                if (!resHarga.ok) throw new Error('CSV harga gagal dimuat');
                 const csvHarga = await resHarga.text();
-                renderHarga(parseCSV(csvHarga));
-            } catch (err) { document.getElementById('harga-container').innerHTML = `Gagal memuat harga.`; }
+                const dataHarga = parseCSV(csvHarga);
+                if (!dataHarga.length) throw new Error('CSV harga kosong');
+                renderHarga(dataHarga);
+            } catch (err) {
+                const fallback = window.DATA_HARGA_CADANGAN;
+                if (Array.isArray(fallback) && fallback.length) {
+                    renderHarga(fallback);
+                } else {
+                    document.getElementById('harga-container').innerHTML = `Gagal memuat harga.`;
+                }
+            }
             
             try {
                 const resPromo = await fetch(URL_SHEET1_PROMO);
@@ -1532,7 +1540,7 @@
             overlay.style.display = 'flex';
 
             const nama = document.getElementById('form-nama').value;
-            const textFormatWA = `Halo Kak ${nama}! Saya dari tim MyRepublic. Saya ingin mengonfirmasi pendaftaran pemasangan WiFi MyRepublic yang masuk ke sistem kami. Benar dengan Kakak untuk rencana pemasangannya? Mohon informasinya ya, Kak. Terima kasih.`;
+            const textFormatWA = `Halo Kak ${nama}, saya ingin konfirmasi pendaftaran MyRepublic. Mohon dibantu ya.`;
             const linkWA = `https://wa.me/${hpValue}?text=${encodeURIComponent(textFormatWA)}`;
 
             let msg = `🚀 *DATA BARU MASUK WEBSITE*\n━━━━━━━━━━━━━━━━━━━━\n👤 *Nama:* ${nama}\n📞 *WhatsApp:* [${hpValue}](${linkWA})\n`;
@@ -1578,7 +1586,7 @@
                 }
 
                 if (sendSuccess) {
-                    alert('Data sukses terkirim tim Teknisi kami.');
+                    alert('Data sukses terkirim ke tim Teknisi kami..');
                     document.getElementById('clientForm').reset();
                     toggleChatBox();
                 } else { alert('Gagal mengirim data.'); }
@@ -1594,14 +1602,10 @@
         };
     </script>
     <script src="/floating-wa.js"></script>
-<div style="display: none;">
-    <img src="https://salesmyrepublic.my.id/images/myrepublic-50Mbps.png" alt="Promo MyRepublic 50 Mbps murah di Kediri - Pasang WiFi Cepat & Stabil">
-    <p>Area Layanan internet MyRepublic mencakup seluruh wilayah Kediri dan sekitarnya. Dapatkan penawaran harga spesial untuk pelanggan baru di Kediri.</p>
-</div>
 <link rel="stylesheet" href="../assets/css/faq.css">
 <script src="../assets/js/faq-data.js"></script>
 <script src="../assets/js/faq.js"></script>
-<script src="../harga.js"></script>
+<script>window.DATA_HARGA_CADANGAN = [{"PAKET": "Ringan 10Mbps", "KECEPATAN ": "10 Mbps", "HARGA": "Rp116.550"}, {"PAKET": "Ring 20Mbps", "KECEPATAN ": "20 Mbps", "HARGA": "Rp127.600"}, {"PAKET": "EKONOMIS", "KECEPATAN ": "50 Mbps", "HARGA": "Rp166.500"}, {"PAKET": "NEO", "KECEPATAN ": "200 Mbps", "HARGA": "Rp233.100"}, {"PAKET": "VELO", "KECEPATAN ": "300 Mbps", "HARGA": "Rp277.500"}, {"PAKET": "NEXUS", "KECEPATAN ": "400 Mbps", "HARGA": "Rp333.000"}, {"PAKET": "PRIME", "KECEPATAN ": "500 Mbps", "HARGA": "Rp555.000"}, {"PAKET": "WONDER", "KECEPATAN ": "750 Mbps", "HARGA": "Rp721.500"}, {"PAKET": "ULTRA 1Gb", "KECEPATAN ": "1 Gbps", "HARGA": "Rp943.500"}, {"PAKET": "MyGamer S350", "KECEPATAN ": "350 Mbps", "HARGA": "Rp444.000"}, {"PAKET": "MyGamer G500", "KECEPATAN ": "500 Mbps", "HARGA": "Rp610.500"}, {"PAKET": "MyGamer D750", "KECEPATAN ": "750 Mbps", "HARGA": "Rp777.000"}, {"PAKET": "MyGamer P1", "KECEPATAN ": "1 Gbps", "HARGA": "Rp999.000"}];</script>
 
 
 
